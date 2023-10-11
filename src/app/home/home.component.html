@@ -1,0 +1,13 @@
+<section>
+    <form>
+        <input type="text" placeholder="Find User">
+        <button class="primary" type="button">Search</button>
+    </form>
+</section>
+<section class="results">
+    <a [routerLink]="['details']">details</a>
+    <form>
+        <button type="button" (click)="getAllUsers()">Get all users</button>
+    </form>
+
+</section>
