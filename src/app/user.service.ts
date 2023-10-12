@@ -8,7 +8,12 @@ export class UserService {
   base_url = 'http://localhost:8080/demo/'
 
   async getAllUsers(): Promise<User[]> {
-    const data = await fetch("/api/demo/all");
+    const data = await fetch(this.base_url + "all");
     return await data.json() ?? {};
+  }
+
+  async getUser(username: String): Promise<User | undefined> {
+    const data = await fetch(this.base_url + `user/?username=${username}`)
+    return await data.json() ?? '';
   }
 }

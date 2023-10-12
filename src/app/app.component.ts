@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { UsersComponent } from './users/users.component';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +12,8 @@ import { HomeComponent } from './home/home.component';
   imports:
     [
       HomeComponent,
+      UsersComponent,
+      UserDetailsComponent,
       RouterModule
     ],
 })

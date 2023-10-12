@@ -1,1 +1,9 @@
-<p>user-details works!</p>
+<div>
+    <a [routerLink]="['/']">Home</a>
+    <hr class="solid">
+    <h1>Name: {{user?.name}}</h1>
+    <h3>Username: {{user?.username}}</h3>
+    <h3>ID: {{user?.id}}</h3>
+    <h3>Email: {{user?.email}}</h3>
+    <hr class="solid">
+</div>

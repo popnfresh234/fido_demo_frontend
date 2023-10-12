@@ -1,0 +1,12 @@
+hr.solid {
+    border-top: 3px solid #bbb;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+}
