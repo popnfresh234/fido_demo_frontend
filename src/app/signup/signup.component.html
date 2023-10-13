@@ -1,0 +1,15 @@
+<article>
+    <section class="sign-up">
+        <form [formGroup]="applyForm" (submit)="submitUser()">
+            <label for="name">Name</label>
+            <input id="name" type="text" formControlName="name">
+
+            <label for="username">Username</label>
+            <input id="username" type="text" formControlName="username">
+
+            <label for="email">Email</label>
+            <input id="email" type="email" formControlName="email">
+            <button type="submit" class="primary">Apply now</button>
+        </form>
+    </section>
+</article>

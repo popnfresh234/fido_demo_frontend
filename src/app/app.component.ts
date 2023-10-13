@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UsersComponent } from './users/users.component';
+import { SignupComponent } from './signup/signup.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { UsersComponent } from './users/users.component';
       HomeComponent,
       UsersComponent,
       UserDetailsComponent,
+      SignupComponent,
       RouterModule
     ],
 })

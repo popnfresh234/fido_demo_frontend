@@ -16,4 +16,14 @@ export class UserService {
     const data = await fetch(this.base_url + `user/?username=${username}`)
     return await data.json() ?? '';
   }
+
+  async submitUser(name: String, username: String, email: String) {
+    const data = await fetch(this.base_url + `add?name=${name}&email=${email}&username=${username}`, {
+      method: "post",
+      mode: "cors",
+
+    });
+    return await data.json() ?? '';
+  }
 }
+
