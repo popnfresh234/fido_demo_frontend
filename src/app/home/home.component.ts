@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { User } from '../user';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
+import { HttpService } from '../services/http.service';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from '../users/users.component';
 @Component({
@@ -19,23 +20,24 @@ import { UsersComponent } from '../users/users.component';
 export class HomeComponent {
   users: User[] = [];
   userService: UserService = inject(UserService);
+  httpSerivce: HttpService = inject(HttpService);
 
   constructor() {
   }
 
   getAllUsers() {
-    this.userService.getAllUsers().then((users: User[]) => {
+    this.httpSerivce.getAllUsers().subscribe((users) => {
       this.users = users;
     })
   }
 
   getUser(username: String) {
-    this.userService.getUser(username).then((user) => {
-      console.log(user);
+    this.httpSerivce.getUser(username).subscribe((user) => {
       this.users = [];
-      if (user && user.username) {
+      if (user && user.email) {
         this.users[0] = user;
       }
     })
   }
+
 }

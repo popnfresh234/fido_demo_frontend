@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { User } from '../user';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
+import { HttpService } from '../services/http.service';
 
 
 @Component({
@@ -16,12 +17,18 @@ import { UserService } from '../user.service';
 export class UserDetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   userSerrvice = inject(UserService);
+  httpService = inject(HttpService);
   user: User | undefined;
 
   constructor() {
-    const username = this.route.snapshot.params['username'];
-    this.userSerrvice.getUser(username).then((user) => {
+    const email = this.route.snapshot.params['email'];
+    console.log(this.route.snapshot.params);
+    console.log('email', email);
+    this.httpService.getUser(email).subscribe((user) => {
       this.user = user;
     })
+    // this.userSerrvice.getUser(username).then((user) => {
+    //   this.user = user;
+    // })
   };
 }

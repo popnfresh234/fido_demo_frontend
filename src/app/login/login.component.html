@@ -1,0 +1,17 @@
+<article>
+
+    <section class="login" *ngIf="localStorageService.getData('auth') !== 'true'">
+        <form [formGroup]="applyForm" (submit)="submitLogin()">
+
+            <label for="username">Username</label>
+            <input id="username" type="email" formControlName="username">
+
+            <label for="email">Password</label>
+            <input id="password" type="text" formControlName="password">
+            <button type="submit" class="primary">Login</button>
+        </form>
+    </section>
+    <section class="logout" *ngIf="localStorageService.getData('auth') ==='true'">
+        <button class="primary" (click)="submitLogout()">Logout</button>
+    </section>
+</article>
