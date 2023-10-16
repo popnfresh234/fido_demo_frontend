@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { catchError, Observable, of } from 'rxjs';
+import { ErrorResponse } from '../models/error-response';
 import { AuthService } from '../services/auth/auth.service';
 
 @Component({
@@ -21,6 +23,8 @@ export class SignupComponent {
 
   });
 
+  error: String = '';
+
   constructor() {
 
   }
@@ -30,6 +34,22 @@ export class SignupComponent {
       this.applyForm.value.name ?? '',
       this.applyForm.value.email ?? '',
       this.applyForm.value.password ?? '',
-    )
+    ).pipe(catchError((errorResponse: ErrorResponse): Observable<any> => {
+      console.log(errorResponse);
+      this.error = "Something went wrong!";
+      return of();
+    })).subscribe(() => {
+      this.authSerivce.submitLogin(
+        this.applyForm.value.email ?? '',
+        this.applyForm.value.password ?? '',
+      ).pipe(catchError((errorResponse: ErrorResponse): Observable<any> => {
+        console.log(errorResponse);
+        this.error = errorResponse.error.message;
+        return of();
+      }))
+        .subscribe((response) => {
+          this.authSerivce.handleLogin(response, this.error);
+        })
+    })
   }
 }

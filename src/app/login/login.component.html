@@ -16,6 +16,9 @@
                 <button type="submit" class="primary submit-button">Login</button>
             </div>
         </form>
+        <div class="error-item">
+            <h1>{{error}}</h1>
+        </div>
     </section>
     <section class="logout" *ngIf="localStorageService.getData('auth') ==='true'">
         <button class="primary" (click)="submitLogout()">Logout</button>

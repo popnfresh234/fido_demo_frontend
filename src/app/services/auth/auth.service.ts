@@ -15,15 +15,7 @@ export class AuthService {
   constructor(private http: HttpClient, private localStorageService: LocalStorageService) { }
 
   submitLogin(username: String, password: String) {
-    this.http.post<LoginResponse>(this.base_url + "auth/login", { "email": username, "password": password }).subscribe((response) => {
-      if (response && response.accessToken) {
-        this.localStorageService.saveData("token", response.accessToken);
-        this.localStorageService.saveData("auth", "true");
-        this.router.navigateByUrl('/');
-      } else {
-        console.log("error");
-      }
-    })
+    return this.http.post<LoginResponse>(this.base_url + "auth/login", { "email": username, "password": password })
   }
 
   submitLogout() {
@@ -32,9 +24,18 @@ export class AuthService {
   }
 
   submitSignup(name: String, email: String, password: String) {
-    this.http.post(this.base_url + `signup?name=${name}&email=${email}&password=${password}`, {}).subscribe((response) => {
-      this.submitLogin(email, password);
-    })
+    return this.http.post<LoginResponse>(this.base_url + `signup?name=${name}&email=${email}&password=${password}`, {})
+  }
+
+  handleLogin(response: LoginResponse, error: String) {
+    if (response && response.accessToken) {
+      this.localStorageService.saveData("token", response.accessToken);
+      this.localStorageService.saveData("auth", "true");
+      error = '';
+      this.router.navigateByUrl('/');
+    } else {
+      console.log("error");
+    }
   }
 }
 
