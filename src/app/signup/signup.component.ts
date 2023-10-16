@@ -36,7 +36,7 @@ export class SignupComponent {
       this.applyForm.value.password ?? '',
     ).pipe(catchError((errorResponse: ErrorResponse): Observable<any> => {
       console.log(errorResponse);
-      this.error = "Something went wrong!";
+      this.error = errorResponse.error.message;
       return of();
     })).subscribe(() => {
       this.authSerivce.submitLogin(

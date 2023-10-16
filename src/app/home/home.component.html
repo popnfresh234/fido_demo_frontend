@@ -10,5 +10,7 @@
 <section class="results">
     <app-users *ngFor="let user of users" [user]="user">
     </app-users>
-
+    <div class="error-item">
+        <h1>{{error}}</h1>
+    </div>
 </section>
