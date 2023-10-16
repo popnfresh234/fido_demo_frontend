@@ -1,10 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { User } from '../user';
+import { User } from '../models/user';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../services/user.service';
-import { HttpService } from '../services/http.service';
+import { HttpService } from '../services/user/http.service';
 
 
 @Component({
@@ -16,7 +15,6 @@ import { HttpService } from '../services/http.service';
 })
 export class UserDetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  userSerrvice = inject(UserService);
   httpService = inject(HttpService);
   user: User | undefined;
 
@@ -27,8 +25,5 @@ export class UserDetailsComponent {
     this.httpService.getUser(email).subscribe((user) => {
       this.user = user;
     })
-    // this.userSerrvice.getUser(username).then((user) => {
-    //   this.user = user;
-    // })
   };
 }

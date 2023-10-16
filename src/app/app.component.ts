@@ -7,8 +7,8 @@ import { UsersComponent } from './users/users.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './services/auth.service';
-import { LocalStorageService } from './services/local-storage.service';
+import { AuthService } from './services/auth/auth.service';
+import { LocalStorageService } from './services/local_storage/local-storage.service';
 @Component({
   selector: 'app-root',
   standalone: true,

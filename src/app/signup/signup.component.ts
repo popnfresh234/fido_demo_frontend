@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +11,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  userService = inject(UserService);
+  authSerivce = inject(AuthService)
 
 
   applyForm = new FormGroup({
@@ -25,14 +25,11 @@ export class SignupComponent {
 
   }
 
-  submitUser() {
-    this.userService.submitUser(
+  submitSignup() {
+    this.authSerivce.submitSignup(
       this.applyForm.value.name ?? '',
       this.applyForm.value.email ?? '',
       this.applyForm.value.password ?? '',
-
-    ).then(() => {
-      console.log('success');
-    })
+    )
   }
 }

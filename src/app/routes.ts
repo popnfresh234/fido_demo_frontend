@@ -3,7 +3,8 @@ import { HomeComponent } from "./home/home.component";
 import { UserDetailsComponent } from "./user-details/user-details.component";
 import { SignupComponent } from "./signup/signup.component";
 import { LoginComponent } from "./login/login.component";
-import { authGuard } from "./auth.guard";
+import { authGuard } from "./guards/auth.guard";
+import { signupGuard } from "./guards/signup.guard";
 const routeConfig: Routes = [
     {
         path: '',
@@ -21,6 +22,7 @@ const routeConfig: Routes = [
         path: 'signup',
         component: SignupComponent,
         title: 'Signup',
+        canActivate: [signupGuard]
     },
     {
         path: 'login',

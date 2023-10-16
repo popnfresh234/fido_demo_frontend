@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { LocalStorageService } from './local-storage.service';
+import { LocalStorageService } from '../local_storage/local-storage.service';
 import { Injectable, inject } from '@angular/core';
-import { LoginResponse } from '../login-response';
+import { LoginResponse } from '../../models/login-response';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -25,9 +25,16 @@ export class AuthService {
       }
     })
   }
+
   submitLogout() {
     this.localStorageService.clearData();
     this.router.navigateByUrl('/login')
+  }
+
+  submitSignup(name: String, email: String, password: String) {
+    this.http.post(this.base_url + `signup?name=${name}&email=${email}&password=${password}`, {}).subscribe((response) => {
+      this.submitLogin(email, password);
+    })
   }
 }
 

@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { User } from '../user';
-import { UserService } from '../services/user.service';
-import { HttpService } from '../services/http.service';
+import { RouterModule } from '@angular/router';
+import { User } from '../models/user';
+import { HttpService } from '../services/user/http.service';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from '../users/users.component';
 @Component({
@@ -19,7 +18,6 @@ import { UsersComponent } from '../users/users.component';
 })
 export class HomeComponent {
   users: User[] = [];
-  userService: UserService = inject(UserService);
   httpSerivce: HttpService = inject(HttpService);
 
   constructor() {

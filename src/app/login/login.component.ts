@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
-import { LocalStorageService } from '../services/local-storage.service';
+import { AuthService } from '../services/auth/auth.service';
+import { LocalStorageService } from '../services/local_storage/local-storage.service';
 @Component({
   selector: 'app-login',
   standalone: true,
