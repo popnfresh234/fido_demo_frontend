@@ -1,9 +1,9 @@
 <section>
-    <form>
-        <input type="text" placeholder="Find User by Username" #filter>
+    <form class="form-item">
+        <input type="text" placeholder="Find User by Email" #filter>
         <button class="primary" type="button" (click)="getUser(filter.value)">Search</button>
     </form>
-    <form>
+    <form class="form-item">
         <button type="button" (click)="getAllUsers()">Get all users</button>
     </form>
 </section>

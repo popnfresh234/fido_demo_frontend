@@ -1,0 +1,40 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: blue;
+}
+
+button {
+    display: block;
+}
+
+.toolbar {
+    background-color: gray;
+    padding: 1rem;
+}
+
+.content {
+    height: 100vh;
+    padding: 1rem;
+    background-color: lightgray;
+}
+
+.navigation {
+    display: flex;
+}
+
+.nav-item {
+    margin: 0 0.5rem 0 0.5rem;
+}
+
+button.primary {
+    margin: 0 0.5rem 0 0.5rem;
+}

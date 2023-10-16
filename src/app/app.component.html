@@ -12,12 +12,11 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <section class="navigation">
-    <a [routerLink]="['/']">Home</a>
-    <a [routerLink]="['/signup']">Sign up</a>
-    <a [routerLink]="['/login']" *ngIf="this.localStoragService.getData('auth') !== 'true'">Login</a>
-    <form (submit)="submitLogout()" *ngIf="this.localStoragService.getData('auth') === 'true'">
-      <button type="submit" class="primary">Logout</button>
-    </form>
+    <a class="nav-item" [routerLink]="['/']">Home</a>
+    <a class="nav-item" [routerLink]="['/signup']">Sign up</a>
+    <a class="nav-item" [routerLink]="['/login']" *ngIf="this.localStoragService.getData('auth') !== 'true'">Login</a>
+    <button class="primary" *ngIf="this.localStoragService.getData('auth') === 'true'"
+      (click)="submitLogout()">Logout</button>
   </section>
 </div>
 
