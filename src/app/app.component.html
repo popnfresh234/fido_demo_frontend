@@ -16,8 +16,9 @@
     <a class="nav-item" [routerLink]="['/signup']" *ngIf="this.localStoragService.getData('auth') !== 'true'">Sign
       up</a>
     <a class="nav-item" [routerLink]="['/login']" *ngIf="this.localStoragService.getData('auth') !== 'true'">Login</a>
-    <button class="primary" *ngIf="this.localStoragService.getData('auth') === 'true'"
-      (click)="submitLogout()">Logout</button>
+    <button class="primary" *ngIf="this.localStoragService.getData('auth') === 'true'" (click)="submitLogout()">
+      Logout
+    </button>
   </section>
 </div>
 

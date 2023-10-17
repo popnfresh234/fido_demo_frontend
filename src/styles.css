@@ -7,3 +7,12 @@ body {
 .error-item {
     color: red;
 }
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+}

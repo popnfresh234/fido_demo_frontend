@@ -1,15 +1,12 @@
-<section>
-    <form class="form-item">
-        <input type="text" placeholder="Find User by Email" #filter>
-        <button class="primary" type="button" (click)="getUser(filter.value)">Search</button>
-    </form>
-    <form class="form-item">
-        <button type="button" (click)="getAllUsers()">Get all users</button>
-    </form>
+<section class="title-bar">
+    <span>News</span>
+
 </section>
 <section class="results">
-    <app-users *ngFor="let user of users" [user]="user">
-    </app-users>
+    <div class="news-items">
+        <app-news *ngFor="let news of newsArray" [news]="news">
+        </app-news>
+    </div>
     <div class="error-item">
         <h1>{{error}}</h1>
     </div>

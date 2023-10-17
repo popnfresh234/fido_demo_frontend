@@ -29,6 +29,8 @@ export class SignupComponent {
 
   }
 
+  //TODO Form validation
+
   submitSignup() {
     this.authSerivce.submitSignup(
       this.applyForm.value.name ?? '',

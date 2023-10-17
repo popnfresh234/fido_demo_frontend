@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user';
-import { catchError, Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class HttpService {
+export class UserService {
 
   base_url = 'http://localhost:8080/user'
   constructor(private http: HttpClient) { }

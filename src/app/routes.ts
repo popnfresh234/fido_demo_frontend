@@ -5,6 +5,7 @@ import { SignupComponent } from "./signup/signup.component";
 import { LoginComponent } from "./login/login.component";
 import { authGuard } from "./guards/auth.guard";
 import { signupGuard } from "./guards/signup.guard";
+import { NewsDetailsComponent } from "./news-details/news-details.component";
 const routeConfig: Routes = [
     {
         path: '',
@@ -13,9 +14,15 @@ const routeConfig: Routes = [
         canActivate: [authGuard]
     },
     {
+        path: 'news/:id',
+        component: NewsDetailsComponent,
+        title: "News Article",
+        canActivate: [authGuard],
+    },
+    {
         path: 'details/:email',
         component: UserDetailsComponent,
-        title: 'Home details',
+        title: 'User details',
         canActivate: [authGuard]
     },
     {

@@ -1,0 +1,20 @@
+.title-bar {
+    display: flex;
+    justify-content: center;
+}
+
+.news-item {
+    display: flex;
+    margin: 0 10vw 0 10vw;
+}
+
+.controls {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.box-link {
+    padding: 1rem;
+    border: 1px solid black;
+}

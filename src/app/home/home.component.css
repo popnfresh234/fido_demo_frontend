@@ -1,3 +1,15 @@
+.title-bar {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .form-item {
     margin-bottom: 0.5rem;
 }

@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth/auth.service';
 import { LocalStorageService } from './services/local_storage/local-storage.service';
+import { NewsComponent } from './news-item/news-item.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -21,6 +22,7 @@ import { LocalStorageService } from './services/local_storage/local-storage.serv
       UserDetailsComponent,
       SignupComponent,
       LoginComponent,
+      NewsComponent,
       RouterModule,
       ReactiveFormsModule,
       CommonModule

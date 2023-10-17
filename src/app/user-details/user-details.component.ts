@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { User } from '../models/user';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from '../services/user/http.service';
+import { UserService } from '../services/user/user.service';
 
 
 @Component({
@@ -15,13 +15,11 @@ import { HttpService } from '../services/user/http.service';
 })
 export class UserDetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  httpService = inject(HttpService);
+  httpService = inject(UserService);
   user: User | undefined;
 
   constructor() {
     const email = this.route.snapshot.params['email'];
-    console.log(this.route.snapshot.params);
-    console.log('email', email);
     this.httpService.getUser(email).subscribe((user) => {
       this.user = user;
     })
