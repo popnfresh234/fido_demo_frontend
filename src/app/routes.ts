@@ -20,7 +20,7 @@ const routeConfig: Routes = [
         canActivate: [authGuard],
     },
     {
-        path: 'details/:email',
+        path: 'user/:email',
         component: UserDetailsComponent,
         title: 'User details',
         canActivate: [authGuard]

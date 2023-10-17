@@ -16,8 +16,8 @@ export class UserService {
     return this.http.get<User[]>(this.base_url + "/all");
   }
 
-  getUser(email: String) {
-    return this.http.get<User>(this.base_url + `/?email=${email}`);
+  getUser(id: number) {
+    return this.http.get<User>(this.base_url + `/?id=${id}`);
   }
 }
 

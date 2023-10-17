@@ -28,7 +28,6 @@ export class NewsDetailsComponent {
       this.error = errorResponse.error.message;
       return of();
     })).subscribe((news) => {
-      console.log(news);
       this.error = '';
       this.news = news;
     })

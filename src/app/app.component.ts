@@ -32,6 +32,11 @@ export class AppComponent {
   authService = inject(AuthService);
   localStoragService = inject(LocalStorageService)
   title = 'frontend';
+  email = 'ajhollid@gmail.com';
+
+  constructor() {
+    this.email = this.authService.getEmailFromToken(this.localStoragService.getData("token"));
+  }
 
   submitLogout() {
     this.authService.submitLogout();

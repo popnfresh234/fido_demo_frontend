@@ -3,6 +3,10 @@ import { LocalStorageService } from '../local_storage/local-storage.service';
 import { Injectable, inject } from '@angular/core';
 import { LoginResponse } from '../../models/login-response';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { TokenModel } from 'src/app/models/token_model';
+import jwtDecode from 'jwt-decode';
+import { Token } from '@angular/compiler';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +15,8 @@ export class AuthService {
 
   router = inject(Router);
   base_url = 'http://localhost:8080/auth'
+  user?: User;
+
   constructor(private http: HttpClient, private localStorageService: LocalStorageService) { }
 
   submitLogin(username: String, password: String) {
@@ -35,6 +41,10 @@ export class AuthService {
     } else {
       console.log("error");
     }
+  }
+  getEmailFromToken(token: string | null) {
+    const jwt = jwtDecode<TokenModel>(token ? token : '');
+    return jwt.sub;
   }
 }
 
