@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   router = inject(Router);
-  base_url = 'http://localhost:8080/'
+  base_url = 'http://localhost:8080/auth'
   constructor(private http: HttpClient, private localStorageService: LocalStorageService) { }
 
   submitLogin(username: String, password: String) {
-    return this.http.post<LoginResponse>(this.base_url + "auth/login", { "email": username, "password": password })
+    return this.http.post<LoginResponse>(this.base_url + "/login", { "email": username, "password": password })
   }
 
   submitLogout() {
@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   submitSignup(name: String, email: String, password: String) {
-    return this.http.post<LoginResponse>(this.base_url + `signup?name=${name}&email=${email}&password=${password}`, {})
+    return this.http.post<LoginResponse>(this.base_url + `/signup?name=${name}&email=${email}&password=${password}`, {})
   }
 
   handleLogin(response: LoginResponse, error: String) {
