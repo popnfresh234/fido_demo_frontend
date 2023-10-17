@@ -3,7 +3,6 @@ import { LocalStorageService } from '../local_storage/local-storage.service';
 import { Injectable, inject } from '@angular/core';
 import { LoginResponse } from '../../models/login-response';
 import { Router } from '@angular/router';
-
 @Injectable({
   providedIn: 'root'
 })

@@ -9,21 +9,16 @@ import { Injectable } from '@angular/core';
 
 export class HttpService {
 
-  base_url = 'http://localhost:8080/'
+  base_url = 'http://localhost:8080/user'
   constructor(private http: HttpClient) { }
 
-  getTest() {
-    this.http.get(this.base_url + "auth/test").subscribe((response) => {
-      console.log(response);
-    });
-  }
 
   getAllUsers() {
-    return this.http.get<User[]>(this.base_url + "all");
+    return this.http.get<User[]>(this.base_url + "/all");
   }
 
   getUser(email: String) {
-    return this.http.get<User>(this.base_url + `user/?email=${email}`);
+    return this.http.get<User>(this.base_url + `/?email=${email}`);
   }
 }
 
