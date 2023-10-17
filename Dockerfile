@@ -26,6 +26,7 @@ COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 # Exposing a port, here it means that inside the container 
 # the app will be using Port 80 while running
 EXPOSE 80
+#SSL Certificate
 
 # docker build -t demo_frontend -f ./Dockerfile .
 # docker run -p 4200:80 -d demo_frontend
