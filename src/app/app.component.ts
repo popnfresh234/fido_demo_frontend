@@ -30,12 +30,12 @@ import { NewsComponent } from './news-item/news-item.component';
 })
 export class AppComponent {
   authService = inject(AuthService);
-  localStoragService = inject(LocalStorageService)
+  localStorageService = inject(LocalStorageService)
   title = 'frontend';
   email = 'ajhollid@gmail.com';
 
   constructor() {
-    this.email = this.authService.getEmailFromToken(this.localStoragService.getData("token"));
+    this.email = this.authService.getEmailFromToken(this.localStorageService.getData("token"));
   }
 
   submitLogout() {

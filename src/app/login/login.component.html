@@ -20,7 +20,4 @@
             <h1>{{error}}</h1>
         </div>
     </section>
-    <section class="logout" *ngIf="localStorageService.getData('auth') ==='true'">
-        <button class="primary" (click)="submitLogout()">Logout</button>
-    </section>
 </article>

@@ -1,7 +1,10 @@
-<div>
+<div *ngIf="!error">
     <hr class="solid">
     <h1>Name: {{user?.name}}</h1>
     <h3>ID: {{user?.id}}</h3>
     <h3>Email: {{user?.email}}</h3>
     <hr class="solid">
+</div>
+<div class="error-item">
+    <h1>{{error}}</h1>
 </div>

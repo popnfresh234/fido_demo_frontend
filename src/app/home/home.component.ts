@@ -43,22 +43,4 @@ export class HomeComponent {
         this.newsArray = newsArray;
       })
   }
-
-  // getUser(username: String) {
-  //   this.httpSerivce.getUser(username)
-  //     .pipe(catchError((errorResponse: ErrorResponse): Observable<any> => {
-  //       console.log(errorResponse);
-  //       this.users = [];
-  //       this.error = errorResponse.error.message;
-  //       return of();
-  //     }))
-  //     .subscribe((user) => {
-  //       this.users = [];
-  //       if (user && user.email) {
-  //         this.error = '';
-  //         this.users[0] = user;
-  //       }
-  //     })
-  // }
-
 }

@@ -13,16 +13,16 @@
 <div class="toolbar" role="banner">
   <section class="navigation">
     <a class="nav-item" [routerLink]="['/']">Home</a>
-    <a class="nav-item" [routerLink]="['/user', email]" *ngIf="this.localStoragService.getData('auth') === 'true'">
+    <a class="nav-item" [routerLink]="['/user', email]" *ngIf="this.localStorageService.getData('auth') === 'true'">
       User Info
     </a>
-    <a class="nav-item" [routerLink]="['/signup']" *ngIf="this.localStoragService.getData('auth') !== 'true'">
+    <a class="nav-item" [routerLink]="['/signup']" *ngIf="this.localStorageService.getData('auth') !== 'true'">
       Signup
     </a>
-    <a class="nav-item" [routerLink]="['/login']" *ngIf="this.localStoragService.getData('auth') !== 'true'">
+    <a class="nav-item" [routerLink]="['/login']" *ngIf="this.localStorageService.getData('auth') !== 'true'">
       Login
     </a>
-    <button class="primary" *ngIf="this.localStoragService.getData('auth') === 'true'" (click)="submitLogout()">
+    <button class="primary" *ngIf="this.localStorageService.getData('auth') === 'true'" (click)="submitLogout()">
       Logout
     </button>
   </section>
