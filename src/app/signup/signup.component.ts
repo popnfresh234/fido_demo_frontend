@@ -20,7 +20,7 @@ export class SignupComponent {
     name: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
-
+    birthdate: new FormControl('')
   });
 
   error: String = '';
