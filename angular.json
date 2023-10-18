@@ -27,9 +27,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-              "src/assets/tw-city-selector.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
