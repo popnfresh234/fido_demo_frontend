@@ -10,3 +10,8 @@ label {
     display: inline-block;
     width: 8rem;
 }
+
+.danger-text {
+    margin-left: 1rem;
+    color: red
+}

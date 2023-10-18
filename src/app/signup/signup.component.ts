@@ -4,6 +4,9 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/error-response';
 import { AuthService } from '../services/auth/auth.service';
+import { Validators } from '@angular/forms';
+
+
 declare let TwCitySelector: any; //declare moment
 @Component({
   selector: 'app-signup',
@@ -17,16 +20,26 @@ export class SignupComponent {
   twCitySelector;
 
   applyForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    birthdate: new FormControl(''),
-    city: new FormControl(),
-    district: new FormControl(),
-    street: new FormControl(),
-    alley: new FormControl(),
-    lane: new FormControl(),
-    floor: new FormControl(),
+    name: new FormControl('', [
+      Validators.minLength(1),
+      Validators.maxLength(20),
+      Validators.required]),
+    email: new FormControl('', [
+      Validators.email,
+      Validators.max(50)]),
+    password: new FormControl('', [
+      Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,12}$'),
+      Validators.minLength(8),
+      Validators.maxLength(12),
+      Validators.required,
+    ]),
+    birthdate: new FormControl('', [
+      Validators.required,
+    ]),
+    street: new FormControl('', Validators.required),
+    alley: new FormControl('', Validators.required),
+    lane: new FormControl('', Validators.required),
+    floor: new FormControl('', Validators.required),
   });
 
   error: String = '';
@@ -39,6 +52,7 @@ export class SignupComponent {
   //TODO Form validation
 
   submitSignup(event: any) {
+    console.log(this.applyForm.status)
     this.authSerivce.submitSignup(
       this.applyForm.value.name ?? '',
       this.applyForm.value.email ?? '',
