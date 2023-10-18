@@ -17,26 +17,29 @@ import { ErrorResponse } from '../models/error-response';
 export class LoginComponent {
   router = inject(Router);
   authService = inject(AuthService);
+  localStorageService = inject(LocalStorageService);
   applyForm = new FormGroup({
     username: new FormControl(''),
-    password: new FormControl(''),
+    currentPassword: new FormControl(''),
 
   });
   error: String = "";
 
-  constructor(public localStorageService: LocalStorageService) {
+  constructor() {
   }
 
   submitLogin() {
     this.authService.submitLogin(
       this.applyForm.value.username ?? '',
-      this.applyForm.value.password ?? '',
+      this.applyForm.value.currentPassword ?? '',
     ).pipe(catchError((errorResponse: ErrorResponse): Observable<any> => {
       console.log(errorResponse);
       this.error = errorResponse.error.message;
+
       return of();
     }))
       .subscribe((response) => {
+
         this.authService.handleLogin(response, this.error);
       })
   }

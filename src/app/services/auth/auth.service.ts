@@ -33,12 +33,15 @@ export class AuthService {
   }
 
   handleLogin(response: LoginResponse, error: String) {
+
     if (response && response.accessToken) {
+
       this.localStorageService.saveData("token", response.accessToken);
       this.localStorageService.saveData("auth", "true");
       error = '';
       this.router.navigateByUrl('/');
     } else {
+
       console.log("error");
     }
   }

@@ -18,4 +18,9 @@ export class LocalStorageService {
   public clearData() {
     localStorage.clear();
   }
+  public isPresent(key: string) {
+    let present: Boolean = false;
+    localStorage.getItem(key) ? present = true : present = false;
+    return present;
+  }
 }

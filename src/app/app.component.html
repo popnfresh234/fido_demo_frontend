@@ -13,7 +13,7 @@
 <div class="toolbar" role="banner">
   <section class="navigation">
     <a class="nav-item" [routerLink]="['/']">Home</a>
-    <a class="nav-item" [routerLink]="['/user', email]" *ngIf="this.localStorageService.getData('auth') === 'true'">
+    <a class="nav-item" [routerLink]="['/user', userId]" *ngIf="this.localStorageService.getData('auth') === 'true'">
       User Info
     </a>
     <a class="nav-item" [routerLink]="['/signup']" *ngIf="this.localStorageService.getData('auth') !== 'true'">
