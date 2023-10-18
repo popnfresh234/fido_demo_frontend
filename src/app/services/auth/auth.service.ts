@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { TokenModel } from 'src/app/models/token_model';
 import jwtDecode from 'jwt-decode';
-import { Token } from '@angular/compiler';
 @Injectable({
   providedIn: 'root'
 })
@@ -28,8 +27,22 @@ export class AuthService {
     this.router.navigateByUrl('/login')
   }
 
-  submitSignup(name: String, email: String, password: String) {
-    return this.http.post<LoginResponse>(this.base_url + `/signup?name=${name}&email=${email}&password=${password}`, {})
+  submitSignup(
+    name: String,
+    email: String,
+    password: String,
+    birthdate: String,
+    city: String,
+    district: String,
+    street: String,
+    alley: String,
+    lane: String,
+    floor: String) {
+
+    return this.http.post<LoginResponse>(
+      this.base_url +
+      `/signup?name=${name}&email=${email}&password=${password}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`
+      , {})
   }
 
   handleLogin(response: LoginResponse, error: String) {
@@ -45,7 +58,7 @@ export class AuthService {
       console.log("error");
     }
   }
-  getEmailFromToken(token: string | null) {
+  getIdFromToken(token: string | null) {
     const jwt = jwtDecode<TokenModel>(token ? token : '');
     return jwt.sub;
   }

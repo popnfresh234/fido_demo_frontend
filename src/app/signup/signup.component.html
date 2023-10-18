@@ -1,9 +1,9 @@
 <article>
     <section class="sign-up">
-        <form [formGroup]="applyForm" (submit)="submitSignup()">
+        <form [formGroup]="applyForm" (submit)="submitSignup($event)">
             <div class="form-item">
                 <label for="name">Name</label>
-                <input id="name" type="text" formControlName="name">
+                <input id="name" type="text" formControlName="name" required minlength="2" maxlength="20">
             </div>
             <div class="form-item">
                 <label for="email">Email</label>
@@ -11,14 +11,31 @@
             </div>
             <div class="form-item">
                 <label for="password">Password</label>
-                <input id="password" type="password" formControlName="password">
+                <input id="password" type="password" formControlName="password" autocomplete="on">
             </div>
             <div class="form-item">
                 <label for="birthdate">Birthday</label>
                 <input id="birthdate" type="text" placeholder="yyyy/mm/dd" formControlName="birthdate">
             </div>
-            <div class="form-item">
+            <div class="form-item address">
                 <div role="tw-city-selector"></div>
+            </div>
+            <div class="form-item address">
+                <label for="street">路</label>
+                <input id="street" type="text" placeholder="路" formControlName="street">
+            </div>
+            <div class="form-item address">
+                <label for="alley">巷</label>
+                <input id="alley" type="text" placeholder="巷" formControlName="alley">
+            </div>
+            <div class="form-item address">
+                <label for="lane">弄</label>
+                <input id="lane" type="text" placeholder="弄" formControlName="lane">
+            </div>
+            <div class="form-item address">
+                <label for="floor">樓</label>
+                <input id="floor" type="text" placeholder="樓" formControlName="floor">
+
             </div>
 
             <div class="form-item submit-button">

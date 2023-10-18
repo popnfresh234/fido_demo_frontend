@@ -36,7 +36,7 @@ export class AppComponent {
 
   constructor() {
     if (this.localStorageService.getData("token")) {
-      this.userId = this.authService.getEmailFromToken(this.localStorageService.getData("token"));
+      this.userId = this.authService.getIdFromToken(this.localStorageService.getData("token"));
     }
   }
 

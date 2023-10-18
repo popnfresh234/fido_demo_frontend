@@ -7,7 +7,7 @@ import { UserService } from '../services/user/user.service';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/error-response';
 import { LocalStorageService } from '../services/local_storage/local-storage.service';
-
+import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-user-details',
   standalone: true,
@@ -18,13 +18,14 @@ import { LocalStorageService } from '../services/local_storage/local-storage.ser
 export class UserDetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   userService = inject(UserService);
+  authService = inject(AuthService);
   user: User | undefined;
   error: String = ''
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
   constructor() {
-    const email = this.route.snapshot.params['email'];
-    this.userService.getUser(email)
+    const id = Number(this.authService.getIdFromToken(this.localStorageService.getData("token")));
+    this.userService.getUser(id)
       .pipe(catchError((errorResponse: ErrorResponse): Observable<any> => {
         console.log(errorResponse);
         this.error = errorResponse.error.message;

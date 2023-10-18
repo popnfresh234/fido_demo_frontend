@@ -1,0 +1,9 @@
+.address {
+    display: flex;
+    align-items: baseline;
+}
+
+.address h3 {
+    padding-right: 0.5rem;
+    align-items: baseline;
+}
