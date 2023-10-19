@@ -1,12 +1,28 @@
 <section class="title-bar">
-    <span>News</span>
 
 </section>
 <section class="results">
-    <div class="news-items">
-        <app-news *ngFor="let news of newsArray" [news]="news">
-        </app-news>
-    </div>
+    <div class="table-header">新聞列表</div>
+    <table class="news-items">
+        <tr>
+            <td>標題</td>
+            <td>媒體</td>
+            <td>日期</td>
+        </tr>
+        <tr *ngFor="let news of newsArray">
+            <td>
+                <a [routerLink]="['/news', news.id]">
+                    <div>
+                        {{news.title}}
+                    </div>
+                </a>
+            </td>
+            <td>{{news.source}}</td>
+            <td>{{news.localDate}}</td>
+        </tr>
+        <!-- <app-news *ngFor="let news of newsArray" [news]="news">
+        </app-news> -->
+    </table>
     <div class="error-item">
         <h1>{{error}}</h1>
     </div>

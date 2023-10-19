@@ -6,8 +6,6 @@ import { NewsService } from '../services/news/news.service';
 import { CommonModule } from '@angular/common';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/error-response';
-import { UsersComponent } from '../users/users.component';
-import { NewsComponent } from '../news-item/news-item.component';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -15,7 +13,6 @@ import { NewsComponent } from '../news-item/news-item.component';
     [
       CommonModule,
       RouterModule,
-      NewsComponent,
     ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
