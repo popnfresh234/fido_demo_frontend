@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { News } from '../models/news';
 import { UserService as UserService } from '../services/user/user.service';
@@ -6,17 +6,21 @@ import { NewsService } from '../services/news/news.service';
 import { CommonModule } from '@angular/common';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/error-response';
+import { NgxPaginationModule } from 'ngx-pagination';
 @Component({
   selector: 'app-home',
   standalone: true,
   imports:
     [
+      NgxPaginationModule,
       CommonModule,
       RouterModule,
     ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+
 export class HomeComponent {
   newsArray: News[] = [];
   httpSerivce: UserService = inject(UserService);
@@ -24,9 +28,39 @@ export class HomeComponent {
   error: String = '';
 
 
+  currentIdx = 0;
+  count = 0;
+  page = 1;
+  pageSize = 5;
+  emptyEls: number[] = [];
+
   constructor() {
-    this.getAllNewss();
   }
+
+  ngOnInit() {
+    this.getPaginatedNews();
+  }
+
+  getRequestParams(page: number, pageSize: number) {
+    let params: any = {};
+    if (page) {
+      params['pageNumber'] = page - 1;
+    }
+
+    if (pageSize) {
+      params['pageSize'] = pageSize
+    }
+
+    return params;
+  }
+
+
+
+  handlePageChange(event: number) {
+    this.page = event;
+    this.getPaginatedNews();
+  }
+
 
   getAllNewss() {
     this.newsService.getAllNews()
@@ -38,6 +72,23 @@ export class HomeComponent {
       .subscribe((newsArray) => {
         this.error = '';
         this.newsArray = newsArray;
+      })
+  }
+
+  getPaginatedNews() {
+    const params = this.getRequestParams(this.page, this.pageSize);
+    this.newsService.getPaginatedNews(params)
+      .pipe(catchError((errorResponse: ErrorResponse): Observable<any> => {
+        console.log(errorResponse);
+        this.error = errorResponse.error.message;
+        return of();
+      }))
+      .subscribe((response) => {
+        this.count = response.totalItems;
+        this.newsArray = response.newsItems;
+        let missingEls = this.pageSize - response.newsItems.length
+        this.emptyEls = Array(missingEls).fill(1);
+        console.log(this.emptyEls)
       })
   }
 }

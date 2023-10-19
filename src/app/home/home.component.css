@@ -16,6 +16,9 @@
 
 table {
     border-spacing: 0;
+    width: 90vw;
+    height: 50vh;
+
 }
 
 .table-header {
@@ -24,13 +27,14 @@ table {
 }
 
 
+td:first-child {
+    width: 60%;
+}
 
 td {
     border: 1px solid black;
     padding: 1rem 1rem 1rem 1rem;
 }
-
-
 
 tr:nth-child(odd) {
     background-color: lightgray;
@@ -40,4 +44,25 @@ tr:first-child {
     text-align: center;
     background-color: #686868;
     color: white;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+}
+
+.control-override ::ng-deep li {
+    margin: 0;
+    border: 1px solid lightgray;
+    color: royalblue;
+}
+
+.control-override ::ng-deep .ngx-pagination a {
+    color: royalblue
+}
+
+@media (min-width: 1250px) {
+    table {
+        width: 50vw;
+    }
 }
