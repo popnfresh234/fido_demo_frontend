@@ -35,6 +35,7 @@ export class SignupComponent {
     ]),
     birthdate: new FormControl('', [
       Validators.required,
+      Validators.pattern('^[12][0-9][0-9][0-9]/[01][0-9]/[0-3][0-9]$')
     ]),
     street: new FormControl('', Validators.required),
     alley: new FormControl('', Validators.required),
