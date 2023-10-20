@@ -7,12 +7,13 @@ import { authGuard } from "./guards/auth.guard";
 import { signupGuard } from "./guards/signup.guard";
 import { NewsDetailsComponent } from "./news-details/news-details.component";
 import { NewsEditComponent } from "./news-edit/news-edit.component";
+import { adminGuard } from "./guards/admin.guard";
 const routeConfig: Routes = [
     {
         path: '',
         component: HomeComponent,
         title: 'Home page',
-        canActivate: [authGuard]
+        canActivate: [authGuard, adminGuard]
     },
     {
         path: 'news/edit',

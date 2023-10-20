@@ -1,13 +1,10 @@
 <!--  -->
 <div class="toolbar" role="banner">
   <section class="navigation">
-    <a class="nav-item" [routerLink]="['/']">Home</a>
-    <a class="nav-item" [routerLink]="['/news/edit']"
-      *ngIf="this.localStorageService.getData('role') ==='ROLE_ADMIN'">Edit
-      News</a>
     <a class="nav-item" [routerLink]="['/user']" *ngIf="this.localStorageService.getData('auth') === 'true'">
-      User Info
+      會員資料
     </a>
+    <a class="nav-item" [routerLink]="['/']">會員訊息</a>
     <a class="nav-item" [routerLink]="['/signup']" *ngIf="this.localStorageService.getData('auth') !== 'true'">
       Signup
     </a>

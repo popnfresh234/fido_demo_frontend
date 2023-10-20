@@ -2,9 +2,9 @@
 
     <table class="news-items">
         <tr>
+            <td><input type="checkbox"></td>
             <td>標題</td>
             <td>媒體</td>
-            <td>日期</td>
         </tr>
         <tr *ngFor="let news of newsArray | paginate:{
     itemsPerPage: pageSize,
@@ -13,6 +13,9 @@
 };
 let i = index">
             <td>
+                <input type="checkbox">
+            </td>
+            <td>
                 <a [routerLink]="['/news', news.id]">
                     <div>
                         {{news.title}}
@@ -20,7 +23,6 @@ let i = index">
                 </a>
             </td>
             <td>{{news.source}}</td>
-            <td>{{news.localDate}}</td>
         </tr>
         <tr *ngFor="let i of emptyEls">
             <td></td>
@@ -32,4 +34,7 @@ let i = index">
         <pagination-controls class="control-override" previousLabel="Prev" nextLabel="Next" [responsive]="true"
             (pageChange)="handlePageChange($event)"></pagination-controls>
     </div>
+    <button type="submit" class="primary">
+        刪除訊息
+    </button>
 </section>
