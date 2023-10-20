@@ -50,7 +50,7 @@ export class SignupComponent {
 
   }
 
-  //TODO Form validation
+  //TODO Add Account Number
 
   submitSignup(event: any) {
     console.log(this.applyForm.status)

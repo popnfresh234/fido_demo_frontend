@@ -6,13 +6,13 @@
     </a>
     <a class="nav-item" [routerLink]="['/']">會員訊息</a>
     <a class="nav-item" [routerLink]="['/signup']" *ngIf="this.localStorageService.getData('auth') !== 'true'">
-      Signup
+      註冊
     </a>
     <a class="nav-item" [routerLink]="['/login']" *ngIf="this.localStorageService.getData('auth') !== 'true'">
-      Login
+      登入
     </a>
     <button class="primary" *ngIf="this.localStorageService.getData('auth') === 'true'" (click)="submitLogout()">
-      Logout
+      登出
     </button>
   </section>
 </div>

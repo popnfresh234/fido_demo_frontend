@@ -3,17 +3,17 @@
     <section class="login" *ngIf="localStorageService.getData('auth') !== 'true'">
         <form [formGroup]="applyForm" (submit)="submitLogin()">
             <div class="form-item">
-                <label for="username">Username</label>
+                <label for="username">Email</label>
                 <input id="username" type="email" formControlName="username">
             </div>
             <div class="form-item">
 
-                <label for="currentPassword">Password</label>
+                <label for="currentPassword">密碼</label>
                 <input id="currentPassword" type="password" formControlName="currentPassword">
             </div>
             <div class="form-item">
 
-                <button type="submit" class="primary submit-button">Login</button>
+                <button type="submit" class="primary submit-button">登入</button>
             </div>
         </form>
         <div class="error-item">
