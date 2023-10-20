@@ -2,7 +2,8 @@
 <div class="toolbar" role="banner">
   <section class="navigation">
     <a class="nav-item" [routerLink]="['/']">Home</a>
-    <a class="nav-item" [routerLink]="['/']" *ngIf="this.localStorageService.getData('role') ==='ROLE_ADMIN'">Edit
+    <a class="nav-item" [routerLink]="['/news/edit']"
+      *ngIf="this.localStorageService.getData('role') ==='ROLE_ADMIN'">Edit
       News</a>
     <a class="nav-item" [routerLink]="['/user']" *ngIf="this.localStorageService.getData('auth') === 'true'">
       User Info
