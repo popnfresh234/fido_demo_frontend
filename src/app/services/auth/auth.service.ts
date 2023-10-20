@@ -48,9 +48,10 @@ export class AuthService {
   handleLogin(response: LoginResponse, error: String) {
 
     if (response && response.accessToken) {
-
+      console.log("ROLE: ", response.role)
       this.localStorageService.saveData("token", response.accessToken);
       this.localStorageService.saveData("auth", "true");
+      this.localStorageService.saveData("role", response.role);
       error = '';
       this.router.navigateByUrl('/');
     } else {
