@@ -9,4 +9,5 @@ export interface User {
     alley: string;
     lane: string;
     floor: string;
+    role: string;
 }

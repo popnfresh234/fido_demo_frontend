@@ -33,6 +33,7 @@ export class UserDetailsComponent {
       }))
       .subscribe((user) => {
         this.error = '';
+        console.log(user);
         this.user = user;
       })
   };

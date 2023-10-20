@@ -88,7 +88,6 @@ export class HomeComponent {
         this.newsArray = response.newsItems;
         let missingEls = this.pageSize - response.newsItems.length
         this.emptyEls = Array(missingEls).fill(1);
-        console.log(this.emptyEls)
       })
   }
 }
