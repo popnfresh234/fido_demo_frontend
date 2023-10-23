@@ -17,7 +17,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
       RouterModule,
     ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css', '../common-styles/table.css']
 })
 
 

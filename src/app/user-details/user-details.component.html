@@ -1,18 +1,22 @@
-<div *ngIf="!error">
-    <h1>Name: {{user?.name}}</h1>
-    <h3>ID: {{user?.id}}</h3>
-    <h3>Email: {{user?.email}}</h3>
-    <h3>Birthdate: {{user?.birthdate}}</h3>
-    <div class="address">
-        <h3>{{user?.city}}</h3>
-        <h3>{{user?.district}}</h3>
-        <h3>{{user?.street}}</h3>
-        <h3>{{user?.alley}}巷</h3>
-        <h3>{{user?.lane}}弄</h3>
-        <h3>{{user?.floor}}</h3>
-    </div>
+<section class="user-container">
+    <h1>會員資料</h1>
+    <div *ngIf="!error" class="user">
+        <span class="user-detail-text">Name: {{user?.name}}</span>
+        <span class=user-detail-text>ID: {{user?.id}}</span>
+        <span class=user-detail-text>Email: {{user?.email}}</span>
+        <span class=user-detail-text>Birthdate: {{user?.birthdate}}</span>
+        <div class="address">
+            <span class>地址</span>
+            <span class>{{user?.city}}</span>
+            <span class>{{user?.district}}</span>
+            <span class>{{user?.street}}</span>
+            <span class>{{user?.alley}}巷</span>
+            <span class>{{user?.lane}}弄</span>
+            <span class>{{user?.floor}}</span>
+        </div>
 
-</div>
-<div class="error-item">
-    <h1>{{error}}</h1>
-</div>
+    </div>
+    <div class="error-item">
+        <h1>{{error}}</h1>
+    </div>
+</section>

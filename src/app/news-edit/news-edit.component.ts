@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/error-response';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NewsResponse } from '../models/news-response';
 
 //TODO Delete Items
@@ -16,13 +16,13 @@ import { NewsResponse } from '../models/news-response';
   standalone: true,
   imports: [CommonModule, RouterModule, NgxPaginationModule, ReactiveFormsModule],
   templateUrl: './news-edit.component.html',
-  styleUrls: ['../home/home.component.css', './news-edit.component.css']
+  styleUrls: ['../common-styles/table.css', './news-edit.component.css']
 })
 export class NewsEditComponent {
   newsArray: News[] = [];
   newsService: NewsService = inject(NewsService);
   error: String = '';
-
+  deleteAll: string = "deleteAll";
 
   currentIdx = 0;
   count = 0;
@@ -34,6 +34,7 @@ export class NewsEditComponent {
 
   ngOnInit() {
     this.getPaginatedNews();
+    this.newsForm.addControl("deleteAll", new FormControl(false));
   }
 
 
@@ -68,6 +69,12 @@ export class NewsEditComponent {
       })
   }
 
+  setAll(event: Event) {
+    this.newsArray.forEach((news) => {
+      this.newsForm.get(news.id.toString())?.setValue((event.target as HTMLInputElement).checked);
+    })
+  }
+
   submitDelete() {
     const deleteArr: number[] = [];
     const params = this.getRequestParams(this.page, this.pageSize);
@@ -84,8 +91,8 @@ export class NewsEditComponent {
         return of();
       })).subscribe((response: NewsResponse) => {
         this.handleNewsResponse(response)
+        this.newsForm.get(this.deleteAll)?.setValue(false);
       })
-
   }
 
   handleNewsResponse(response: NewsResponse) {

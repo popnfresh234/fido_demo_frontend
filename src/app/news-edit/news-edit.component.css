@@ -1,8 +1,19 @@
 td:first-child {
-    width: inherit;
+    width: 5rem;
 }
 
 .button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.check-all {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.checkbox {
     display: flex;
     justify-content: center;
 }

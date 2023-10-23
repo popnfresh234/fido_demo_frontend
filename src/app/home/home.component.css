@@ -4,47 +4,11 @@
     margin: 1rem;
 }
 
-.results {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 .form-item {
     margin-bottom: 0.5rem;
 }
 
-table {
-    border-spacing: 0;
-    width: 90vw;
-    height: 50vh;
-
-}
-
-.table-header {
-    display: flex;
-    justify-content: center;
-}
-
-
-td:first-child {
-    width: 60%;
-}
-
-td {
-    border: 1px solid black;
-    padding: 1rem 1rem 1rem 1rem;
-}
-
-tr:nth-child(odd) {
-    background-color: lightgray;
-}
-
-tr:first-child {
-    text-align: center;
-    background-color: #686868;
-    color: white;
-}
 
 .controls {
     display: flex;
@@ -59,10 +23,4 @@ tr:first-child {
 
 .control-override ::ng-deep .ngx-pagination a {
     color: royalblue
-}
-
-@media (min-width: 1250px) {
-    table {
-        width: 50vw;
-    }
 }
