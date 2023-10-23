@@ -24,5 +24,9 @@ export class NewsService {
   getNews(id: number) {
     return this.http.get<User>(this.base_url + `/?id=${id}`);
   }
+
+  deleteNews(params: any, deleteArr: number[]) {
+    return this.http.post(this.base_url + "/delete", deleteArr, { params });
+  }
 }
 

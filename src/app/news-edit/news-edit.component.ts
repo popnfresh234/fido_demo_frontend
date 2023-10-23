@@ -7,6 +7,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/error-response';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NewsResponse } from '../models/news-response';
 
 //TODO Delete Items
 
@@ -62,22 +63,41 @@ export class NewsEditComponent {
         this.error = errorResponse.error.message;
         return of();
       }))
-      .subscribe((response) => {
-        this.count = response.totalItems;
-        this.newsArray = response.newsItems;
-        let missingEls = this.pageSize - response.newsItems.length
-        this.emptyEls = Array(missingEls).fill(1);
-
-        // Create form controls
-        this.newsArray.forEach((news) => {
-          this.newsForm.addControl(news.id.toString(), new FormControl(false));
-        })
+      .subscribe((response: NewsResponse) => {
+        this.handleNewsResponse(response)
       })
   }
 
   submitDelete() {
+    const deleteArr: number[] = [];
+    const params = this.getRequestParams(this.page, this.pageSize);
     this.newsArray.forEach((news) => {
-      console.log(news.id, this.newsForm.get(news.id.toString())?.value);
+      const val = this.newsForm.get(news.id.toString())?.value;
+      if (val) {
+        deleteArr.push(news.id);
+      }
+    })
+    this.newsService.deleteNews(params, deleteArr)
+      .pipe(catchError((errorResponse: ErrorResponse): Observable<any> => {
+        console.log(errorResponse);
+        this.error = errorResponse.error.message;
+        return of();
+      })).subscribe((response: NewsResponse) => {
+        this.handleNewsResponse(response)
+      })
+
+  }
+
+  handleNewsResponse(response: NewsResponse) {
+    console.log(response)
+    this.count = response.totalItems;
+    this.newsArray = response.newsItems;
+    let missingEls = this.pageSize - response.newsItems.length
+    this.emptyEls = Array(missingEls).fill(1);
+
+    // Create form controls
+    this.newsArray.forEach((news) => {
+      this.newsForm.addControl(news.id.toString(), new FormControl(false));
     })
   }
 }
