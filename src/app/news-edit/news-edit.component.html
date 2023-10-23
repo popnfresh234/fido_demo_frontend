@@ -1,35 +1,38 @@
 <section class="results">
 
-    <table class="news-items">
-        <tr>
-            <td><input type="checkbox"></td>
-            <td>標題</td>
-            <td>媒體</td>
-        </tr>
-        <tr *ngFor="let news of newsArray | paginate:{
+    <form [formGroup]="applyForm">
+        <table class="news-items">
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>標題</td>
+                <td>媒體</td>
+            </tr>
+            <tr *ngFor="let news of newsArray | paginate:{
     itemsPerPage: pageSize,
     currentPage: page,
     totalItems: count
 };
 let i = index">
-            <td>
-                <input type="checkbox">
-            </td>
-            <td>
-                <a [routerLink]="['/news', news.id]">
-                    <div>
-                        {{news.title}}
-                    </div>
-                </a>
-            </td>
-            <td>{{news.source}}</td>
-        </tr>
-        <tr *ngFor="let i of emptyEls">
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+                <td>
+
+                    <input id="lane" type="checkbox" [formControlName]="news.id">
+                </td>
+                <td>
+                    <a [routerLink]="['/news', news.id]">
+                        <div>
+                            {{news.title}}
+                        </div>
+                    </a>
+                </td>
+                <td>{{news.source}}</td>
+            </tr>
+            <tr *ngFor="let i of emptyEls">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
     <div class="controls">
         <pagination-controls class="control-override" previousLabel="Prev" nextLabel="Next" [responsive]="true"
             (pageChange)="handlePageChange($event)"></pagination-controls>

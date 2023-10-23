@@ -6,12 +6,14 @@ import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/error-response';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
+//TODO Delete Items
 
 @Component({
   selector: 'app-news-edit',
   standalone: true,
-  imports: [CommonModule, RouterModule, NgxPaginationModule],
+  imports: [CommonModule, RouterModule, NgxPaginationModule, ReactiveFormsModule],
   templateUrl: './news-edit.component.html',
   styleUrls: ['../home/home.component.css', './news-edit.component.css']
 })
@@ -26,6 +28,8 @@ export class NewsEditComponent {
   page = 1;
   pageSize = 5;
   emptyEls: number[] = [];
+
+  applyForm = new FormGroup({});
 
   ngOnInit() {
     this.getPaginatedNews();
