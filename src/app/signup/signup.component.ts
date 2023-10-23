@@ -47,13 +47,11 @@ export class SignupComponent {
 
   constructor() {
     this.twCitySelector = new TwCitySelector();
-
   }
 
   //TODO Add Account Number
 
   submitSignup(event: any) {
-    console.log(this.applyForm.status)
     this.authSerivce.submitSignup(
       this.applyForm.value.name ?? '',
       this.applyForm.value.email ?? '',

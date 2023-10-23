@@ -45,6 +45,21 @@ tr:first-child {
     color: white;
 }
 
+.controls {
+    display: flex;
+    justify-content: center;
+}
+
+.control-override ::ng-deep li {
+    margin: 0;
+    border: 1px solid lightgray;
+    color: royalblue;
+}
+
+.control-override ::ng-deep .ngx-pagination a {
+    color: royalblue
+}
+
 @media (min-width: 1250px) {
     table {
         width: 50vw;

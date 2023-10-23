@@ -16,3 +16,9 @@ a {
 a:hover {
     color: blue;
 }
+
+.box-link {
+    padding: 1rem;
+    border: 1px solid black;
+    cursor: pointer
+}

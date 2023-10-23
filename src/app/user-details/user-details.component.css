@@ -1,4 +1,8 @@
-.user-container {
+::ng-deep:root {
+    --span-padding: 0.5rem;
+}
+
+.user-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,16 +16,43 @@
 }
 
 .user-detail-text {
-    padding: 1rem;
+    padding: var(--span-padding);
 }
 
 .address {
     display: flex;
     align-items: baseline;
-    padding: 1rem;
+    padding: var(--span-padding);
 }
 
-.address h3 {
-    padding-right: 0.5rem;
-    align-items: baseline;
+.controls {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.user-edit-input {
+    display: flex;
+    align-items: center;
+}
+
+.user-edit-input label {
+    width: 5rem;
+}
+
+.save {
+    margin-right: 1rem;
+}
+
+.cancel {
+    margin-left: 1rem;
+}
+
+.city-selector {
+    margin: 1rem 0 1rem 0;
+}
+
+.danger-text {
+    margin-left: 1rem;
+    color: red
 }

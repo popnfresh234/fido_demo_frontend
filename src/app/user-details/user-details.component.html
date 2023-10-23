@@ -1,22 +1,141 @@
-<section class="user-container">
-    <h1>會員資料</h1>
+<section class="user-content">
+  <h1>會員資料</h1>
+
+  <!-- User Details -->
+  <section class="user-container" [hidden]="edit">
+    <div class="user">
+      <span class="user-detail-text">Name: {{ user?.name }}</span>
+      <span class="user-detail-text">ID: {{ user?.id }}</span>
+      <span class="user-detail-text">Email: {{ user?.email }}</span>
+      <span class="user-detail-text"
+        >Birthdate: {{ getDate(user?.birthdate) }}</span
+      >
+      <div class="address">
+        <span class>地址: </span>
+        <span class>{{ user?.city }}</span>
+        <span class>{{ user?.district }}</span>
+        <span class>{{ user?.street }}</span>
+        <span class>{{ user?.alley }}巷</span>
+        <span class>{{ user?.lane }}弄</span>
+        <span class>{{ user?.floor }}</span>
+      </div>
+      <section class="controls">
+        <a class="box-link" (click)="handleEdit()">修改</a>
+      </section>
+    </div>
+
+    <div class="error-item">
+      <h1>{{ error }}</h1>
+    </div>
+  </section>
+  <!-- End user details -->
+
+  <!-- Edit user details -->
+  <section class="user-container" [hidden]="!edit">
     <div *ngIf="!error" class="user">
-        <span class="user-detail-text">Name: {{user?.name}}</span>
-        <span class=user-detail-text>ID: {{user?.id}}</span>
-        <span class=user-detail-text>Email: {{user?.email}}</span>
-        <span class=user-detail-text>Birthdate: {{user?.birthdate}}</span>
-        <div class="address">
-            <span class>地址</span>
-            <span class>{{user?.city}}</span>
-            <span class>{{user?.district}}</span>
-            <span class>{{user?.street}}</span>
-            <span class>{{user?.alley}}巷</span>
-            <span class>{{user?.lane}}弄</span>
-            <span class>{{user?.floor}}</span>
+      <form [formGroup]="applyForm" (submit)="submitSignup($event)">
+        <div class="user-edit-input">
+          <label for="name">Name: </label>
+          <input
+            class="user-detail-text user-detail-input"
+            name="name"
+            id="name"
+            formControlName="name"
+          />
+          <small class="danger-text" [hidden]="applyForm.controls.name.valid"
+            >Invalid</small
+          >
+        </div>
+        <div class="user-edit-input">
+          <label for="email">Email: </label>
+          <input
+            class="user-detail-text user-detail-input"
+            name="email"
+            id="email"
+            formControlName="email"
+          />
+          <small class="danger-text" [hidden]="applyForm.controls.email.valid"
+            >Invalid</small
+          >
+        </div>
+        <div class="user-edit-input">
+          <label for="birthdate">Birthdate: </label>
+          <input
+            class="user-detail-text"
+            name="birthdate"
+            id="birthdate"
+            user-detail-input
+            formControlName="birthdate"
+          />
+          <small
+            class="danger-text"
+            [hidden]="applyForm.controls.birthdate.valid"
+            >Invalid</small
+          >
         </div>
 
+        <div class="user-edit-input address city-selector">
+          <div role="tw-city-selector"></div>
+        </div>
+
+        <div class="user-edit-input address">
+          <label for="street">路</label>
+          <input
+            id="street"
+            type="text"
+            placeholder="路"
+            formControlName="street"
+          />
+          <small class="danger-text" [hidden]="applyForm.controls.street.valid"
+            >Invalid</small
+          >
+        </div>
+        <div class="user-edit-input address">
+          <label for="alley">巷</label>
+          <input
+            id="alley"
+            type="text"
+            placeholder="巷"
+            formControlName="alley"
+          />
+          <small class="danger-text" [hidden]="applyForm.controls.alley.valid"
+            >Invalid</small
+          >
+        </div>
+        <div class="user-edit-input address">
+          <label for="lane">弄</label>
+          <input
+            id="lane"
+            type="text"
+            placeholder="弄"
+            formControlName="lane"
+          />
+          <small class="danger-text" [hidden]="applyForm.controls.lane.valid"
+            >Invalid</small
+          >
+        </div>
+        <div class="user-edit-input address">
+          <label for="floor">樓</label>
+          <input
+            id="floor"
+            type="text"
+            placeholder="樓"
+            formControlName="floor"
+          />
+          <small class="danger-text" [hidden]="applyForm.controls.floor.valid"
+            >Invalid</small
+          >
+        </div>
+
+        <section class="controls">
+          <a class="box-link save" (click)="handleSave()">確定</a>
+          <a class="box-link cancel" (click)="handleCancel()">取消</a>
+        </section>
+        <div class="error-item">
+          <h1>{{ error }}</h1>
+        </div>
+      </form>
     </div>
-    <div class="error-item">
-        <h1>{{error}}</h1>
-    </div>
+  </section>
+  <!-- End Edit user details -->
 </section>
