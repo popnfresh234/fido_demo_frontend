@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/error-response';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 //TODO Delete Items
 
@@ -29,7 +29,7 @@ export class NewsEditComponent {
   pageSize = 5;
   emptyEls: number[] = [];
 
-  applyForm = new FormGroup({});
+  newsForm = new FormGroup({});
 
   ngOnInit() {
     this.getPaginatedNews();
@@ -67,6 +67,17 @@ export class NewsEditComponent {
         this.newsArray = response.newsItems;
         let missingEls = this.pageSize - response.newsItems.length
         this.emptyEls = Array(missingEls).fill(1);
+
+        // Create form controls
+        this.newsArray.forEach((news) => {
+          this.newsForm.addControl(news.id.toString(), new FormControl(false));
+        })
       })
+  }
+
+  submitDelete() {
+    this.newsArray.forEach((news) => {
+      console.log(news.id, this.newsForm.get(news.id.toString())?.value);
+    })
   }
 }

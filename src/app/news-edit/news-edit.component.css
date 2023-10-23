@@ -1,3 +1,8 @@
 td:first-child {
     width: inherit;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}

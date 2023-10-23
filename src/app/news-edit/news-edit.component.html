@@ -1,6 +1,6 @@
 <section class="results">
 
-    <form [formGroup]="applyForm">
+    <form [formGroup]="newsForm" (submit)="submitDelete()">
         <table class="news-items">
             <tr>
                 <td><input type="checkbox"></td>
@@ -15,7 +15,7 @@
 let i = index">
                 <td>
 
-                    <input id="lane" type="checkbox" [formControlName]="news.id">
+                    <input [id]="news.id" [name]="news.id" type="checkbox" [formControlName]="news.id">
                 </td>
                 <td>
                     <a [routerLink]="['/news', news.id]">
@@ -32,12 +32,16 @@ let i = index">
                 <td></td>
             </tr>
         </table>
+        <div class="controls">
+            <pagination-controls class="control-override" previousLabel="Prev" nextLabel="Next" [responsive]="true"
+                (pageChange)="handlePageChange($event)"></pagination-controls>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="primary">
+                刪除訊息
+            </button>
+        </div>
     </form>
-    <div class="controls">
-        <pagination-controls class="control-override" previousLabel="Prev" nextLabel="Next" [responsive]="true"
-            (pageChange)="handlePageChange($event)"></pagination-controls>
-    </div>
-    <button type="submit" class="primary">
-        刪除訊息
-    </button>
+
+
 </section>
