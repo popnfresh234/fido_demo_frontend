@@ -18,7 +18,12 @@ a:hover {
 }
 
 .box-link {
+    background-color: white;
     padding: 1rem;
     border: 1px solid black;
     cursor: pointer
+}
+
+.box-link:hover{
+    color:blue;
 }
