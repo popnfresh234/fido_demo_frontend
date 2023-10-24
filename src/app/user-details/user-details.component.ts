@@ -69,15 +69,17 @@ export class UserDetailsComponent {
         console.log(user);
         this.user = user;
         this.twCitySelector.setValue(user.city, user.district);
-        this.applyForm.patchValue({
-          name: user.name,
-          email: user.email,
-          birthdate: this.getDate(user.birthdate),
-          street: user.street,
-          alley: user.alley,
-          lane: user.lane,
-          floor: user.floor,
-        });
+        if (this.user) {
+          this.patchValues(
+            this.user?.name,
+            this.user?.email,
+            this.user?.birthdate,
+            this.user?.street,
+            this.user?.alley,
+            this.user?.lane,
+            this.user?.floor
+          );
+        }
       });
   }
 
@@ -115,6 +117,17 @@ export class UserDetailsComponent {
 
   handleCancel() {
     this.edit = !this.edit;
+    if (this.user) {
+      this.patchValues(
+        this.user?.name,
+        this.user?.email,
+        this.user?.birthdate,
+        this.user?.street,
+        this.user?.alley,
+        this.user?.lane,
+        this.user?.floor
+      );
+    }
   }
 
   getDate(date: string | undefined) {
@@ -133,5 +146,25 @@ export class UserDetailsComponent {
         ? (bday.getDate() + 1).toString()
         : '0' + (bday.getDate() + 1).toString());
     return formattedDate;
+  }
+
+  patchValues(
+    name: string,
+    email: string,
+    birthdate: string,
+    street: string,
+    alley: string,
+    lane: string,
+    floor: string
+  ) {
+    this.applyForm.patchValue({
+      name: name,
+      email: email,
+      birthdate: this.getDate(birthdate),
+      street: street,
+      alley: alley,
+      lane: lane,
+      floor: floor,
+    });
   }
 }

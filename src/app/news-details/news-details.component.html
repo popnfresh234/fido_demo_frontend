@@ -1,17 +1,17 @@
 <section class="title-bar">
-    <h1>{{news?.title}}</h1>
+  <h1>{{ news?.title }}</h1>
 </section>
 
 <section class="news-item">
-    <div>
-        <section class="content">
-            <span>{{news?.content}}</span>
-        </section>
-    </div>
+  <div>
+    <section class="content">
+      <span>{{ news?.content }}</span>
+    </section>
+  </div>
 </section>
 <section class="controls">
-    <a class="box-link" [routerLink]="['/']">Back to News</a>
+  <button class="box-link" [routerLink]="['/']">Back to News</button>
 </section>
 <div class="error-item">
-    <h1>{{error}}</h1>
+  <h1>{{ error }}</h1>
 </div>

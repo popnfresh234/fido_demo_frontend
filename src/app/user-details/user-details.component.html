@@ -43,7 +43,7 @@
             formControlName="name"
           />
           <small class="danger-text" [hidden]="applyForm.controls.name.valid"
-            >Invalid</small
+            >Username does not meet requirements</small
           >
         </div>
         <div class="user-edit-input">
@@ -61,7 +61,7 @@
           <small
             class="danger-text"
             [hidden]="applyForm.controls.birthdate.valid"
-            >Invalid</small
+            >Date format incorrect</small
           >
         </div>
 
@@ -78,7 +78,7 @@
             formControlName="street"
           />
           <small class="danger-text" [hidden]="applyForm.controls.street.valid"
-            >Invalid</small
+            >Cannot be empty</small
           >
         </div>
         <div class="user-edit-input address">
@@ -90,7 +90,7 @@
             formControlName="alley"
           />
           <small class="danger-text" [hidden]="applyForm.controls.alley.valid"
-            >Invalid</small
+            >Cannot be empty</small
           >
         </div>
         <div class="user-edit-input address">
@@ -102,7 +102,7 @@
             formControlName="lane"
           />
           <small class="danger-text" [hidden]="applyForm.controls.lane.valid"
-            >Invalid</small
+            >Cannot be empty</small
           >
         </div>
         <div class="user-edit-input address">
@@ -114,13 +114,25 @@
             formControlName="floor"
           />
           <small class="danger-text" [hidden]="applyForm.controls.floor.valid"
-            >Invalid</small
+            >Cannot be empty</small
           >
         </div>
 
         <section class="controls">
-          <button type="submit" class="box-link save">確定</button>
-          <button class="box-link cancel" (click)="(handleCancel)">取消</button>
+          <button
+            type="submit"
+            class="box-link save"
+            [disabled]="!applyForm.valid"
+          >
+            確定
+          </button>
+          <button
+            type="button"
+            class="box-link cancel"
+            (click)="handleCancel()"
+          >
+            取消
+          </button>
         </section>
         <div class="error-item">
           <h1>{{ error }}</h1>
