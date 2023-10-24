@@ -47,16 +47,7 @@
           >
         </div>
         <div class="user-edit-input">
-          <label for="email">Email: </label>
-          <input
-            class="user-detail-text user-detail-input"
-            name="email"
-            id="email"
-            formControlName="email"
-          />
-          <small class="danger-text" [hidden]="applyForm.controls.email.valid"
-            >Invalid</small
-          >
+          <span class="edit-email-text">Email: {{ user?.email }}</span>
         </div>
         <div class="user-edit-input">
           <label for="birthdate">Birthdate: </label>
