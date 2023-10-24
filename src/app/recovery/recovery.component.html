@@ -4,20 +4,13 @@
       <div class="form-item account-input">
         <small
           class="danger-text"
-          [hidden]="
+          [ngClass]="
             applyForm.controls.account.pristine ||
             applyForm.controls.account.valid
+              ? 'hide-el'
+              : 'show-el'
           "
           >Account number does not meet requirements
-        </small>
-        <small
-          class="danger-text"
-          [hidden]="
-            !applyForm.controls.account.valid &&
-            !applyForm.controls.account.pristine
-          "
-        >
-          &nbsp;
         </small>
 
         <div>

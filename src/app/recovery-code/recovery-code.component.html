@@ -4,19 +4,14 @@
       <div class="form-item account-input">
         <small
           class="danger-text"
-          [hidden]="
+          [ngClass]="
             applyForm.controls.code.pristine || applyForm.controls.code.valid
+              ? 'hide-el'
+              : 'show-el'
           "
           >Invalid code
         </small>
-        <small
-          class="danger-text"
-          [hidden]="
-            !applyForm.controls.code.valid && !applyForm.controls.code.pristine
-          "
-        >
-          &nbsp;
-        </small>
+
         <span>請輸入檢核碼</span>
         <div>
           <label for="code">檢核碼</label>

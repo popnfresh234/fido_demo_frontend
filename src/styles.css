@@ -37,3 +37,11 @@ a:hover {
 .box-link:hover {
   color: blue;
 }
+
+.show-el {
+  visibility: visible;
+}
+
+.hide-el {
+  visibility: hidden;
+}
