@@ -3,21 +3,35 @@ import { User } from '../../models/user';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class UserService {
-
-  base_url = 'http://localhost:8080/user'
-  constructor(private http: HttpClient) { }
-
+  base_url = 'http://localhost:8080/user';
+  constructor(private http: HttpClient) {}
 
   getAllUsers() {
-    return this.http.get<User[]>(this.base_url + "/all");
+    return this.http.get<User[]>(this.base_url + '/all');
   }
 
   getUser(id: number) {
     return this.http.get<User>(this.base_url + `/?id=${id}`);
   }
-}
 
+  editUser(
+    id: number,
+    name: string,
+    birthdate: string,
+    city: string,
+    district: string,
+    street: string,
+    alley: string,
+    lane: string,
+    floor: string
+  ) {
+    return this.http.post(
+      this.base_url +
+        `/?id=${id}&name=${name}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`,
+      {}
+    );
+  }
+}

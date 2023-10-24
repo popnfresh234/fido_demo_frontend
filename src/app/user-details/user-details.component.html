@@ -33,7 +33,7 @@
   <!-- Edit user details -->
   <section class="user-container" [hidden]="!edit">
     <div *ngIf="!error" class="user">
-      <form [formGroup]="applyForm" (submit)="submitSignup($event)">
+      <form [formGroup]="applyForm" (submit)="handleSave($event)">
         <div class="user-edit-input">
           <label for="name">Name: </label>
           <input
@@ -119,7 +119,7 @@
         </div>
 
         <section class="controls">
-          <a class="box-link save" (click)="handleSave()">確定</a>
+          <button type="submit" class="box-link save">確定</button>
           <a class="box-link cancel" (click)="handleCancel()">取消</a>
         </section>
         <div class="error-item">

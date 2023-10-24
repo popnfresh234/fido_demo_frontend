@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { User } from '../models/user';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../services/user/user.service';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/error-response';
 import { LocalStorageService } from '../services/local_storage/local-storage.service';
 import { AuthService } from '../services/auth/auth.service';
+import { UserService } from '../services/user/user.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
@@ -85,12 +85,37 @@ export class UserDetailsComponent {
     this.edit = !this.edit;
   }
 
-  handleSave() {}
+  handleSave(event: any) {
+    if (this.user?.id) {
+      this.userService
+        .editUser(
+          this.user.id,
+          this.applyForm.value.name ?? '',
+          this.applyForm.value.birthdate ?? '',
+          event.target.county.value ?? '',
+          event.target.district.value ?? '',
+          this.applyForm.value.street ?? '',
+          this.applyForm.value.alley ?? '',
+          this.applyForm.value.lane ?? '',
+          this.applyForm.value.floor ?? ''
+        )
+        .pipe(
+          catchError((errorResponse: ErrorResponse): Observable<any> => {
+            console.log(errorResponse);
+            this.error = errorResponse.error.message;
+            return of();
+          })
+        )
+        .subscribe((user: User) => {
+          this.user = user;
+          this.edit = !this.edit;
+        });
+    }
+  }
 
   handleCancel() {
     this.edit = !this.edit;
   }
-  submitSignup(event: any) {}
 
   getDate(date: string | undefined) {
     if (date === undefined) {
