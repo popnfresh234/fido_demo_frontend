@@ -6,7 +6,7 @@
     <div class="user">
       <span class="user-detail-text">帳號: {{ user?.account }}</span>
       <span class="user-detail-text">Email: {{ user?.email }}</span>
-      <span class="user-detail-text">N名字: {{ user?.name }}</span>
+      <span class="user-detail-text">名字: {{ user?.name }}</span>
       <span class="user-detail-text">生日: {{ getDate(user?.birthdate) }}</span>
       <div class="address">
         <span class>地址: </span>
@@ -18,7 +18,7 @@
         <span class>{{ user?.floor }}</span>
       </div>
       <section class="controls">
-        <a class="box-link" (click)="handleEdit()">修改</a>
+        <button class="box-link" (click)="handleEdit()">修改</button>
       </section>
     </div>
 

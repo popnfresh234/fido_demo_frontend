@@ -87,7 +87,7 @@ export class SignupComponent {
       .subscribe(() => {
         this.authSerivce
           .submitLogin(
-            this.applyForm.value.email ?? '',
+            this.applyForm.value.account ?? '',
             this.applyForm.value.password ?? ''
           )
           .pipe(

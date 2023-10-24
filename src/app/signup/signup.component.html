@@ -4,21 +4,27 @@
       <div class="form-item">
         <label for="name">帳號</label>
         <input id="account" type="text" formControlName="account" />
-        <small class="danger-text" [hidden]="applyForm.controls.account.valid"
+        <small
+          class="danger-text"
+          [ngClass]="applyForm.controls.account.valid ? 'hide-el' : 'show-el'"
           >Account does not meet requirements</small
         >
       </div>
       <div class="form-item">
         <label for="name">名字</label>
         <input id="name" type="text" formControlName="name" />
-        <small class="danger-text" [hidden]="applyForm.controls.name.valid"
+        <small
+          class="danger-text"
+          [ngClass]="applyForm.controls.name.valid ? 'hide-el' : 'show-el'"
           >Name does not meet requirements</small
         >
       </div>
       <div class="form-item">
         <label for="email">Email</label>
         <input id="email" type="email" formControlName="email" />
-        <small class="danger-text" [hidden]="applyForm.controls.email.valid"
+        <small
+          class="danger-text"
+          [ngClass]="applyForm.controls.email.valid ? 'hide-el' : 'show-el'"
           >Email format incorrect</small
         >
       </div>
@@ -30,10 +36,11 @@
           formControlName="password"
           autocomplete="on"
         />
-        <small class="danger-text" [hidden]="applyForm.controls.password.valid"
+        <small
+          class="danger-text"
+          [ngClass]="applyForm.controls.password.valid ? 'hide-el' : 'show-el'"
           >Password does not meet requirements</small
         >
-        `
       </div>
       <div class="form-item">
         <label for="birthdate">生日</label>
@@ -43,7 +50,9 @@
           placeholder="yyyy/mm/dd"
           formControlName="birthdate"
         />
-        <small class="danger-text" [hidden]="applyForm.controls.birthdate.valid"
+        <small
+          class="danger-text"
+          [ngClass]="applyForm.controls.birthdate.valid ? 'hide-el' : 'show-el'"
           >Date format incorrect</small
         >
       </div>
@@ -61,7 +70,9 @@
           placeholder="路"
           formControlName="street"
         />
-        <small class="danger-text" [hidden]="applyForm.controls.street.valid"
+        <small
+          class="danger-text"
+          [ngClass]="applyForm.controls.street.valid ? 'hide-el' : 'show-el'"
           >Cannot be empty</small
         >
       </div>
@@ -73,14 +84,18 @@
           placeholder="巷"
           formControlName="alley"
         />
-        <small class="danger-text" [hidden]="applyForm.controls.alley.valid"
+        <small
+          class="danger-text"
+          [ngClass]="applyForm.controls.alley.valid ? 'hide-el' : 'show-el'"
           >Cannot be empty</small
         >
       </div>
       <div class="form-item address">
         <label for="lane">弄</label>
         <input id="lane" type="text" placeholder="弄" formControlName="lane" />
-        <small class="danger-text" [hidden]="applyForm.controls.lane.valid"
+        <small
+          class="danger-text"
+          [ngClass]="applyForm.controls.lane.valid ? 'hide-el' : 'show-el'"
           >Cannot be empty</small
         >
       </div>
@@ -92,7 +107,9 @@
           placeholder="樓"
           formControlName="floor"
         />
-        <small class="danger-text" [hidden]="applyForm.controls.floor.valid"
+        <small
+          class="danger-text"
+          [ngClass]="applyForm.controls.floor.valid ? 'hide-el' : 'show-el'"
           >Cannot be empty</small
         >
       </div>
