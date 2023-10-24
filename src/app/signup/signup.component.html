@@ -1,5 +1,6 @@
 <article>
   <section class="sign-up">
+    <h1>會員註冊</h1>
     <form [formGroup]="applyForm" (submit)="submitSignup($event)">
       <div class="form-item">
         <label for="name">帳號</label>
@@ -114,10 +115,19 @@
         >
       </div>
 
-      <div class="form-item submit-button">
-        <button type="submit" [disabled]="!applyForm.valid" class="primary">
-          Apply now
-        </button>
+      <div class="controls">
+        <div class="form-item submit-button">
+          <button
+            type="submit"
+            [disabled]="!applyForm.valid"
+            class="primary box-link"
+          >
+            確定
+          </button>
+          <button class="box-link" type="button" (click)="handleCancel()">
+            取消
+          </button>
+        </div>
       </div>
     </form>
     <div class="error-item">

@@ -1,32 +1,33 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .form-item {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .submit-button {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 label {
-    display: inline-block;
-    width: var(--label-width);
+  display: inline-block;
+  width: var(--label-width);
 }
 
-.controls{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .control-links {
-    display: flex;    
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .control-links a {
-    padding: 1rem;
-}
-
-.login{
-    display: flex;
-    justify-content: center;
+  padding: 1rem;
 }

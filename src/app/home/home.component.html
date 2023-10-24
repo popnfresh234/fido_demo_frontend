@@ -1,46 +1,52 @@
-<section class="title-bar">
-
-</section>
 <section class="table-container">
-    <div class="table-header">
-        <h1>新聞列表</h1>
-    </div>
-    <table class="news-items">
-        <tr>
-            <td>標題</td>
-            <td>媒體</td>
-            <td>日期</td>
-        </tr>
-        <tr *ngFor="let news of newsArray | paginate:{
-            itemsPerPage: pageSize,
-            currentPage: page,
-            totalItems: count
-        };
-        let i = index">
-            <td>
-                <a [routerLink]="['/news', news.id]">
-                    <div>
-                        {{news.title}}
-                    </div>
-                </a>
-            </td>
-            <td>{{news.source}}</td>
-            <td>{{news.localDate}}</td>
-        </tr>
-        <tr *ngFor="let i of emptyEls">
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+  <h1>新聞列表</h1>
+  <div class="table-header"></div>
+  <table class="news-items">
+    <tr>
+      <td>標題</td>
+      <td>媒體</td>
+      <td>日期</td>
+    </tr>
+    <tr
+      *ngFor="
+        let news of newsArray
+          | paginate
+            : {
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: count
+              };
+        let i = index
+      "
+    >
+      <td>
+        <a [routerLink]="['/news', news.id]">
+          <div>
+            {{ news.title }}
+          </div>
+        </a>
+      </td>
+      <td>{{ news.source }}</td>
+      <td>{{ news.localDate }}</td>
+    </tr>
+    <tr *ngFor="let i of emptyEls">
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
 
-    <div class="controls">
-        <pagination-controls class="control-override" previousLabel="Prev" nextLabel="Next" [responsive]="true"
-            (pageChange)="handlePageChange($event)"></pagination-controls>
-    </div>
+  <div class="controls">
+    <pagination-controls
+      class="control-override"
+      previousLabel="Prev"
+      nextLabel="Next"
+      [responsive]="true"
+      (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
+  </div>
 
-
-    <div class="error-item">
-        <h1>{{error}}</h1>
-    </div>
+  <div class="error-item">
+    <h1>{{ error }}</h1>
+  </div>
 </section>

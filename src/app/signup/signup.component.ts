@@ -5,6 +5,7 @@ import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/error-response';
 import { AuthService } from '../services/auth/auth.service';
 import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 declare let TwCitySelector: any; //declare moment
 @Component({
@@ -16,6 +17,7 @@ declare let TwCitySelector: any; //declare moment
 })
 export class SignupComponent {
   authSerivce = inject(AuthService);
+  router = inject(Router);
   twCitySelector;
 
   applyForm = new FormGroup({
@@ -101,5 +103,9 @@ export class SignupComponent {
             this.authSerivce.handleLogin(response, this.error);
           });
       });
+  }
+
+  handleCancel() {
+    this.router.navigateByUrl('/');
   }
 }
