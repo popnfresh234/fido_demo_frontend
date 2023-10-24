@@ -66,7 +66,6 @@ export class UserDetailsComponent {
       .subscribe((user) => {
         this.getDate(user.birthdate);
         this.error = '';
-        console.log(user);
         this.user = user;
         this.twCitySelector.setValue(user.city, user.district);
         if (this.user) {

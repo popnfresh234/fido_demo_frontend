@@ -1,0 +1,46 @@
+<article>
+  <section class="recovery">
+    <form [formGroup]="applyForm" (submit)="submitRecovery()">
+      <div class="form-item account-input">
+        <small
+          class="danger-text"
+          [hidden]="
+            applyForm.controls.account.pristine ||
+            applyForm.controls.account.valid
+          "
+          >Account number does not meet requirements
+        </small>
+        <small
+          class="danger-text"
+          [hidden]="
+            !applyForm.controls.account.valid &&
+            !applyForm.controls.account.pristine
+          "
+        >
+          &nbsp;
+        </small>
+
+        <div>
+          <label for="account">帳號</label>
+          <input id="account" type="text" formControlName="account" />
+        </div>
+      </div>
+      <div class="form-item controls">
+        <button
+          type="submit"
+          class="primary box-link"
+          [disabled]="!applyForm.valid"
+        >
+          確定
+        </button>
+        <div class="control-links">
+          <a [routerLink]="['/login']">登入</a>
+          <a [routerLink]="['/signup']">會員註冊</a>
+        </div>
+      </div>
+    </form>
+    <div class="error-item">
+      <h1>{{ error }}</h1>
+    </div>
+  </section>
+</article>

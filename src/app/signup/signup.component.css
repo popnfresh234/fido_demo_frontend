@@ -1,3 +1,8 @@
+.sign-up{
+    display: flex;
+    justify-content: center;
+}
+
 .form-item {
     margin-bottom: 0.5rem;
 }
@@ -8,10 +13,12 @@
 
 label {
     display: inline-block;
-    width: 8rem;
+    width: var(--label-width);
 }
 
-.danger-text {
-    margin-left: 1rem;
-    color: red
+
+
+.address{
+    display: flex;
+    align-items: center;
 }

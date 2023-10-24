@@ -1,23 +1,29 @@
 <article>
-
-    <section class="login" *ngIf="localStorageService.getData('auth') !== 'true'">
-        <form [formGroup]="applyForm" (submit)="submitLogin()">
-            <div class="form-item">
-                <label for="username">Email</label>
-                <input id="username" type="email" formControlName="username">
-            </div>
-            <div class="form-item">
-
-                <label for="currentPassword">密碼</label>
-                <input id="currentPassword" type="password" formControlName="currentPassword">
-            </div>
-            <div class="form-item">
-
-                <button type="submit" class="primary submit-button">登入</button>
-            </div>
-        </form>
-        <div class="error-item">
-            <h1>{{error}}</h1>
+  <section class="login" *ngIf="localStorageService.getData('auth') !== 'true'">
+    <form [formGroup]="applyForm" (submit)="submitLogin()">
+      <div class="form-item">
+        <label for="account">帳號</label>
+        <input id="account" type="text" formControlName="account" />
+      </div>
+      <div class="form-item">
+        <label for="currentPassword">密碼</label>
+        <input
+          id="currentPassword"
+          type="password"
+          formControlName="currentPassword"
+          autocomplete="on"
+        />
+      </div>
+      <div class="form-item controls">
+        <div class="control-links">
+          <a [routerLink]="['/recovery']">忘記密碼？</a>
+          <a [routerLink]="['/signup']">會員註冊</a>
         </div>
-    </section>
+        <button type="submit" class="primary box-link">登入</button>
+      </div>
+    </form>
+    <div class="error-item">
+      <h1>{{ error }}</h1>
+    </div>
+  </section>
 </article>

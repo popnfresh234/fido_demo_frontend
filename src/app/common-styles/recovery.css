@@ -1,0 +1,36 @@
+label {
+  display: inline-block;
+  width: var(--label-width);
+}
+
+.controls {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.control-links {
+  display: flex;
+  flex-direction: row;
+}
+
+.control-links a {
+  padding: 1rem;
+}
+
+.recovery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.danger-text {
+  margin-bottom: 0.5rem;
+}

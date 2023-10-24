@@ -11,34 +11,31 @@ import { AuthService } from './services/auth/auth.service';
 import { LocalStorageService } from './services/local_storage/local-storage.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NewsEditComponent } from './news-edit/news-edit.component';
+import { RecoveryComponent } from './recovery/recovery.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports:
-    [
-      HomeComponent,
-      UsersComponent,
-      UserDetailsComponent,
-      SignupComponent,
-      LoginComponent,
-      NewsEditComponent,
-      RouterModule,
-      ReactiveFormsModule,
-      CommonModule,
-      NgxPaginationModule
-    ],
+  imports: [
+    RouterModule,
+    ReactiveFormsModule,
+    CommonModule,
+    NgxPaginationModule,
+  ],
 })
 export class AppComponent {
   authService = inject(AuthService);
-  localStorageService = inject(LocalStorageService)
+  localStorageService = inject(LocalStorageService);
   title = 'frontend';
   userId = '';
 
   constructor() {
-    if (this.localStorageService.getData("token")) {
-      this.userId = this.authService.getIdFromToken(this.localStorageService.getData("token"));
+    if (this.localStorageService.getData('token')) {
+      this.userId = this.authService.getIdFromToken(
+        this.localStorageService.getData('token')
+      );
     }
   }
 

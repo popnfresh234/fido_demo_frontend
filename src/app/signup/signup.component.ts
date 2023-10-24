@@ -19,6 +19,12 @@ export class SignupComponent {
   twCitySelector;
 
   applyForm = new FormGroup({
+    account: new FormControl('', [
+      Validators.minLength(2),
+      Validators.maxLength(20),
+      Validators.pattern('^[a-zA-Z0-9]*$'),
+      Validators.required,
+    ]),
     name: new FormControl('', [
       Validators.minLength(1),
       Validators.maxLength(20),
@@ -59,6 +65,7 @@ export class SignupComponent {
   submitSignup(event: any) {
     this.authSerivce
       .submitSignup(
+        this.applyForm.value.account ?? '',
         this.applyForm.value.name ?? '',
         this.applyForm.value.email ?? '',
         this.applyForm.value.password ?? '',

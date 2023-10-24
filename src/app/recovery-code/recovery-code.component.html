@@ -1,0 +1,44 @@
+<article>
+  <section class="recovery">
+    <form [formGroup]="applyForm" (submit)="submitRecoveryCode()">
+      <div class="form-item account-input">
+        <small
+          class="danger-text"
+          [hidden]="
+            applyForm.controls.code.pristine || applyForm.controls.code.valid
+          "
+          >Invalid code
+        </small>
+        <small
+          class="danger-text"
+          [hidden]="
+            !applyForm.controls.code.valid && !applyForm.controls.code.pristine
+          "
+        >
+          &nbsp;
+        </small>
+        <span>請輸入檢核碼</span>
+        <div>
+          <label for="code">檢核碼</label>
+          <input id="code" type="text" formControlName="code" />
+        </div>
+      </div>
+      <div class="form-item controls">
+        <button
+          type="submit"
+          class="primary box-link"
+          [disabled]="!applyForm.valid"
+        >
+          確定
+        </button>
+        <div class="control-links">
+          <a [routerLink]="['/login']">登入</a>
+          <a [routerLink]="['/signup']">會員註冊</a>
+        </div>
+      </div>
+    </form>
+    <div class="error-item">
+      <h1>{{ error }}</h1>
+    </div>
+  </section>
+</article>

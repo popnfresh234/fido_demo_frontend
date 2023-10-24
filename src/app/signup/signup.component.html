@@ -2,10 +2,17 @@
   <section class="sign-up">
     <form [formGroup]="applyForm" (submit)="submitSignup($event)">
       <div class="form-item">
-        <label for="name">Name</label>
+        <label for="name">帳號</label>
+        <input id="account" type="text" formControlName="account" />
+        <small class="danger-text" [hidden]="applyForm.controls.account.valid"
+          >Account does not meet requirements</small
+        >
+      </div>
+      <div class="form-item">
+        <label for="name">名字</label>
         <input id="name" type="text" formControlName="name" />
         <small class="danger-text" [hidden]="applyForm.controls.name.valid"
-          >Username does not meet requirements</small
+          >Name does not meet requirements</small
         >
       </div>
       <div class="form-item">
@@ -16,7 +23,7 @@
         >
       </div>
       <div class="form-item">
-        <label for="password">Password</label>
+        <label for="password">密碼</label>
         <input
           id="password"
           type="password"
@@ -29,7 +36,7 @@
         `
       </div>
       <div class="form-item">
-        <label for="birthdate">Birthday</label>
+        <label for="birthdate">生日</label>
         <input
           id="birthdate"
           type="text"
@@ -40,7 +47,10 @@
           >Date format incorrect</small
         >
       </div>
+
       <div class="form-item address">
+        <label>地址</label>
+
         <div role="tw-city-selector"></div>
       </div>
       <div class="form-item address">

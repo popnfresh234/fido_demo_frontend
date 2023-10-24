@@ -6,42 +6,44 @@ import { LocalStorageService } from '../services/local_storage/local-storage.ser
 import { catchError, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ErrorResponse } from '../models/error-response';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   router = inject(Router);
   authService = inject(AuthService);
   localStorageService = inject(LocalStorageService);
   applyForm = new FormGroup({
-    username: new FormControl(''),
+    account: new FormControl(''),
     currentPassword: new FormControl(''),
-
   });
-  error: String = "";
+  error: String = '';
 
-  constructor() {
-  }
+  constructor() {}
 
   submitLogin() {
-    this.authService.submitLogin(
-      this.applyForm.value.username ?? '',
-      this.applyForm.value.currentPassword ?? '',
-    ).pipe(catchError((errorResponse: ErrorResponse): Observable<any> => {
-      console.log(errorResponse);
-      this.error = errorResponse.error.message;
+    this.authService
+      .submitLogin(
+        this.applyForm.value.account ?? '',
+        this.applyForm.value.currentPassword ?? ''
+      )
+      .pipe(
+        catchError((errorResponse: ErrorResponse): Observable<any> => {
+          console.log(errorResponse);
+          this.error = errorResponse.error.message;
 
-      return of();
-    }))
+          return of();
+        })
+      )
       .subscribe((response) => {
-
         this.authService.handleLogin(response, this.error);
-      })
+      });
   }
 
   submitLogout() {

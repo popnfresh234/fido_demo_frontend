@@ -4,12 +4,10 @@
   <!-- User Details -->
   <section class="user-container" [hidden]="edit">
     <div class="user">
-      <span class="user-detail-text">Name: {{ user?.name }}</span>
-      <span class="user-detail-text">ID: {{ user?.id }}</span>
+      <span class="user-detail-text">帳號: {{ user?.account }}</span>
       <span class="user-detail-text">Email: {{ user?.email }}</span>
-      <span class="user-detail-text"
-        >Birthdate: {{ getDate(user?.birthdate) }}</span
-      >
+      <span class="user-detail-text">N名字: {{ user?.name }}</span>
+      <span class="user-detail-text">生日: {{ getDate(user?.birthdate) }}</span>
       <div class="address">
         <span class>地址: </span>
         <span class>{{ user?.city }}</span>
@@ -35,7 +33,10 @@
     <div *ngIf="!error" class="user">
       <form [formGroup]="applyForm" (submit)="handleSave($event)">
         <div class="user-edit-input">
-          <label for="name">Name: </label>
+          <span class="edit-fixed-text">帳號: {{ user?.account }}</span>
+        </div>
+        <div class="user-edit-input">
+          <label for="name">名字: </label>
           <input
             class="user-detail-text user-detail-input"
             name="name"
@@ -43,14 +44,14 @@
             formControlName="name"
           />
           <small class="danger-text" [hidden]="applyForm.controls.name.valid"
-            >Username does not meet requirements</small
+            >Name does not meet requirements</small
           >
         </div>
         <div class="user-edit-input">
-          <span class="edit-email-text">Email: {{ user?.email }}</span>
+          <span class="edit-fixed-text">Email: {{ user?.email }}</span>
         </div>
         <div class="user-edit-input">
-          <label for="birthdate">Birthdate: </label>
+          <label for="birthdate">生日: </label>
           <input
             class="user-detail-text"
             name="birthdate"

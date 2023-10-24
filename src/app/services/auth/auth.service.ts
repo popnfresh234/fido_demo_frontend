@@ -7,27 +7,33 @@ import { User } from 'src/app/models/user';
 import { TokenModel } from 'src/app/models/token_model';
 import jwtDecode from 'jwt-decode';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class AuthService {
-
   router = inject(Router);
-  base_url = 'http://localhost:8080/auth'
+  base_url = 'http://localhost:8080/auth';
   user?: User;
 
-  constructor(private http: HttpClient, private localStorageService: LocalStorageService) { }
+  constructor(
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) {}
 
-  submitLogin(username: String, password: String) {
-    return this.http.post<LoginResponse>(this.base_url + "/login", { "email": username, "password": password })
+  submitLogin(account: String, password: String) {
+    console.log(account);
+    return this.http.post<LoginResponse>(this.base_url + '/login', {
+      account: account,
+      password: password,
+    });
   }
 
   submitLogout() {
     this.localStorageService.clearData();
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('/login');
   }
 
   submitSignup(
+    account: String,
     name: String,
     email: String,
     password: String,
@@ -37,31 +43,40 @@ export class AuthService {
     street: String,
     alley: String,
     lane: String,
-    floor: String) {
-
+    floor: String
+  ) {
     return this.http.post<LoginResponse>(
       this.base_url +
-      `/signup?name=${name}&email=${email}&password=${password}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`
-      , {})
+        `/signup?account=${account}&name=${name}&email=${email}&password=${password}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`,
+      {}
+    );
   }
 
   handleLogin(response: LoginResponse, error: String) {
-
     if (response && response.accessToken) {
-      console.log("ROLE: ", response.role)
-      this.localStorageService.saveData("token", response.accessToken);
-      this.localStorageService.saveData("auth", "true");
-      this.localStorageService.saveData("role", response.role);
+      console.log('ROLE: ', response.role);
+      this.localStorageService.saveData('token', response.accessToken);
+      this.localStorageService.saveData('auth', 'true');
+      this.localStorageService.saveData('role', response.role);
       error = '';
       this.router.navigateByUrl('/');
     } else {
-
-      console.log("error");
+      console.log('error');
     }
   }
   getIdFromToken(token: string | null) {
     const jwt = jwtDecode<TokenModel>(token ? token : '');
     return jwt.sub;
   }
-}
 
+  submitRecovery(account: string) {
+    return this.http.post<Response>(
+      this.base_url + `/recovery?account=${account}`,
+      {}
+    );
+  }
+
+  submitRecoveryCode(code: string) {
+    return 'TODO Recovery Code: ' + code;
+  }
+}
