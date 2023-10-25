@@ -6,6 +6,7 @@ import { ErrorResponse } from '../models/error-response';
 import { AuthService } from '../services/auth/auth.service';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import formValidators from '../utilities/form-validators';
 
 declare let TwCitySelector: any; //declare moment
 @Component({
@@ -21,39 +22,16 @@ export class SignupComponent {
   twCitySelector;
 
   applyForm = new FormGroup({
-    account: new FormControl('', [
-      Validators.minLength(2),
-      Validators.maxLength(20),
-      Validators.pattern('^[a-zA-Z0-9]*$'),
-      Validators.required,
-    ]),
-    name: new FormControl('', [
-      Validators.minLength(1),
-      Validators.maxLength(20),
-      Validators.required,
-    ]),
-    email: new FormControl('', [
-      Validators.email,
-      Validators.max(50),
-      Validators.required,
-    ]),
+    account: new FormControl('', formValidators.accountValidators),
+    name: new FormControl('', formValidators.nameValidators),
+    email: new FormControl('', formValidators.nameValidators),
 
-    password: new FormControl('', [
-      Validators.pattern(
-        '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,12}$'
-      ),
-      Validators.minLength(8),
-      Validators.maxLength(12),
-      Validators.required,
-    ]),
-    birthdate: new FormControl('', [
-      Validators.required,
-      Validators.pattern('^[12][0-9][0-9][0-9]/[01][0-9]/[0-3][0-9]$'),
-    ]),
-    street: new FormControl('', Validators.required),
-    alley: new FormControl('', Validators.required),
-    lane: new FormControl('', Validators.required),
-    floor: new FormControl('', Validators.required),
+    password: new FormControl('', formValidators.passwordValidators),
+    birthdate: new FormControl('', formValidators.birthdateValidators),
+    street: new FormControl('', formValidators.streetValidatiors),
+    alley: new FormControl('', formValidators.alleyValidatiors),
+    lane: new FormControl('', formValidators.laneValidatiors),
+    floor: new FormControl('', formValidators.floorValidatiors),
   });
 
   error: String = '';

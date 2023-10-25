@@ -7,6 +7,7 @@ import { catchError, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ErrorResponse } from '../models/error-response';
 import { RouterModule } from '@angular/router';
+import formValidators from '../utilities/form-validators';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +21,8 @@ export class LoginComponent {
   authService = inject(AuthService);
   localStorageService = inject(LocalStorageService);
   applyForm = new FormGroup({
-    account: new FormControl(''),
-    currentPassword: new FormControl(''),
+    account: new FormControl('', formValidators.accountValidators),
+    password: new FormControl('', formValidators.passwordValidators),
   });
   error: String = '';
 
@@ -31,7 +32,7 @@ export class LoginComponent {
     this.authService
       .submitLogin(
         this.applyForm.value.account ?? '',
-        this.applyForm.value.currentPassword ?? ''
+        this.applyForm.value.password ?? ''
       )
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {

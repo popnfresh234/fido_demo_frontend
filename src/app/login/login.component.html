@@ -5,15 +5,25 @@
       <div class="form-item">
         <label for="account">帳號</label>
         <input id="account" type="text" formControlName="account" />
+        <small
+          class="danger-text"
+          [ngClass]="applyForm.controls.account.valid ? 'hide-el' : 'show-el'"
+          >Account does not meet requirements</small
+        >
       </div>
       <div class="form-item">
-        <label for="currentPassword">密碼</label>
+        <label for="password">密碼</label>
         <input
-          id="currentPassword"
+          id="password"
           type="password"
-          formControlName="currentPassword"
+          formControlName="password"
           autocomplete="on"
         />
+        <small
+          class="danger-text"
+          [ngClass]="applyForm.controls.password.valid ? 'hide-el' : 'show-el'"
+          >Account does not meet requirements</small
+        >
       </div>
       <div class="form-item controls">
         <div class="control-links">

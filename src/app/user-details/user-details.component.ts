@@ -9,7 +9,7 @@ import { LocalStorageService } from '../services/local_storage/local-storage.ser
 import { AuthService } from '../services/auth/auth.service';
 import { UserService } from '../services/user/user.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import formValidators from '../utilities/form-validators';
 
 declare let TwCitySelector: any;
 @Component({
@@ -30,20 +30,13 @@ export class UserDetailsComponent {
   twCitySelector;
 
   applyForm = new FormGroup({
-    name: new FormControl('', [
-      Validators.minLength(1),
-      Validators.maxLength(20),
-      Validators.required,
-    ]),
-    email: new FormControl('', [Validators.email, Validators.max(50)]),
-    birthdate: new FormControl('', [
-      Validators.required,
-      Validators.pattern('^[12][0-9][0-9][0-9]/[01][0-9]/[0-3][0-9]$'),
-    ]),
-    street: new FormControl('', Validators.required),
-    alley: new FormControl('', Validators.required),
-    lane: new FormControl('', Validators.required),
-    floor: new FormControl('', Validators.required),
+    name: new FormControl('', formValidators.nameValidators),
+    email: new FormControl('', formValidators.emailValidators),
+    birthdate: new FormControl('', formValidators.birthdateValidators),
+    street: new FormControl('', formValidators.streetValidatiors),
+    alley: new FormControl('', formValidators.alleyValidatiors),
+    lane: new FormControl('', formValidators.laneValidatiors),
+    floor: new FormControl('', formValidators.floorValidatiors),
   });
 
   constructor() {
