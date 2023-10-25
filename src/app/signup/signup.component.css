@@ -24,7 +24,6 @@ label {
 
 .controls {
   display: flex;
-  justify-content: start;
 }
 
 .controls button {
