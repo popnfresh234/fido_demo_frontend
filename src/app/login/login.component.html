@@ -1,7 +1,10 @@
 <article>
   <section class="login" *ngIf="localStorageService.getData('auth') !== 'true'">
-    <h1>會員登入</h1>
     <form [formGroup]="applyForm" (submit)="submitLogin()">
+      <div class="header-wrapper">
+        <h1 class="form-header">會員登入</h1>
+        <div class="filler"></div>
+      </div>
       <div class="form-item">
         <label for="account">帳號</label>
         <input id="account" type="text" formControlName="account" />
@@ -25,12 +28,15 @@
           >Account does not meet requirements</small
         >
       </div>
-      <div class="form-item controls">
-        <div class="control-links">
-          <a [routerLink]="['/recovery']">忘記密碼？</a>
-          <a [routerLink]="['/signup']">會員註冊</a>
+      <div class="controls-wrapper">
+        <div class="form-item controls">
+          <div class="control-links">
+            <a [routerLink]="['/recovery']">忘記密碼？</a>
+            <a [routerLink]="['/signup']">會員註冊</a>
+          </div>
+          <button type="submit" class="primary box-link">登入</button>
         </div>
-        <button type="submit" class="primary box-link">登入</button>
+        <div class="filler"></div>
       </div>
     </form>
     <div class="error-item">
