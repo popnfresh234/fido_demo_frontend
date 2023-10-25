@@ -1,19 +1,34 @@
 <!--  -->
 <div class="toolbar" role="banner">
   <section class="navigation">
-    <a class="nav-item" [routerLink]="['/user']" *ngIf="this.localStorageService.getData('auth') === 'true'">
+    <a
+      class="nav-item"
+      [routerLink]="['/user']"
+      *ngIf="this.localStorageService.getData('auth') === 'true'"
+    >
       會員資料
     </a>
     <a class="nav-item" [routerLink]="['/']">會員訊息</a>
-    <a class="nav-item" [routerLink]="['/signup']" *ngIf="this.localStorageService.getData('auth') !== 'true'">
+    <a
+      class="nav-item"
+      [routerLink]="['/signup']"
+      *ngIf="this.localStorageService.getData('auth') !== 'true'"
+    >
       註冊
     </a>
-    <a class="nav-item" [routerLink]="['/login']" *ngIf="this.localStorageService.getData('auth') !== 'true'">
+    <a
+      class="nav-item"
+      [routerLink]="['/login']"
+      *ngIf="this.localStorageService.getData('auth') !== 'true'"
+    >
       登入
     </a>
-    <button class="primary" *ngIf="this.localStorageService.getData('auth') === 'true'" (click)="submitLogout()">
+    <a
+      *ngIf="this.localStorageService.getData('auth') === 'true'"
+      (click)="submitLogout()"
+    >
       登出
-    </button>
+    </a>
   </section>
 </div>
 
