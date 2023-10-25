@@ -20,7 +20,6 @@ export class AuthService {
   ) {}
 
   submitLogin(account: String, password: String) {
-    console.log(account);
     return this.http.post<LoginResponse>(this.base_url + '/login', {
       account: account,
       password: password,
@@ -54,10 +53,9 @@ export class AuthService {
 
   handleLogin(response: LoginResponse, error: String) {
     if (response && response.accessToken) {
-      console.log('ROLE: ', response.role);
       this.localStorageService.saveData('token', response.accessToken);
       this.localStorageService.saveData('auth', 'true');
-      this.localStorageService.saveData('role', response.role);
+      this.localStorageService.saveData('role', JSON.stringify(response.role));
       error = '';
       this.router.navigateByUrl('/');
     } else {
