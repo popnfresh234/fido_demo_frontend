@@ -8,14 +8,16 @@ import {
 } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
-import { catchError, Observable, of } from 'rxjs';
-import { ErrorResponse } from '../models/error-response';
 @Component({
   selector: 'app-recovery',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './recovery-code.component.html',
-  styleUrls: ['./recovery-code.component.css', '../common-styles/recovery.css'],
+  styleUrls: [
+    './recovery-code.component.css',
+    '../common-styles/recovery.css',
+    '../common-styles/forms.css',
+  ],
 })
 export class RecoveryCodeComponent {
   error: string = '';

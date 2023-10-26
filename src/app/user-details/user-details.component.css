@@ -2,6 +2,11 @@
   --span-padding: 0.5rem;
 }
 
+.user-container {
+  min-width: 25vw;
+  justify-content: center;
+}
+
 .user-content {
   display: flex;
   flex-direction: column;
@@ -12,32 +17,13 @@
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  padding: 1rem;
-}
-
-.user-detail-text {
-  padding: var(--span-padding);
-}
-
-.address {
-  display: flex;
-  align-items: baseline;
-  padding: var(--span-padding);
+  padding: 1rem 5rem 1rem 5rem;
 }
 
 .controls {
   padding-top: 1rem;
   display: flex;
   justify-content: center;
-}
-
-.user-edit-input {
-  display: flex;
-  align-items: center;
-}
-
-.user-edit-input label {
-  width: 5rem;
 }
 
 .save {
@@ -48,32 +34,17 @@
   margin-left: 1rem;
 }
 
-.city-selector {
-  margin: 1rem 0 1rem 0;
-}
-
 .danger-text {
   margin-left: 1rem;
   color: red;
 }
 
-.edit-fixed-text {
-  padding: 1rem 0rem 1rem 0rem;
-}
-.user-image {
-  display: flex;
-}
-
-.file-input {
-  display: none;
-}
-
 .file-upload {
-  padding: var(--span-padding);
   display: flex;
 }
 
-.file-upload-input {
-  width: 12rem;
-  margin-right: 1rem;
+.image-user {
+  margin-top: 0.4rem;
+  padding: 1rem;
+  border: 1px solid black;
 }

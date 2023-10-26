@@ -15,7 +15,11 @@ import { ErrorResponse } from '../models/error-response';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './recovery.component.html',
-  styleUrls: ['./recovery.component.css', '../common-styles/recovery.css'],
+  styleUrls: [
+    './recovery.component.css',
+    '../common-styles/recovery.css',
+    '../common-styles/forms.css',
+  ],
 })
 export class RecoveryComponent {
   error: string = '';

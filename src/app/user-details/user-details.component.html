@@ -4,22 +4,23 @@
   <!-- User Details -->
   <section class="user-container" [hidden]="edit">
     <div class="user">
-      <span class="user-detail-text">帳號: {{ user?.account }}</span>
-      <span class="user-detail-text">Email: {{ user?.email }}</span>
-      <span class="user-detail-text">名字: {{ user?.name }}</span>
-      <span class="user-detail-text">生日: {{ getDate(user?.birthdate) }}</span>
-      <div class="address">
-        <span class>地址: </span>
-        <span class>{{ user?.city }}</span>
-        <span class>{{ user?.district }}</span>
-        <span class>{{ user?.street }}</span>
-        <span class>{{ user?.alley }}巷</span>
-        <span class>{{ user?.lane }}弄</span>
-        <span class>{{ user?.floor }}</span>
+      <span class="form-item">帳號: {{ user?.account }}</span>
+      <span class="form-item">Email: {{ user?.email }}</span>
+      <span class="form-item">名字: {{ user?.name }}</span>
+      <span class="form-item">生日: {{ getDate(user?.birthdate) }}</span>
+      <div class="form-item">
+        <span class="form-item">地址: </span>
+        <span class="form-item">{{ user?.city }}</span>
+        <span class="form-item">{{ user?.district }}</span>
+        <span class="form-item">{{ user?.street }}</span>
+        <span class="form-item">{{ user?.alley }}巷</span>
+        <span class="form-item">{{ user?.lane }}弄</span>
+        <span class="form-item">{{ user?.floor }}</span>
       </div>
-      <div class="user-edit-input">
+      <div class="form-item file-upload">
         <label>照片</label>
         <img
+          class="image-user"
           [src]="user && user.image ? base64Image : 'assets/images/avatar.png'"
           width="100px"
           height="100px"
@@ -38,13 +39,14 @@
   <!-- End user details -->
 
   <!-- Edit user details -->
-  <section class="user-container" [hidden]="!edit">
+  <section class="user-edit-container" [hidden]="!edit">
     <div *ngIf="!error" class="user">
       <form [formGroup]="applyForm" (submit)="handleSave($event)">
-        <div class="user-edit-input">
-          <span class="edit-fixed-text">帳號: {{ user?.account }}</span>
+        <div class="form-item">
+          <label>帳號: </label>
+          <span>{{ user?.account }}</span>
         </div>
-        <div class="user-edit-input">
+        <div class="form-item">
           <label for="name">名字: </label>
           <input
             class="user-detail-text user-detail-input"
@@ -58,10 +60,11 @@
             >Name does not meet requirements</small
           >
         </div>
-        <div class="user-edit-input">
-          <span class="edit-fixed-text">Email: {{ user?.email }}</span>
+        <div class="form-item">
+          <label>Email:</label>
+          <span>{{ user?.email }}</span>
         </div>
-        <div class="user-edit-input">
+        <div class="form-item">
           <label for="birthdate">生日: </label>
           <input
             class="user-detail-text"
@@ -79,11 +82,12 @@
           >
         </div>
 
-        <div class="user-edit-input address city-selector">
+        <div class="form-item address city-selector">
+          <label>地址</label>
           <div role="tw-city-selector"></div>
         </div>
 
-        <div class="user-edit-input address">
+        <div class="form-item address">
           <label for="street">路</label>
           <input
             id="street"
@@ -97,7 +101,7 @@
             >Cannot be empty</small
           >
         </div>
-        <div class="user-edit-input address">
+        <div class="form-item address">
           <label for="alley">巷</label>
           <input
             id="alley"
@@ -111,7 +115,7 @@
             >Cannot be empty</small
           >
         </div>
-        <div class="user-edit-input address">
+        <div class="form-item address">
           <label for="lane">弄</label>
           <input
             id="lane"
@@ -125,7 +129,7 @@
             >Cannot be empty</small
           >
         </div>
-        <div class="user-edit-input address">
+        <div class="form-item address">
           <label for="floor">樓</label>
           <input
             id="floor"

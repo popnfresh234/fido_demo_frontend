@@ -1,0 +1,17 @@
+.form-item {
+  margin-bottom: 0.5rem;
+}
+
+label {
+  display: inline-block;
+  width: var(--label-width);
+}
+
+.city-selector {
+  display: flex;
+  margin: 1rem 0 1rem 0;
+}
+
+::ng-deep .city-selector select {
+  margin-right: 1rem;
+}

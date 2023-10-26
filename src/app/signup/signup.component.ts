@@ -14,7 +14,7 @@ declare let TwCitySelector: any; //declare moment
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, ImageUploadComponent],
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css'],
+  styleUrls: ['./signup.component.css', '../common-styles/forms.css'],
 })
 export class SignupComponent {
   authSerivce = inject(AuthService);

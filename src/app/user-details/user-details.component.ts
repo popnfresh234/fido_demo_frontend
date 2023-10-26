@@ -23,7 +23,7 @@ declare let TwCitySelector: any;
     ImageUploadComponent,
   ],
   templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css'],
+  styleUrls: ['./user-details.component.css', '../common-styles/forms.css'],
 })
 export class UserDetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
