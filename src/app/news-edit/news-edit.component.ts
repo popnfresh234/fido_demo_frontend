@@ -103,19 +103,21 @@ export class NewsEditComponent {
         deleteArr.push(news.id);
       }
     });
-    this.newsService
-      .deleteNews(params, deleteArr)
-      .pipe(
-        catchError((errorResponse: ErrorResponse): Observable<any> => {
-          console.log(errorResponse);
-          this.error = errorResponse.error.message;
-          return of();
-        })
-      )
-      .subscribe((response: NewsResponse) => {
-        this.handleNewsResponse(response);
-        this.newsForm.get(this.deleteAll)?.setValue(false);
-      });
+    if (deleteArr.length > 0) {
+      this.newsService
+        .deleteNews(params, deleteArr)
+        .pipe(
+          catchError((errorResponse: ErrorResponse): Observable<any> => {
+            console.log(errorResponse);
+            this.error = errorResponse.error.message;
+            return of();
+          })
+        )
+        .subscribe((response: NewsResponse) => {
+          this.handleNewsResponse(response);
+          this.newsForm.get(this.deleteAll)?.setValue(false);
+        });
+    }
   }
 
   handleNewsResponse(response: NewsResponse) {
