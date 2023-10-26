@@ -25,8 +25,7 @@ export class SignupComponent {
   applyForm = new FormGroup({
     account: new FormControl('', formValidators.accountValidators),
     name: new FormControl('', formValidators.nameValidators),
-    email: new FormControl('', formValidators.nameValidators),
-
+    email: new FormControl('', formValidators.emailValidators),
     password: new FormControl('', formValidators.passwordValidators),
     birthdate: new FormControl('', formValidators.birthdateValidators),
     street: new FormControl('', formValidators.streetValidatiors),

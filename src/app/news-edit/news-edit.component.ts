@@ -28,6 +28,7 @@ export class NewsEditComponent {
   newsService: NewsService = inject(NewsService);
   error: String = '';
   deleteAll: string = 'deleteAll';
+  delete: boolean = false;
 
   currentIdx = 0;
   count = 0;
@@ -84,7 +85,16 @@ export class NewsEditComponent {
     });
   }
 
+  showDelete() {
+    this.delete = !this.delete;
+  }
+
+  cancel() {
+    this.delete = !this.delete;
+  }
+
   submitDelete() {
+    this.delete = !this.delete;
     const deleteArr: number[] = [];
     const params = this.getRequestParams(this.page, this.pageSize);
     this.newsArray.forEach((news) => {

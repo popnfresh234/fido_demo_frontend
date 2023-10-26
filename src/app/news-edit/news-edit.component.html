@@ -1,55 +1,81 @@
 <section class="table-container">
-
-    <form [formGroup]="newsForm" (submit)="submitDelete()">
-        <table class="news-items">
-            <tr>
-                <td>
-                    <div class="check-all">
-                        <label for="deleteALl">全選</label>
-                        <input type="checkbox" id="deleteAll" name="deleteAll" formControlName="deleteAll"
-                            (change)="setAll($event)">
-                    </div>
-                </td>
-                <td>標題</td>
-                <td>媒體</td>
-            </tr>
-            <tr *ngFor="let news of newsArray | paginate:{
-    itemsPerPage: pageSize,
-    currentPage: page,
-    totalItems: count
-};
-let i = index">
-                <td>
-                    <div class="checkbox">
-
-                        <input [id]="news.id" [name]="news.id" type="checkbox" [formControlName]="news.id">
-                    </div>
-                </td>
-                <td>
-                    <a [routerLink]="['/news', news.id]">
-                        <div class="td-text">
-                            {{news.title}}
-                        </div>
-                    </a>
-                </td>
-                <td>{{news.source}}</td>
-            </tr>
-            <tr *ngFor="let i of emptyEls">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-        <div class="controls">
-            <pagination-controls class="control-override" previousLabel="Prev" nextLabel="Next" [responsive]="true"
-                (pageChange)="handlePageChange($event)"></pagination-controls>
-        </div>
-        <div class="button-container">
-            <button type="submit" class="primary">
-                刪除訊息
-            </button>
-        </div>
-    </form>
-
-
+  <div [ngClass]="delete ? 'cover-div-show' : 'hidden-el'"></div>
+  <form [formGroup]="newsForm" (submit)="submitDelete()">
+    <table class="news-items">
+      <tr>
+        <td>
+          <div class="check-all">
+            <label for="deleteALl">全選</label>
+            <input
+              type="checkbox"
+              id="deleteAll"
+              name="deleteAll"
+              formControlName="deleteAll"
+              (change)="setAll($event)"
+            />
+          </div>
+        </td>
+        <td>標題</td>
+        <td>媒體</td>
+      </tr>
+      <tr
+        *ngFor="
+          let news of newsArray
+            | paginate
+              : {
+                  itemsPerPage: pageSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index
+        "
+      >
+        <td>
+          <div class="checkbox">
+            <input
+              [id]="news.id"
+              [name]="news.id"
+              type="checkbox"
+              [formControlName]="news.id"
+            />
+          </div>
+        </td>
+        <td>
+          <a [routerLink]="['/news', news.id]">
+            <div class="td-text">
+              {{ news.title }}
+            </div>
+          </a>
+        </td>
+        <td>{{ news.source }}</td>
+      </tr>
+      <tr *ngFor="let i of emptyEls">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <div class="controls">
+      <pagination-controls
+        class="control-override"
+        previousLabel="Prev"
+        nextLabel="Next"
+        [responsive]="true"
+        (pageChange)="handlePageChange($event)"
+      ></pagination-controls>
+    </div>
+    <div class="button-container">
+      <button type="button" class="primary box-link" (click)="showDelete()">
+        刪除訊息
+      </button>
+    </div>
+    <div [ngClass]="delete ? 'delete-dialog-show' : 'hidden-el'">
+      <h3>刪除訊息</h3>
+      <span>是否刪除訊息</span>
+      <div class="controls">
+        <button type="button" class="box-link" (click)="cancel()">取消</button>
+        <button type="submit" class="box-link confirm">刪除</button>
+      </div>
+    </div>
+  </form>
 </section>
