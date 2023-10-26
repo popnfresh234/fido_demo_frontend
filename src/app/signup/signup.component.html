@@ -127,10 +127,14 @@
         />
 
         <div class="file-upload">
-          {{ fileName || "No file uploaded yet." }}
+          <input
+            class="file-upload-input"
+            [value]="fileName || 'No file uploaded yet'"
+          />
 
           <button
             color="primary"
+            type="button"
             class="upload-btn box-link"
             (click)="fileUpload.click()"
           >
