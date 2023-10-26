@@ -39,7 +39,6 @@ export class SignupComponent {
 
   constructor() {
     this.twCitySelector = new TwCitySelector();
-    console.log(this.file);
   }
 
   //TODO Add Account Number

@@ -52,11 +52,11 @@ export class UserDetailsComponent {
   }
 
   ngOnInit() {
-    const id = Number(
-      this.authService.getIdFromToken(this.localStorageService.getData('token'))
+    const account = this.authService.getAccountFromToken(
+      this.localStorageService.getData('token')
     );
     this.userService
-      .getUser(id)
+      .getUser(account)
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
           console.log(errorResponse);

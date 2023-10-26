@@ -13,8 +13,8 @@ export class UserService {
     return this.http.get<User[]>(this.base_url + '/all');
   }
 
-  getUser(id: number) {
-    return this.http.get<User>(this.base_url + `/?id=${id}`);
+  getUser(account: string) {
+    return this.http.get<User>(this.base_url + `/?account=${account}`);
   }
 
   editUser(

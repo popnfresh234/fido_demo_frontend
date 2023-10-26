@@ -67,9 +67,9 @@ export class AuthService {
       console.log('error');
     }
   }
-  getIdFromToken(token: string | null) {
+  getAccountFromToken(token: string | null) {
     const jwt = jwtDecode<TokenModel>(token ? token : '');
-    return jwt.sub;
+    return jwt.account;
   }
 
   submitRecovery(account: string) {

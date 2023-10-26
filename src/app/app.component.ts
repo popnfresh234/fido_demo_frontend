@@ -29,11 +29,11 @@ export class AppComponent {
   authService = inject(AuthService);
   localStorageService = inject(LocalStorageService);
   title = 'frontend';
-  userId = '';
+  account = '';
 
   constructor() {
     if (this.localStorageService.getData('token')) {
-      this.userId = this.authService.getIdFromToken(
+      this.account = this.authService.getAccountFromToken(
         this.localStorageService.getData('token')
       );
     }
