@@ -5,13 +5,14 @@ import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/error-response';
 import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { ImageUploadComponent } from '../image-upload/image-upload.component';
 import formValidators from '../utilities/form-validators';
 
 declare let TwCitySelector: any; //declare moment
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ImageUploadComponent],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
@@ -20,7 +21,6 @@ export class SignupComponent {
   router = inject(Router);
   twCitySelector;
   file: File = new File([''], '');
-  fileName: string = '';
 
   applyForm = new FormGroup({
     account: new FormControl('', formValidators.accountValidators),
@@ -90,11 +90,9 @@ export class SignupComponent {
     this.router.navigateByUrl('/');
   }
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
+  onFileSelected(file: File) {
     if (file) {
       this.file = file;
-      this.fileName = file.name;
     }
   }
 }

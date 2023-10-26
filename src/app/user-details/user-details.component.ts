@@ -1,4 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ImageUploadComponent } from '../image-upload/image-upload.component';
 import { CommonModule } from '@angular/common';
 import { User } from '../models/user';
 import { RouterModule } from '@angular/router';
@@ -15,7 +16,12 @@ declare let TwCitySelector: any;
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    ImageUploadComponent,
+  ],
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.css'],
 })
@@ -30,7 +36,6 @@ export class UserDetailsComponent {
   twCitySelector;
   base64Image: string = '';
   file: File = new File([], '');
-  fileName: string = '';
 
   applyForm = new FormGroup({
     name: new FormControl('', formValidators.nameValidators),
@@ -166,11 +171,9 @@ export class UserDetailsComponent {
     });
   }
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
+  onFileSelected(file: File) {
     if (file) {
       this.file = file;
-      this.fileName = file.name;
     }
   }
 }

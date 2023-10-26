@@ -1,0 +1,13 @@
+.file-input {
+  display: none;
+}
+
+.file-upload {
+  padding: var(--span-padding);
+  display: flex;
+}
+
+.file-upload-input {
+  width: 12rem;
+  margin-right: 1rem;
+}

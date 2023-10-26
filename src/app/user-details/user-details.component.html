@@ -141,33 +141,7 @@
         </div>
 
         <!-- File Upload -->
-
-        <div class="form-item image">
-          <input
-            type="file"
-            accept="image/*"
-            class="file-input"
-            (change)="onFileSelected($event)"
-            #fileUpload
-          />
-
-          <div class="file-upload">
-            <input
-              class="file-upload-input"
-              [value]="fileName || 'No file uploaded yet'"
-            />
-
-            <button
-              color="primary"
-              type="button"
-              class="upload-btn box-link"
-              (click)="fileUpload.click()"
-            >
-              瀏覽
-            </button>
-          </div>
-        </div>
-
+        <app-image-upload (newFileEvent)="onFileSelected($event)" />
         <!-- End File Upload -->
         <section class="controls">
           <button
