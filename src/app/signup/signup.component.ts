@@ -4,7 +4,6 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/error-response';
 import { AuthService } from '../services/auth/auth.service';
-import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import formValidators from '../utilities/form-validators';
 
@@ -20,6 +19,8 @@ export class SignupComponent {
   authSerivce = inject(AuthService);
   router = inject(Router);
   twCitySelector;
+  file: File = new File([''], '');
+  fileName: string = '';
 
   applyForm = new FormGroup({
     account: new FormControl('', formValidators.accountValidators),
@@ -38,6 +39,7 @@ export class SignupComponent {
 
   constructor() {
     this.twCitySelector = new TwCitySelector();
+    console.log(this.file);
   }
 
   //TODO Add Account Number
@@ -55,7 +57,8 @@ export class SignupComponent {
         this.applyForm.value.street ?? '',
         this.applyForm.value.alley ?? '',
         this.applyForm.value.lane ?? '',
-        this.applyForm.value.floor ?? ''
+        this.applyForm.value.floor ?? '',
+        this.file
       )
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
@@ -85,5 +88,13 @@ export class SignupComponent {
 
   handleCancel() {
     this.router.navigateByUrl('/');
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.file = file;
+      this.fileName = file.name;
+    }
   }
 }

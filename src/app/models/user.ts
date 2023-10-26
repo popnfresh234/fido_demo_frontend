@@ -11,4 +11,5 @@ export interface User {
   lane: string;
   floor: string;
   role: string;
+  image: string;
 }

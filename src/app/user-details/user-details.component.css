@@ -1,62 +1,79 @@
 ::ng-deep:root {
-    --span-padding: 0.5rem;
+  --span-padding: 0.5rem;
 }
 
 .user-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .user {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 1rem;
 }
 
 .user-detail-text {
-    padding: var(--span-padding);
+  padding: var(--span-padding);
 }
 
 .address {
-    display: flex;
-    align-items: baseline;
-    padding: var(--span-padding);
+  display: flex;
+  align-items: baseline;
+  padding: var(--span-padding);
 }
 
 .controls {
-    padding-top: 1rem;
-    display: flex;
-    justify-content: center;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .user-edit-input {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .user-edit-input label {
-    width: 5rem;
+  width: 5rem;
 }
 
 .save {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .cancel {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 .city-selector {
-    margin: 1rem 0 1rem 0;
+  margin: 1rem 0 1rem 0;
 }
 
 .danger-text {
-    margin-left: 1rem;
-    color: red
+  margin-left: 1rem;
+  color: red;
 }
 
-.edit-fixed-text{
-    padding: 1rem 0rem 1rem 0rem;
+.edit-fixed-text {
+  padding: 1rem 0rem 1rem 0rem;
+}
+.user-image {
+  display: flex;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-upload {
+  padding: var(--span-padding);
+  display: flex;
+}
+
+.file-upload-input {
+  width: 12rem;
+  margin-right: 1rem;
 }

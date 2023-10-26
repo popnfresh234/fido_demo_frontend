@@ -115,6 +115,32 @@
         >
       </div>
 
+      <!-- File Upload -->
+
+      <div class="form-item image">
+        <input
+          type="file"
+          accept="image/*"
+          class="file-input"
+          (change)="onFileSelected($event)"
+          #fileUpload
+        />
+
+        <div class="file-upload">
+          {{ fileName || "No file uploaded yet." }}
+
+          <button
+            color="primary"
+            class="upload-btn box-link"
+            (click)="fileUpload.click()"
+          >
+            瀏覽
+          </button>
+        </div>
+      </div>
+
+      <!-- End File Upload -->
+
       <div class="controls">
         <div class="form-item submit-button">
           <button

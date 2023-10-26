@@ -28,6 +28,9 @@ export class UserDetailsComponent {
   localStorageService: LocalStorageService = inject(LocalStorageService);
   edit: boolean = false;
   twCitySelector;
+  base64Image: string = '';
+  file: File = new File([], '');
+  fileName: string = '';
 
   applyForm = new FormGroup({
     name: new FormControl('', formValidators.nameValidators),
@@ -57,6 +60,7 @@ export class UserDetailsComponent {
         })
       )
       .subscribe((user) => {
+        this.base64Image = 'data:image/jpeg;base64,' + user.image;
         this.getDate(user.birthdate);
         this.error = '';
         this.user = user;
@@ -91,7 +95,8 @@ export class UserDetailsComponent {
           this.applyForm.value.street ?? '',
           this.applyForm.value.alley ?? '',
           this.applyForm.value.lane ?? '',
-          this.applyForm.value.floor ?? ''
+          this.applyForm.value.floor ?? '',
+          this.file
         )
         .pipe(
           catchError((errorResponse: ErrorResponse): Observable<any> => {
@@ -102,6 +107,7 @@ export class UserDetailsComponent {
         )
         .subscribe((user: User) => {
           this.user = user;
+          this.base64Image = 'data:image/jpeg;base64,' + user.image;
           this.edit = !this.edit;
         });
     }
@@ -158,5 +164,13 @@ export class UserDetailsComponent {
       lane: lane,
       floor: floor,
     });
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.file = file;
+      this.fileName = file.name;
+    }
   }
 }

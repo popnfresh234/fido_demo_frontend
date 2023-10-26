@@ -17,6 +17,15 @@
         <span class>{{ user?.lane }}弄</span>
         <span class>{{ user?.floor }}</span>
       </div>
+      <div class="user-edit-input">
+        <label>照片</label>
+        <img
+          [src]="user && user.image ? base64Image : 'assets/images/avatar.png'"
+          width="100px"
+          height="100px"
+        />
+      </div>
+
       <section class="controls">
         <button class="box-link" (click)="handleEdit()">修改</button>
       </section>
@@ -131,6 +140,35 @@
           >
         </div>
 
+        <!-- File Upload -->
+
+        <div class="form-item image">
+          <input
+            type="file"
+            accept="image/*"
+            class="file-input"
+            (change)="onFileSelected($event)"
+            #fileUpload
+          />
+
+          <div class="file-upload">
+            <input
+              class="file-upload-input"
+              [value]="fileName || 'No file uploaded yet'"
+            />
+
+            <button
+              color="primary"
+              type="button"
+              class="upload-btn box-link"
+              (click)="fileUpload.click()"
+            >
+              瀏覽
+            </button>
+          </div>
+        </div>
+
+        <!-- End File Upload -->
         <section class="controls">
           <button
             type="submit"

@@ -26,12 +26,17 @@ export class UserService {
     street: string,
     alley: string,
     lane: string,
-    floor: string
+    floor: string,
+    image: File
   ) {
+    const formData: FormData = new FormData();
+    if (image.size > 0) {
+      formData.append('image', image);
+    }
     return this.http.post(
       this.base_url +
         `/?id=${id}&name=${name}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`,
-      {}
+      formData
     );
   }
 }

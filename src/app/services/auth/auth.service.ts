@@ -42,12 +42,17 @@ export class AuthService {
     street: String,
     alley: String,
     lane: String,
-    floor: String
+    floor: String,
+    image: File
   ) {
+    const formData: FormData = new FormData();
+    if (image.size > 0) {
+      formData.append('image', image);
+    }
     return this.http.post<LoginResponse>(
       this.base_url +
         `/signup?account=${account}&name=${name}&email=${email}&password=${password}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`,
-      {}
+      formData
     );
   }
 

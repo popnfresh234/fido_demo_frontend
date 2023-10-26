@@ -29,3 +29,7 @@ label {
 .controls button {
   margin: 1rem;
 }
+
+.file-input {
+  display: none;
+}
