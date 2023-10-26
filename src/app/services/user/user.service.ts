@@ -19,6 +19,7 @@ export class UserService {
 
   editUser(
     id: number,
+    account: string,
     name: string,
     birthdate: string,
     city: string,
@@ -35,7 +36,7 @@ export class UserService {
     }
     return this.http.post(
       this.base_url +
-        `/?id=${id}&name=${name}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`,
+        `/?id=${id}&account=${account}&name=${name}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`,
       formData
     );
   }

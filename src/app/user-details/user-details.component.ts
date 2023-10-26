@@ -93,6 +93,7 @@ export class UserDetailsComponent {
       this.userService
         .editUser(
           this.user.id,
+          this.user.account,
           this.applyForm.value.name ?? '',
           this.applyForm.value.birthdate ?? '',
           event.target.county.value ?? '',
