@@ -56,6 +56,11 @@ td:first-child {
 .confirm {
   color: white;
   background-color: royalblue;
+  margin-left: 0.5rem;
+}
+
+.cancel {
+  margin-right: 0.5rem;
 }
 
 @media (min-width: 1250px) {

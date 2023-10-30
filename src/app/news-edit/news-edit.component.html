@@ -73,9 +73,14 @@
       <h3>刪除訊息</h3>
       <span>是否刪除訊息</span>
       <div class="controls">
-        <button type="button" class="box-link" (click)="cancel()">取消</button>
+        <button type="button" class="box-link cancel" (click)="cancel()">
+          取消
+        </button>
         <button type="submit" class="box-link confirm">刪除</button>
       </div>
     </div>
   </form>
+  <div class="error-item">
+    <h1>{{ error }}</h1>
+  </div>
 </section>

@@ -29,7 +29,6 @@ export class NewsEditComponent {
   error: String = '';
   deleteAll: string = 'deleteAll';
   delete: boolean = false;
-
   currentIdx = 0;
   count = 0;
   page = 1;
