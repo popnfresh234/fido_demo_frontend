@@ -31,9 +31,7 @@ export class UserService {
     image: File
   ) {
     const formData: FormData = new FormData();
-    if (image.size > 0) {
-      formData.append('image', image);
-    }
+    formData.append('image', image);
     return this.http.post(
       this.base_url +
         `/?id=${id}&account=${account}&name=${name}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`,
