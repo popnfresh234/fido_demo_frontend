@@ -1,0 +1,53 @@
+<article>
+  <section class="recovery">
+    <form [formGroup]="applyForm" (submit)="submitRecoveryPassword()">
+      <div class="form-item reset-password">
+        <label for="password">新密碼</label>
+        <input id="password" type="password" formControlName="password" />
+        <small
+          class="danger-text"
+          [ngClass]="
+            applyForm.controls.password.pristine ||
+            applyForm.controls.password.valid
+              ? 'hide-el'
+              : 'show-el'
+          "
+          >Invalid password
+        </small>
+      </div>
+      <div class="form-item reset-password">
+        <label for="confirm">再次輸入密碼</label>
+        <input id="confirm-" type="password" formControlName="confirm" />
+        <small
+          class="danger-text"
+          [ngClass]="
+            applyForm.controls.confirm.pristine ||
+            applyForm.controls.confirm.valid
+              ? 'hide-el'
+              : 'show-el'
+          "
+          >Invalid password
+        </small>
+      </div>
+      <div class="form-item mismatch">
+        <small
+          class="danger-text"
+          [ngClass]="applyForm.errors?.['mismatch'] ?'show-el':'hide-el'"
+          >Passwords do not match</small
+        >
+      </div>
+      <div class="form-item controls">
+        <button
+          type="submit"
+          class="primary box-link"
+          [disabled]="!applyForm.valid"
+        >
+          確定
+        </button>
+      </div>
+    </form>
+    <div class="error-item">
+      <h1>{{ error }}</h1>
+    </div>
+  </section>
+</article>

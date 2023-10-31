@@ -1,12 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { catchError, of, Observable } from 'rxjs';
+import { ErrorResponse } from '../models/error-response';
+import { ActivatedRoute } from '@angular/router';
+
 import {
   ReactiveFormsModule,
   FormGroup,
   FormControl,
   Validators,
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-recovery',
@@ -22,6 +26,8 @@ import { AuthService } from '../services/auth/auth.service';
 export class RecoveryCodeComponent {
   error: string = '';
   authService = inject(AuthService);
+  route: ActivatedRoute = inject(ActivatedRoute);
+  router = inject(Router);
 
   constructor() {}
 
@@ -30,8 +36,23 @@ export class RecoveryCodeComponent {
   });
 
   submitRecoveryCode() {
-    console.log(
-      this.authService.submitRecoveryCode(this.applyForm.value.code ?? '')
-    );
+    const account = this.route.snapshot.params['account'];
+
+    this.authService
+      .submitRecoveryCode(this.applyForm.value.code ?? '', account)
+      .pipe(
+        catchError((errorResponse: ErrorResponse): Observable<any> => {
+          console.log(errorResponse);
+          this.error = errorResponse.error.message;
+
+          return of();
+        })
+      )
+      .subscribe((result) => {
+        this.error = '';
+        this.router.navigateByUrl(
+          '/recovery/rest/' + account + '/' + this.applyForm.value.code
+        );
+      });
   }
 }

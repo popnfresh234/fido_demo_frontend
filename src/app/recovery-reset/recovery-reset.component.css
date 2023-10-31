@@ -1,0 +1,8 @@
+.reset-password label {
+  width: 10rem;
+}
+
+.mismatch {
+  display: flex;
+  justify-content: center;
+}

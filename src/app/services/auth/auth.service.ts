@@ -79,7 +79,18 @@ export class AuthService {
     );
   }
 
-  submitRecoveryCode(code: string) {
-    return 'TODO Recovery Code: ' + code;
+  submitRecoveryCode(code: string, account: string) {
+    return this.http.post<Response>(this.base_url + `/recovery/verify`, {
+      code,
+      account,
+    });
+  }
+
+  submitPasswordReset(account: string, code: string, password: string) {
+    return this.http.post<Response>(this.base_url + '/recovery/reset', {
+      account,
+      code,
+      password,
+    });
   }
 }

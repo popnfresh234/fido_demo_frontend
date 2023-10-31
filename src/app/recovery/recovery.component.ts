@@ -47,10 +47,11 @@ export class RecoveryComponent {
           return of();
         })
       )
-      .subscribe((result) => {
+      .subscribe(() => {
         this.error = '';
-        console.log(result);
-        this.router.navigateByUrl('/recovery/code');
+        this.router.navigateByUrl(
+          '/recovery/code/' + this.applyForm.value.account
+        );
       });
   }
 }

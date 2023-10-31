@@ -10,6 +10,7 @@ import { NewsEditComponent } from './news-edit/news-edit.component';
 import { adminGuard } from './guards/admin.guard';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { RecoveryCodeComponent } from './recovery-code/recovery-code.component';
+import { RecoveryResetComponent } from './recovery-reset/recovery-reset.component';
 const routeConfig: Routes = [
   {
     path: '',
@@ -52,9 +53,14 @@ const routeConfig: Routes = [
     title: 'Recovery',
   },
   {
-    path: 'recovery/code',
+    path: 'recovery/code/:account',
     component: RecoveryCodeComponent,
     title: 'Recovery code',
+  },
+  {
+    path: 'recovery/rest/:account/:code',
+    component: RecoveryResetComponent,
+    title: 'Reset Password',
   },
 ];
 
