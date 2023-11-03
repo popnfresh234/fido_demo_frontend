@@ -92,7 +92,6 @@ export class UserDetailsComponent {
     if (this.user?.id) {
       this.userService
         .editUser(
-          this.user.id,
           this.user.account,
           this.applyForm.value.name ?? '',
           this.applyForm.value.birthdate ?? '',

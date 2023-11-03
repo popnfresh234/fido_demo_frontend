@@ -4,21 +4,18 @@ import { Injectable } from '@angular/core';
 import { News } from 'src/app/models/news';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class NewsService {
-
-  base_url = 'http://localhost:8080/news'
-  constructor(private http: HttpClient) { }
-
+  base_url = 'https://localhost:8080/news';
+  constructor(private http: HttpClient) {}
 
   getAllNews() {
-    return this.http.get<User[]>(this.base_url + "/all");
+    return this.http.get<User[]>(this.base_url + '/all');
   }
 
   getPaginatedNews(params: any) {
-    return this.http.get<any>(this.base_url + "/paging", { params });
+    return this.http.get<any>(this.base_url + '/paging', { params });
   }
 
   getNews(id: number) {
@@ -26,7 +23,6 @@ export class NewsService {
   }
 
   deleteNews(params: any, deleteArr: number[]) {
-    return this.http.post(this.base_url + "/delete", deleteArr, { params });
+    return this.http.post(this.base_url + '/delete', deleteArr, { params });
   }
 }
-

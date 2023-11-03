@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UserService {
-  base_url = 'http://localhost:8080/user';
+  base_url = 'https://localhost:8080/user';
   constructor(private http: HttpClient) {}
 
   getAllUsers() {
@@ -18,7 +18,6 @@ export class UserService {
   }
 
   editUser(
-    id: number,
     account: string,
     name: string,
     birthdate: string,
@@ -34,7 +33,7 @@ export class UserService {
     formData.append('image', image);
     return this.http.post(
       this.base_url +
-        `/?id=${id}&account=${account}&name=${name}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`,
+        `/?account=${account}&name=${name}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`,
       formData
     );
   }

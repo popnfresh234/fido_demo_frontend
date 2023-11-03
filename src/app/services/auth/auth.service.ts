@@ -11,7 +11,7 @@ import jwtDecode from 'jwt-decode';
 })
 export class AuthService {
   router = inject(Router);
-  base_url = 'http://localhost:8080/auth';
+  base_url = 'https://localhost:8080/auth';
   user?: User;
 
   constructor(
