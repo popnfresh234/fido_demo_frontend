@@ -14,7 +14,7 @@ export class UserService {
   }
 
   getUser(account: string) {
-    return this.http.get<User>(this.base_url + `/?account=${account}`);
+    return this.http.get<User>(this.base_url);
   }
 
   editUser(
@@ -30,11 +30,16 @@ export class UserService {
     image: File
   ) {
     const formData: FormData = new FormData();
+    formData.append('account', account);
+    formData.append('name', name);
+    formData.append('birthdate', birthdate);
+    formData.append('city', city);
+    formData.append('district', district);
+    formData.append('street', street);
+    formData.append('alley', alley);
+    formData.append('lane', lane);
+    formData.append('floor', floor);
     formData.append('image', image);
-    return this.http.post(
-      this.base_url +
-        `/?account=${account}&name=${name}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`,
-      formData
-    );
+    return this.http.post(this.base_url + '/', formData);
   }
 }

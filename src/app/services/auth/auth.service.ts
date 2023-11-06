@@ -32,28 +32,37 @@ export class AuthService {
   }
 
   submitSignup(
-    account: String,
-    name: String,
-    email: String,
-    password: String,
-    birthdate: String,
-    city: String,
-    district: String,
-    street: String,
-    alley: String,
-    lane: String,
-    floor: String,
+    account: string,
+    name: string,
+    email: string,
+    password: string,
+    birthdate: string,
+    city: string,
+    district: string,
+    street: string,
+    alley: string,
+    lane: string,
+    floor: string,
     image: File
   ) {
     const formData: FormData = new FormData();
     if (image.size > 0) {
       formData.append('image', image);
     }
-    return this.http.post<LoginResponse>(
-      this.base_url +
-        `/signup?account=${account}&name=${name}&email=${email}&password=${password}&birthdate=${birthdate}&city=${city}&district=${district}&street=${street}&alley=${alley}&lane=${lane}&floor=${floor}`,
-      formData
-    );
+
+    formData.append('account', account);
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('birthdate', birthdate);
+    formData.append('city', city);
+    formData.append('district', district);
+    formData.append('street', street);
+    formData.append('alley', alley);
+    formData.append('lane', lane);
+    formData.append('floor', floor);
+
+    return this.http.post<LoginResponse>(this.base_url + '/signup', formData);
   }
 
   handleLogin(response: LoginResponse, error: String) {
