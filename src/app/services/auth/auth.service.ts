@@ -6,12 +6,13 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { TokenModel } from 'src/app/models/token_model';
 import jwtDecode from 'jwt-decode';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   router = inject(Router);
-  base_url = 'https://localhost:8080/auth';
+  base_url = environment.apiUrl + '/auth';
   user?: User;
 
   constructor(

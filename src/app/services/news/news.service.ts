@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user';
 import { Injectable } from '@angular/core';
 import { News } from 'src/app/models/news';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsService {
-  base_url = 'https://localhost:8080/news';
+  base_url = environment.apiUrl + '/news';
   constructor(private http: HttpClient) {}
 
   getAllNews() {
