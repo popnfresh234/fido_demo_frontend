@@ -18,7 +18,7 @@ RUN npm run build --prod
 
 ### STAGE 2:RUN ###
 # Defining nginx image to be used
-FROM nginx:latest AS ngi
+FROM nginxinc/nginx-unprivileged:latest AS ngi
 # Copying compiled code and nginx config to different folder
 # NOTE: This path may change according to your project's output folder 
 COPY --from=build /dist/src/app/dist/frontend /usr/share/nginx/html
@@ -29,8 +29,7 @@ COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 RUN ls /etc/nginx/certs/
 # Exposing a port, here it means that inside the container 
 # the app will be using Port 80 while running
-EXPOSE 80
-EXPOSE 443
+EXPOSE 8443
 #SSL Certificate
 
 # docker build -t demo_frontend -f ./Dockerfile .
