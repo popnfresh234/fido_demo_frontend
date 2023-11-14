@@ -22,10 +22,11 @@ FROM nginxinc/nginx-unprivileged:latest AS ngi
 # Copying compiled code and nginx config to different folder
 # NOTE: This path may change according to your project's output folder 
 COPY --from=build /dist/src/app/dist/frontend /usr/share/nginx/html
-COPY /src/ssl/webcomm_demo_frontend.crt.pem /etc/nginx/certs/server.crt
-COPY /src/ssl/webcomm_demo_frontend.key.pem /etc/nginx/certs/server.key
+ARG LOCAL=""
+COPY /src/ssl/webcomm_demo_frontend${LOCAL}.crt.pem /etc/nginx/certs/server.crt
+COPY /src/ssl/webcomm_demo_frontend${LOCAL}.key.pem /etc/nginx/certs/server.key
 
-COPY /nginx.conf  /etc/nginx/conf.d/default.conf
+COPY /nginx${LOCAL}.conf  /etc/nginx/conf.d/default.conf
 RUN ls /etc/nginx/certs/
 # Exposing a port, here it means that inside the container 
 # the app will be using Port 80 while running

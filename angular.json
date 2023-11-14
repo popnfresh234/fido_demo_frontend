@@ -75,8 +75,8 @@
           "defaultConfiguration": "development",
           "options": {
             "ssl": true,
-            "sslKey": "src/ssl/webcomm_demo_frontend.key.pem",
-            "sslCert": "src/ssl/webcomm_demo_frontend.crt.pem"
+            "sslKey": "src/ssl/local_webcomm_demo_frontend.key.pem",
+            "sslCert": "src/ssl/local_webcomm_demo_frontend.crt.pem"
           }
         },
         "extract-i18n": {
