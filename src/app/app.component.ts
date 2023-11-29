@@ -115,26 +115,6 @@ export class AppComponent {
               alert('Webauthn 啟用失敗');
             }
           });
-        // $.ajax({
-        //   type: "POST",
-        //   data: JSON.stringify(fido2DoRegReq),
-        //   contentType: "application/json; charset=utf-8",
-        //   dataType: "json",
-        //   url: "webauthn/doReg",
-        //   success: function(fido2DoRegResp) {
-        //     console.log("fido2DoRegResp:");
-        //     console.log(JSON.stringify(fido2DoRegResp));
-
-        //     if (fido2DoRegResp.header.code == 1200) {
-        //       alert("Webauthn 啟用成功");
-        //     } else {
-        //       alert("Webauthn 啟用失敗");
-        //     }
-        //   },
-        //   error: function() {
-        //     alert("Webauthn 啟用失敗");
-        //   }
-        // });
       })
       .catch(function (error) {
         if (!error.exists) {

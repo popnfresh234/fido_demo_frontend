@@ -7,6 +7,7 @@ import { User } from 'src/app/models/user';
 import { TokenModel } from 'src/app/models/token_model';
 import jwtDecode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
+import fido from 'src/app/utilities/fido';
 @Injectable({
   providedIn: 'root',
 })
@@ -25,26 +26,6 @@ export class AuthService {
       account: account,
       password: password,
     });
-  }
-
-  submitRegisterAuthenticator() {
-    return this.http.post<LoginResponse>(this.base_url + '/requestReg', {
-      header: this.getFidoHeader(),
-      body: {
-        attestation: 'none',
-        authenticatorSelection: {
-          requireResidentKey: false,
-          userVerification: 'preferred',
-        },
-      },
-    });
-  }
-
-  doRegRequest(fido2DoRegReq: any) {
-    return this.http.post<LoginResponse>(
-      this.base_url + '/doReg',
-      fido2DoRegReq
-    );
   }
 
   submitLogout() {
@@ -124,16 +105,35 @@ export class AuthService {
     });
   }
 
-  getFidoHeader() {
-    //Hardcoded header data
-    return {
-      appVersion: 'v8',
-      channelCode: 'channel-webcomm',
-      deviceBrand: 'google',
-      deviceType: 'chrome',
-      deviceUuid: '550e8400-e29b-41d4-a716-446655440000',
-      deviceVersion: '92.0.4515.107',
-      userIp: '127.0.0.1',
-    };
+  // **************
+  // WebAuthn
+  // *************
+  submitRegisterAuthenticator() {
+    return this.http.post<LoginResponse>(this.base_url + '/requestReg', {
+      header: fido.getFidoHeader(),
+      body: {
+        attestation: 'none',
+        authenticatorSelection: {
+          requireResidentKey: false,
+          userVerification: 'preferred',
+        },
+      },
+    });
   }
+
+  doRegRequest(fido2DoRegReq: any) {
+    return this.http.post<LoginResponse>(
+      this.base_url + '/doReg',
+      fido2DoRegReq
+    );
+  }
+
+  requestAuth(requestAuthReq: any) {
+    return this.http.post<Response>(
+      this.base_url + '/requestAuth',
+      requestAuthReq
+    );
+  }
+
+  doAuth() {}
 }
