@@ -24,6 +24,11 @@ export class LoginComponent {
     account: new FormControl('', formValidators.accountValidators),
     password: new FormControl('', formValidators.passwordValidators),
   });
+
+  quickLogin = new FormGroup({
+    quick_username: new FormControl('', formValidators.accountValidators),
+  });
+
   error: String = '';
 
   constructor() {}
@@ -38,13 +43,16 @@ export class LoginComponent {
         catchError((errorResponse: ErrorResponse): Observable<any> => {
           console.log(errorResponse);
           this.error = errorResponse.error.message;
-
           return of();
         })
       )
       .subscribe((response) => {
         this.authService.handleLogin(response, this.error);
       });
+  }
+
+  submitQuickLogin() {
+    console.log('Quick Login');
   }
 
   submitLogout() {

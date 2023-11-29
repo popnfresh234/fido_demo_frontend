@@ -27,7 +27,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/scripts/helper.js",
+              "src/assets/scripts/base64url-arraybuffer.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -75,8 +78,8 @@
           "defaultConfiguration": "development",
           "options": {
             "ssl": true,
-            "sslKey": "src/ssl/local_webcomm_demo_frontend.key.pem",
-            "sslCert": "src/ssl/local_webcomm_demo_frontend.crt.pem"
+            "sslKey": "src/ssl/webcomm_demo_frontend_local.key.pem",
+            "sslCert": "src/ssl/webcomm_demo_frontend_local.crt.pem"
           }
         },
         "extract-i18n": {

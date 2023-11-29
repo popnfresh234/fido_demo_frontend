@@ -39,6 +39,31 @@
         <div class="filler"></div>
       </div>
     </form>
+
+    <h1>Quick Login</h1>
+    <form [formGroup]="quickLogin" (submit)="submitQuickLogin()">
+      <div class="form-item">
+        <label for="quick_username">帳號</label>
+        <input
+          id="quick_username"
+          formControlName="quick_username"
+          autocomplete="on"
+        />
+        <small
+          class="danger-text"
+          [ngClass]="
+            quickLogin.controls.quick_username.valid ? 'hide-el' : 'show-el'
+          "
+          >Account does not meet requirements</small
+        >
+      </div>
+      <div class="controls-wrapper">
+        <div class="form-item controls">
+          <button type="submit" class="primary box-link">快速登入</button>
+        </div>
+        <div class="filler"></div>
+      </div>
+    </form>
     <div class="error-item">
       <h1>{{ error }}</h1>
     </div>

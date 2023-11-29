@@ -24,6 +24,13 @@
       登入
     </a>
     <a
+      class="nav-item"
+      *ngIf="this.localStorageService.getData('auth') === 'true'"
+      (click)="useQuickLogin()"
+    >
+      啟用快登
+    </a>
+    <a
       *ngIf="this.localStorageService.getData('auth') === 'true'"
       (click)="submitLogout()"
     >

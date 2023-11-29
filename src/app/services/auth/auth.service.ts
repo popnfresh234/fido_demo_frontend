@@ -27,6 +27,26 @@ export class AuthService {
     });
   }
 
+  submitRegisterAuthenticator() {
+    return this.http.post<LoginResponse>(this.base_url + '/requestReg', {
+      header: this.getFidoHeader(),
+      body: {
+        attestation: 'none',
+        authenticatorSelection: {
+          requireResidentKey: false,
+          userVerification: 'preferred',
+        },
+      },
+    });
+  }
+
+  doRegRequest(fido2DoRegReq: any) {
+    return this.http.post<LoginResponse>(
+      this.base_url + '/doReg',
+      fido2DoRegReq
+    );
+  }
+
   submitLogout() {
     this.localStorageService.clearData();
     this.router.navigateByUrl('/login');
@@ -102,5 +122,18 @@ export class AuthService {
       code,
       password,
     });
+  }
+
+  getFidoHeader() {
+    //Hardcoded header data
+    return {
+      appVersion: 'v8',
+      channelCode: 'channel-webcomm',
+      deviceBrand: 'google',
+      deviceType: 'chrome',
+      deviceUuid: '550e8400-e29b-41d4-a716-446655440000',
+      deviceVersion: '92.0.4515.107',
+      userIp: '127.0.0.1',
+    };
   }
 }
