@@ -9,6 +9,7 @@ import { ErrorResponse } from '../models/error-response';
 import { RouterModule } from '@angular/router';
 import formValidators from '../utilities/form-validators';
 import fido from '../utilities/fido';
+import { WebauthService } from '../services/webauth/webauth.service';
 
 declare function preformatGetAssertReq(getAssert: any): any;
 declare function publicKeyCredentialToJSON(credential: any): any;
@@ -23,6 +24,7 @@ declare function publicKeyCredentialToJSON(credential: any): any;
 export class LoginComponent {
   router = inject(Router);
   authService = inject(AuthService);
+  webAuthService = inject(WebauthService);
   localStorageService = inject(LocalStorageService);
   applyForm = new FormGroup({
     account: new FormControl('', formValidators.accountValidators),
@@ -56,7 +58,7 @@ export class LoginComponent {
   }
 
   submitQuickLogin() {
-    this.authService
+    this.webAuthService
       .requestAuth(this.quickLogin.value.quick_username ?? '')
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
@@ -70,7 +72,7 @@ export class LoginComponent {
         if (requestAuthResponse.header.code == 1200) {
           this.doAuth(requestAuthResponse);
         } else {
-          alert('Webauthn 登入失敗');
+          this.error = 'Webauthn 登入失敗';
         }
       });
   }
@@ -98,14 +100,13 @@ export class LoginComponent {
           header: fido.getFidoHeader(),
           body: {
             publicKeyCredential: publicKeyCredential,
-            // "tokenBindingId": ""
           },
         };
 
         console.log('fido2DoAuthReq:');
         console.log(JSON.stringify(fido2doAuthReq));
 
-        this.authService
+        this.webAuthService
           .doAuthRequest(fido2doAuthReq)
           .pipe(
             catchError((errorResponse: ErrorResponse): Observable<any> => {
@@ -124,14 +125,14 @@ export class LoginComponent {
                 this.error
               );
             } else {
-              console.log('Webauthn 登入失敗');
+              this.error = 'Webauthn 登入失敗';
             }
           });
       })
-      .catch(function (error) {
+      .catch((error) => {
         if (!error.exists) {
           console.error(error);
-          alert('Webauthn 登入失敗');
+          this.error = 'Webauthn 登入失敗';
         }
         return;
       });

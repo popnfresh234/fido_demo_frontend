@@ -7,6 +7,7 @@ import { LocalStorageService } from './services/local_storage/local-storage.serv
 import { NgxPaginationModule } from 'ngx-pagination';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from './models/error-response';
+import { WebauthService } from './services/webauth/webauth.service';
 
 declare function preformatMakeCredReq(responseBody: any): any;
 declare function publicKeyCredentialToJSON(credential: any): any;
@@ -25,6 +26,7 @@ declare function publicKeyCredentialToJSON(credential: any): any;
 })
 export class AppComponent {
   authService = inject(AuthService);
+  webAuthService = inject(WebauthService);
   localStorageService = inject(LocalStorageService);
   title = 'frontend';
   account = '';
@@ -42,7 +44,7 @@ export class AppComponent {
   }
 
   useQuickLogin() {
-    this.authService
+    this.webAuthService
       .submitRegisterAuthenticator()
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
@@ -97,7 +99,7 @@ export class AppComponent {
         };
         console.log('fido2DoRegReq:');
         console.log(JSON.stringify(fido2DoRegReq));
-        this.authService
+        this.webAuthService
           .doRegRequest(fido2DoRegReq)
           .pipe(
             catchError((errorResponse: ErrorResponse): Observable<any> => {

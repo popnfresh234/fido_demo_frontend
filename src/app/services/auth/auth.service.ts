@@ -7,7 +7,6 @@ import { User } from 'src/app/models/user';
 import { TokenModel } from 'src/app/models/token_model';
 import jwtDecode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
-import fido from 'src/app/utilities/fido';
 @Injectable({
   providedIn: 'root',
 })
@@ -104,52 +103,4 @@ export class AuthService {
       password,
     });
   }
-
-  // **************
-  // WebAuthn
-  // *************
-
-  // *** Registration ***
-  submitRegisterAuthenticator() {
-    return this.http.post<LoginResponse>(this.base_url + '/requestReg', {
-      header: fido.getFidoHeader(),
-      body: {
-        attestation: 'none',
-        authenticatorSelection: {
-          requireResidentKey: false,
-          userVerification: 'preferred',
-        },
-      },
-    });
-  }
-
-  doRegRequest(fido2DoRegReq: any) {
-    return this.http.post<LoginResponse>(
-      this.base_url + '/doReg',
-      fido2DoRegReq
-    );
-  }
-
-  // ** End Registration **
-
-  // ** Authorization **
-  requestAuth(username: String) {
-    let requestAuthReq = {
-      header: fido.getFidoHeader(),
-      body: {
-        username,
-      },
-    };
-
-    return this.http.post<Response>(
-      this.base_url + '/requestAuth',
-      requestAuthReq
-    );
-  }
-
-  doAuthRequest(fido2doAuthReq: any) {
-    return this.http.post<Response>(this.base_url + '/doAuth', fido2doAuthReq);
-  }
-
-  // ** End Authorization *
 }
