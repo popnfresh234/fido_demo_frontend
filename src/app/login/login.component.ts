@@ -8,6 +8,10 @@ import { Router } from '@angular/router';
 import { ErrorResponse } from '../models/error-response';
 import { RouterModule } from '@angular/router';
 import formValidators from '../utilities/form-validators';
+import fido from '../utilities/fido';
+
+declare function preformatGetAssertReq(getAssert: any): any;
+declare function publicKeyCredentialToJSON(credential: any): any;
 
 @Component({
   selector: 'app-login',
@@ -52,7 +56,85 @@ export class LoginComponent {
   }
 
   submitQuickLogin() {
-    console.log('Quick Login');
+    this.authService
+      .requestAuth(this.quickLogin.value.quick_username ?? '')
+      .pipe(
+        catchError((errorResponse: ErrorResponse): Observable<any> => {
+          console.log(errorResponse);
+          this.error = errorResponse.error.message;
+          return of();
+        })
+      )
+      .subscribe((requestAuthResponse) => {
+        console.log(requestAuthResponse);
+        if (requestAuthResponse.header.code == 1200) {
+          this.doAuth(requestAuthResponse);
+        } else {
+          alert('Webauthn 登入失敗');
+        }
+      });
+  }
+
+  doAuth(fido2requestAuthResponse: any) {
+    var publicKeyCredentialRequestOptions = preformatGetAssertReq(
+      fido2requestAuthResponse.body
+    );
+
+    console.log('publicKeyCredentialRequestOptions:');
+    console.log(JSON.stringify(publicKeyCredentialRequestOptions));
+
+    navigator.credentials
+      .get({
+        publicKey: publicKeyCredentialRequestOptions,
+      })
+      .then((credential) => {
+        console.log('credential:');
+        console.log(JSON.stringify(credential));
+        console.log(credential);
+
+        var publicKeyCredential = publicKeyCredentialToJSON(credential);
+
+        var fido2doAuthReq = {
+          header: fido.getFidoHeader(),
+          body: {
+            publicKeyCredential: publicKeyCredential,
+            // "tokenBindingId": ""
+          },
+        };
+
+        console.log('fido2DoAuthReq:');
+        console.log(JSON.stringify(fido2doAuthReq));
+
+        this.authService
+          .doAuthRequest(fido2doAuthReq)
+          .pipe(
+            catchError((errorResponse: ErrorResponse): Observable<any> => {
+              console.log(errorResponse);
+              this.error = errorResponse.error.message;
+              return of();
+            })
+          )
+          .subscribe((fido2doAuthResp) => {
+            console.log('fido2DoAuthResp');
+            console.log(JSON.stringify(fido2doAuthResp));
+            if (fido2doAuthResp.header.code == 1200) {
+              console.log('Webauthn 登入成功');
+              this.authService.handleLogin(
+                fido2doAuthResp.loginResponse,
+                this.error
+              );
+            } else {
+              console.log('Webauthn 登入失敗');
+            }
+          });
+      })
+      .catch(function (error) {
+        if (!error.exists) {
+          console.error(error);
+          alert('Webauthn 登入失敗');
+        }
+        return;
+      });
   }
 
   submitLogout() {

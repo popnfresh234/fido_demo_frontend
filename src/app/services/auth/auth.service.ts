@@ -108,6 +108,8 @@ export class AuthService {
   // **************
   // WebAuthn
   // *************
+
+  // *** Registration ***
   submitRegisterAuthenticator() {
     return this.http.post<LoginResponse>(this.base_url + '/requestReg', {
       header: fido.getFidoHeader(),
@@ -128,12 +130,26 @@ export class AuthService {
     );
   }
 
-  requestAuth(requestAuthReq: any) {
+  // ** End Registration **
+
+  // ** Authorization **
+  requestAuth(username: String) {
+    let requestAuthReq = {
+      header: fido.getFidoHeader(),
+      body: {
+        username,
+      },
+    };
+
     return this.http.post<Response>(
       this.base_url + '/requestAuth',
       requestAuthReq
     );
   }
 
-  doAuth() {}
+  doAuthRequest(fido2doAuthReq: any) {
+    return this.http.post<Response>(this.base_url + '/doAuth', fido2doAuthReq);
+  }
+
+  // ** End Authorization *
 }
