@@ -68,7 +68,7 @@ export class LoginComponent {
         })
       )
       .subscribe((requestAuthResponse) => {
-        console.log(requestAuthResponse);
+        console.log('Request Auth Response');
         if (requestAuthResponse.header.code == 1200) {
           this.doAuth(requestAuthResponse);
         } else {
@@ -100,6 +100,7 @@ export class LoginComponent {
           header: fido.getFidoHeader(),
           body: {
             publicKeyCredential: publicKeyCredential,
+            username: this.quickLogin.value.quick_username,
           },
         };
 
