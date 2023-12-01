@@ -8,6 +8,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from './models/error-response';
 import { WebauthService } from './services/webauth/webauth.service';
+import { Router } from '@angular/router';
 
 declare function preformatMakeCredReq(responseBody: any): any;
 declare function publicKeyCredentialToJSON(credential: any): any;
@@ -28,14 +29,20 @@ export class AppComponent {
   authService = inject(AuthService);
   webAuthService = inject(WebauthService);
   localStorageService = inject(LocalStorageService);
+  router = inject(Router);
   title = 'frontend';
   account = '';
 
   constructor() {
-    if (this.localStorageService.getData('token')) {
-      this.account = this.authService.getAccountFromToken(
-        this.localStorageService.getData('token')
-      );
+    try {
+      if (this.localStorageService.getData('token')) {
+        this.account = this.authService.getAccountFromToken(
+          this.localStorageService.getData('token')
+        );
+      }
+    } catch (error) {
+      this.localStorageService.clearData();
+      this.router.navigateByUrl('/login');
     }
   }
 
