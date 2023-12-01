@@ -22,8 +22,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       next: () => {},
       error: (err) => {
         if (err instanceof HttpErrorResponse) {
-          localStorageSerice.clearData();
-          router.navigateByUrl('/login');
+          if (err.status === 401) {
+            localStorageSerice.clearData();
+            router.navigateByUrl('/login');
+          }
         }
       },
     })
