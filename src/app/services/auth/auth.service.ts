@@ -69,7 +69,6 @@ export class AuthService {
   handleLogin(response: LoginResponse, error: String) {
     if (response && response.accessToken) {
       this.localStorageService.saveData('token', response.accessToken);
-      this.localStorageService.saveData('auth', 'true');
       this.localStorageService.saveData('role', JSON.stringify(response.role));
       error = '';
       this.router.navigateByUrl('/');

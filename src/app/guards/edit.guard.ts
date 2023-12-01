@@ -1,18 +1,16 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../services/local_storage/local-storage.service';
-import jwtDecode from 'jwt-decode';
-import { TokenModel } from '../models/token_model';
 
-export const authGuard = () => {
+export const editGuard = () => {
   const localStorageService: LocalStorageService = inject(LocalStorageService);
   const router = inject(Router);
-
-  // Check for token
-  if (!localStorageService.getData('token')) {
-    localStorageService.clearData();
-    router.navigateByUrl('/login');
+  const roles: string[] = JSON.parse(
+    localStorageService.getData('role') ?? '[]'
+  );
+  if (roles.indexOf('ROLE_ADMIN') < 0) {
+    router.navigateByUrl('/');
+    return false;
   }
-
   return true;
 };

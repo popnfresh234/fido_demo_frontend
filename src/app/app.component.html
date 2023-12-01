@@ -4,7 +4,7 @@
     <a
       class="nav-item"
       [routerLink]="['/user']"
-      *ngIf="this.localStorageService.getData('auth') === 'true'"
+      *ngIf="this.localStorageService.getData('token')"
     >
       會員資料
     </a>
@@ -12,26 +12,26 @@
     <a
       class="nav-item"
       [routerLink]="['/signup']"
-      *ngIf="this.localStorageService.getData('auth') !== 'true'"
+      *ngIf="!this.localStorageService.getData('token')"
     >
       註冊
     </a>
     <a
       class="nav-item"
       [routerLink]="['/login']"
-      *ngIf="this.localStorageService.getData('auth') !== 'true'"
+      *ngIf="!this.localStorageService.getData('token')"
     >
       登入
     </a>
     <a
       class="nav-item"
-      *ngIf="this.localStorageService.getData('auth') === 'true'"
+      *ngIf="this.localStorageService.getData('token')"
       (click)="useQuickLogin()"
     >
       啟用快登
     </a>
     <a
-      *ngIf="this.localStorageService.getData('auth') === 'true'"
+      *ngIf="this.localStorageService.getData('token')"
       (click)="submitLogout()"
     >
       登出
