@@ -9,9 +9,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./image-upload.component.css'],
 })
 export class ImageUploadComponent {
+  @Input() file: File = new File([''], '');
+  @Input() fileName: string = '';
   @Output() newFileEvent = new EventEmitter<File>();
-  file: File = new File([''], '');
-  fileName: string = '';
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];

@@ -36,6 +36,7 @@ export class UserDetailsComponent {
   twCitySelector;
   base64Image: string = '';
   file: File = new File([], '');
+  fileName: string = '';
 
   applyForm = new FormGroup({
     name: new FormControl('', formValidators.nameValidators),
@@ -65,21 +66,25 @@ export class UserDetailsComponent {
         })
       )
       .subscribe((user) => {
-        this.base64Image = 'data:image/jpeg;base64,' + user.image;
+        if (user.image) {
+          console.log('There is image');
+        }
+
+        if (user.image) {
+          this.base64Image = 'data:image/jpeg;base64,' + user.image;
+          this.fileName = user.imageName;
+          const imageBlob = this.dataURItoBlob(user.image);
+          this.file = new File([imageBlob], user.imageName, {
+            type: 'image/jpeg',
+          });
+        }
+
         this.getDate(user.birthdate);
         this.error = '';
         this.user = user;
         this.twCitySelector.setValue(user.city, user.district);
         if (this.user) {
-          this.patchValues(
-            this.user?.name,
-            this.user?.email,
-            this.user?.birthdate,
-            this.user?.street,
-            this.user?.alley,
-            this.user?.lane,
-            this.user?.floor
-          );
+          this.patchValues(this.user);
         }
       });
   }
@@ -101,7 +106,8 @@ export class UserDetailsComponent {
           this.applyForm.value.alley ?? '',
           this.applyForm.value.lane ?? '',
           this.applyForm.value.floor ?? '',
-          this.file
+          this.file,
+          this.fileName
         )
         .pipe(
           catchError((errorResponse: ErrorResponse): Observable<any> => {
@@ -121,15 +127,7 @@ export class UserDetailsComponent {
   handleCancel() {
     this.edit = !this.edit;
     if (this.user) {
-      this.patchValues(
-        this.user?.name,
-        this.user?.email,
-        this.user?.birthdate,
-        this.user?.street,
-        this.user?.alley,
-        this.user?.lane,
-        this.user?.floor
-      );
+      this.patchValues(this.user);
     }
   }
 
@@ -151,29 +149,33 @@ export class UserDetailsComponent {
     return formattedDate;
   }
 
-  patchValues(
-    name: string,
-    email: string,
-    birthdate: string,
-    street: string,
-    alley: string,
-    lane: string,
-    floor: string
-  ) {
+  patchValues(user: any) {
     this.applyForm.patchValue({
-      name: name,
-      email: email,
-      birthdate: this.getDate(birthdate),
-      street: street,
-      alley: alley,
-      lane: lane,
-      floor: floor,
+      name: user.name,
+      email: user.email,
+      birthdate: this.getDate(user.birthdate),
+      street: user.street,
+      alley: user.alley,
+      lane: user.lane,
+      floor: user.floor,
     });
   }
 
   onFileSelected(file: File) {
     if (file) {
       this.file = file;
+      this.fileName = file.name;
     }
+  }
+
+  dataURItoBlob(dataURI: any) {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'image/png' });
+    return blob;
   }
 }

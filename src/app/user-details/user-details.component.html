@@ -145,7 +145,11 @@
         </div>
 
         <!-- File Upload -->
-        <app-image-upload (newFileEvent)="onFileSelected($event)" />
+        <app-image-upload
+          (newFileEvent)="onFileSelected($event)"
+          [file]="file"
+          [fileName]="fileName"
+        />
         <!-- End File Upload -->
         <section class="controls">
           <button

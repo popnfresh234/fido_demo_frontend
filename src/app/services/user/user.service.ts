@@ -28,8 +28,10 @@ export class UserService {
     alley: string,
     lane: string,
     floor: string,
-    image: File
+    image: File,
+    imageName: string
   ) {
+    console.log(image);
     const formData: FormData = new FormData();
     formData.append('account', account);
     formData.append('name', name);
@@ -41,6 +43,7 @@ export class UserService {
     formData.append('lane', lane);
     formData.append('floor', floor);
     formData.append('image', image);
+    formData.append('imageName', imageName);
     return this.http.post(this.base_url + '/', formData);
   }
 }
