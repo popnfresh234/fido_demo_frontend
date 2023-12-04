@@ -52,7 +52,7 @@ export class AppComponent {
 
   useQuickLogin() {
     this.webAuthService
-      .submitRegisterAuthenticator()
+      .requestReg()
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
           console.log(errorResponse);
@@ -107,7 +107,7 @@ export class AppComponent {
         console.log('fido2DoRegReq:');
         console.log(JSON.stringify(fido2DoRegReq));
         this.webAuthService
-          .doRegRequest(fido2DoRegReq)
+          .doReg(fido2DoRegReq)
           .pipe(
             catchError((errorResponse: ErrorResponse): Observable<any> => {
               console.log(errorResponse);

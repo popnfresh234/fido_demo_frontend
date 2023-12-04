@@ -108,7 +108,7 @@ export class LoginComponent {
         console.log(JSON.stringify(fido2doAuthReq));
 
         this.webAuthService
-          .doAuthRequest(fido2doAuthReq)
+          .doAuth(fido2doAuthReq)
           .pipe(
             catchError((errorResponse: ErrorResponse): Observable<any> => {
               console.log(errorResponse);

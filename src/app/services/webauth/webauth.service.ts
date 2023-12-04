@@ -21,7 +21,7 @@ export class WebauthService {
   // *************
 
   // *** Registration ***
-  submitRegisterAuthenticator() {
+  requestReg() {
     return this.http.post<LoginResponse>(this.base_url + '/requestReg', {
       header: fido.getFidoHeader(),
       body: {
@@ -34,7 +34,7 @@ export class WebauthService {
     });
   }
 
-  doRegRequest(fido2DoRegReq: any) {
+  doReg(fido2DoRegReq: any) {
     return this.http.post<LoginResponse>(
       this.base_url + '/doReg',
       fido2DoRegReq
@@ -58,7 +58,7 @@ export class WebauthService {
     );
   }
 
-  doAuthRequest(fido2doAuthReq: any) {
+  doAuth(fido2doAuthReq: any) {
     return this.http.post<Response>(this.base_url + '/doAuth', fido2doAuthReq);
   }
 
