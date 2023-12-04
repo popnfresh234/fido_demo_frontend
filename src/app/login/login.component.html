@@ -1,71 +1,108 @@
 <article>
   <section class="login" *ngIf="localStorageService.getData('auth') !== 'true'">
-    <form [formGroup]="applyForm" (submit)="submitLogin()">
-      <div class="header-wrapper">
-        <h1 class="form-header">會員登入</h1>
-        <div class="filler"></div>
-      </div>
-      <div class="form-item">
-        <label for="account">帳號</label>
-        <input id="account" type="text" formControlName="account" />
-        <small
-          class="danger-text"
-          [ngClass]="applyForm.controls.account.valid ? 'hide-el' : 'show-el'"
-          >Account does not meet requirements</small
-        >
-      </div>
-      <div class="form-item">
-        <label for="password">密碼</label>
-        <input
-          id="password"
-          type="password"
-          formControlName="password"
-          autocomplete="on"
-        />
-        <small
-          class="danger-text"
-          [ngClass]="applyForm.controls.password.valid ? 'hide-el' : 'show-el'"
-          >Password does not meet requirements</small
-        >
-      </div>
-      <div class="controls-wrapper">
-        <div class="form-item controls">
-          <div class="control-links">
-            <a [routerLink]="['/recovery']">忘記密碼？</a>
-            <a [routerLink]="['/signup']">會員註冊</a>
-          </div>
-          <button type="submit" class="primary box-link">登入</button>
+    <div class="general-colored-wrapper">
+      <!-- Login Header -->
+      <header class="login-types-header">
+        <div class="header-wrapper">
+          <h1
+            [ngClass]="loginType === 'normal' ? 'form-header-active' : ''"
+            class="form-header text-button"
+            (click)="setLoginType('normal')"
+          >
+            會員登入
+          </h1>
         </div>
-        <div class="filler"></div>
-      </div>
-    </form>
+        <div class="header-wrapper">
+          <h1
+            [ngClass]="loginType === 'quick' ? 'form-header-active' : ''"
+            class="form-header text-button"
+            (click)="setLoginType('quick')"
+          >
+            快速登入
+          </h1>
+        </div>
+      </header>
 
-    <h1>Quick Login</h1>
-    <form [formGroup]="quickLogin" (submit)="submitQuickLogin()">
-      <div class="form-item">
-        <label for="quick_username">帳號</label>
-        <input
-          id="quick_username"
-          formControlName="quick_username"
-          autocomplete="on"
-        />
-        <small
-          class="danger-text"
-          [ngClass]="
-            quickLogin.controls.quick_username.valid ? 'hide-el' : 'show-el'
-          "
-          >Account does not meet requirements</small
-        >
-      </div>
-      <div class="controls-wrapper">
-        <div class="form-item controls">
-          <button type="submit" class="primary box-link">快速登入</button>
+      <!-- End Login Header -->
+
+      <!-- Normal Login Form -->
+      <form
+        *ngIf="loginType == 'normal'"
+        [formGroup]="applyForm"
+        (submit)="submitLogin()"
+      >
+        <div class="form-item">
+          <label for="account">帳號</label>
+          <input id="account" type="text" formControlName="account" />
+          <small
+            class="danger-text"
+            [ngClass]="applyForm.controls.account.valid ? 'hide-el' : 'show-el'"
+            >Account does not meet requirements</small
+          >
         </div>
-        <div class="filler"></div>
+        <div class="form-item">
+          <label for="password">密碼</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            autocomplete="on"
+          />
+          <small
+            class="danger-text"
+            [ngClass]="
+              applyForm.controls.password.valid ? 'hide-el' : 'show-el'
+            "
+            >Password does not meet requirements</small
+          >
+        </div>
+        <div class="controls-wrapper">
+          <div class="form-item controls">
+            <div class="control-links">
+              <a [routerLink]="['/recovery']">忘記密碼？</a>
+              <a [routerLink]="['/signup']">會員註冊</a>
+            </div>
+            <button type="submit" class="primary box-link">登入</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- End Normal Login Form -->
+
+      <!-- Quick Login -->
+      <form
+        *ngIf="loginType == 'quick'"
+        [formGroup]="quickLoginForm"
+        (submit)="submitQuickLogin()"
+      >
+        <div class="form-item">
+          <label for="quick_username">帳號</label>
+          <input
+            id="quick_username"
+            formControlName="quick_username"
+            autocomplete="on"
+          />
+          <small
+            class="danger-text"
+            [ngClass]="
+              quickLoginForm.controls.quick_username.valid
+                ? 'hide-el'
+                : 'show-el'
+            "
+            >Account does not meet requirements</small
+          >
+        </div>
+        <div class="controls-wrapper">
+          <div class="form-item controls">
+            <button type="submit" class="primary box-link">快速登入</button>
+          </div>
+        </div>
+      </form>
+      <!-- End Quick Login -->
+
+      <div class="error-item">
+        <h1>{{ error }}</h1>
       </div>
-    </form>
-    <div class="error-item">
-      <h1>{{ error }}</h1>
     </div>
   </section>
 </article>

@@ -1,140 +1,151 @@
 <article>
   <section class="sign-up">
-    <h1>會員註冊</h1>
-    <form [formGroup]="applyForm" (submit)="submitSignup($event)">
-      <div class="form-item">
-        <label for="name">帳號</label>
-        <input id="account" type="text" formControlName="account" />
-        <small
-          class="danger-text"
-          [ngClass]="applyForm.controls.account.valid ? 'hide-el' : 'show-el'"
-          >Account does not meet requirements</small
-        >
-      </div>
-      <div class="form-item">
-        <label for="name">名字</label>
-        <input id="name" type="text" formControlName="name" />
-        <small
-          class="danger-text"
-          [ngClass]="applyForm.controls.name.valid ? 'hide-el' : 'show-el'"
-          >Name does not meet requirements</small
-        >
-      </div>
-      <div class="form-item">
-        <label for="email">Email</label>
-        <input id="email" type="email" formControlName="email" />
-        <small
-          class="danger-text"
-          [ngClass]="applyForm.controls.email.valid ? 'hide-el' : 'show-el'"
-          >Email format incorrect</small
-        >
-      </div>
-      <div class="form-item">
-        <label for="password">密碼</label>
-        <input
-          id="password"
-          type="password"
-          formControlName="password"
-          autocomplete="on"
-        />
-        <small
-          class="danger-text"
-          [ngClass]="applyForm.controls.password.valid ? 'hide-el' : 'show-el'"
-          >Password does not meet requirements</small
-        >
-      </div>
-      <div class="form-item">
-        <label for="birthdate">生日</label>
-        <input
-          id="birthdate"
-          type="text"
-          placeholder="yyyy/mm/dd"
-          formControlName="birthdate"
-        />
-        <small
-          class="danger-text"
-          [ngClass]="applyForm.controls.birthdate.valid ? 'hide-el' : 'show-el'"
-          >Date format incorrect</small
-        >
-      </div>
-
-      <div class="form-item city-selector">
-        <label>地址</label>
-        <div role="tw-city-selector"></div>
-      </div>
-      <div class="form-item address">
-        <label for="street">路</label>
-        <input
-          id="street"
-          type="text"
-          placeholder="路"
-          formControlName="street"
-        />
-        <small
-          class="danger-text"
-          [ngClass]="applyForm.controls.street.valid ? 'hide-el' : 'show-el'"
-          >Cannot be empty</small
-        >
-      </div>
-      <div class="form-item address">
-        <label for="alley">巷</label>
-        <input
-          id="alley"
-          type="text"
-          placeholder="巷"
-          formControlName="alley"
-        />
-        <small
-          class="danger-text"
-          [ngClass]="applyForm.controls.alley.valid ? 'hide-el' : 'show-el'"
-          >Cannot be empty</small
-        >
-      </div>
-      <div class="form-item address">
-        <label for="lane">弄</label>
-        <input id="lane" type="text" placeholder="弄" formControlName="lane" />
-        <small
-          class="danger-text"
-          [ngClass]="applyForm.controls.lane.valid ? 'hide-el' : 'show-el'"
-          >Cannot be empty</small
-        >
-      </div>
-      <div class="form-item address">
-        <label for="floor">樓</label>
-        <input
-          id="floor"
-          type="text"
-          placeholder="樓"
-          formControlName="floor"
-        />
-        <small
-          class="danger-text"
-          [ngClass]="applyForm.controls.floor.valid ? 'hide-el' : 'show-el'"
-          >Cannot be empty</small
-        >
-      </div>
-
-      <!-- File Upload -->
-      <app-image-upload (newFileEvent)="onFileSelected($event)" />
-      <!-- End File Upload -->
-
-      <div class="controls">
-        <div class="form-item submit-button">
-          <button
-            type="submit"
-            [disabled]="!applyForm.valid"
-            class="primary box-link"
+    <div class="general-colored-wrapper">
+      <h1 class="form-header">會員註冊</h1>
+      <form [formGroup]="applyForm" (submit)="submitSignup($event)">
+        <div class="form-item">
+          <label for="name">帳號</label>
+          <input id="account" type="text" formControlName="account" />
+          <small
+            class="danger-text"
+            [ngClass]="applyForm.controls.account.valid ? 'hide-el' : 'show-el'"
+            >Account does not meet requirements</small
           >
-            確定
-          </button>
-          <button class="box-link" type="button" (click)="handleCancel()">
-            取消
-          </button>
         </div>
+        <div class="form-item">
+          <label for="name">名字</label>
+          <input id="name" type="text" formControlName="name" />
+          <small
+            class="danger-text"
+            [ngClass]="applyForm.controls.name.valid ? 'hide-el' : 'show-el'"
+            >Name does not meet requirements</small
+          >
+        </div>
+        <div class="form-item">
+          <label for="email">Email</label>
+          <input id="email" type="email" formControlName="email" />
+          <small
+            class="danger-text"
+            [ngClass]="applyForm.controls.email.valid ? 'hide-el' : 'show-el'"
+            >Email format incorrect</small
+          >
+        </div>
+        <div class="form-item">
+          <label for="password">密碼</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            autocomplete="on"
+          />
+          <small
+            class="danger-text"
+            [ngClass]="
+              applyForm.controls.password.valid ? 'hide-el' : 'show-el'
+            "
+            >Password does not meet requirements</small
+          >
+        </div>
+        <div class="form-item">
+          <label for="birthdate">生日</label>
+          <input
+            id="birthdate"
+            type="text"
+            placeholder="yyyy/mm/dd"
+            formControlName="birthdate"
+          />
+          <small
+            class="danger-text"
+            [ngClass]="
+              applyForm.controls.birthdate.valid ? 'hide-el' : 'show-el'
+            "
+            >Date format incorrect</small
+          >
+        </div>
+
+        <div class="form-item city-selector">
+          <label>地址</label>
+          <div role="tw-city-selector"></div>
+        </div>
+        <div class="form-item address">
+          <label for="street">路</label>
+          <input
+            id="street"
+            type="text"
+            placeholder="路"
+            formControlName="street"
+          />
+          <small
+            class="danger-text"
+            [ngClass]="applyForm.controls.street.valid ? 'hide-el' : 'show-el'"
+            >Cannot be empty</small
+          >
+        </div>
+        <div class="form-item address">
+          <label for="alley">巷</label>
+          <input
+            id="alley"
+            type="text"
+            placeholder="巷"
+            formControlName="alley"
+          />
+          <small
+            class="danger-text"
+            [ngClass]="applyForm.controls.alley.valid ? 'hide-el' : 'show-el'"
+            >Cannot be empty</small
+          >
+        </div>
+        <div class="form-item address">
+          <label for="lane">弄</label>
+          <input
+            id="lane"
+            type="text"
+            placeholder="弄"
+            formControlName="lane"
+          />
+          <small
+            class="danger-text"
+            [ngClass]="applyForm.controls.lane.valid ? 'hide-el' : 'show-el'"
+            >Cannot be empty</small
+          >
+        </div>
+        <div class="form-item address">
+          <label for="floor">樓</label>
+          <input
+            id="floor"
+            type="text"
+            placeholder="樓"
+            formControlName="floor"
+          />
+          <small
+            class="danger-text"
+            [ngClass]="applyForm.controls.floor.valid ? 'hide-el' : 'show-el'"
+            >Cannot be empty</small
+          >
+        </div>
+
+        <!-- File Upload -->
+        <app-image-upload (newFileEvent)="onFileSelected($event)" />
+        <!-- End File Upload -->
+
+        <div class="controls">
+          <div class="form-item submit-button">
+            <button
+              type="submit"
+              [disabled]="!applyForm.valid"
+              class="primary box-link"
+            >
+              確定
+            </button>
+            <button class="box-link" type="button" (click)="handleCancel()">
+              取消
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="error-item">
+        <h1>{{ error }}</h1>
       </div>
-    </form>
-    <div class="error-item">
-      <h1>{{ error }}</h1>
     </div>
   </section>
 </article>

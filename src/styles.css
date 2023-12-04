@@ -1,11 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
   --label-width: 4rem;
+  --default-border-radius: 0.5rem;
+  --button-link-padding: 0.5rem;
+  --secondary-color: royalblue;
+  --secondary-color-hover: #3f5188;
+}
+
+html {
+  height: 100vh;
 }
 
 body {
   margin: 0;
   padding: 0;
+  background-image: url(assets/images/bg.svg);
+  background-size: 100% 100%;
 }
 
 .error-item {
@@ -29,14 +39,33 @@ a:hover:enabled {
 
 .box-link {
   width: 6rem;
+  border-radius: var(--default-border-radius);
   background-color: white;
   padding: 0.5rem;
   border: 1px solid black;
   cursor: pointer;
 }
 
+.general-colored-wrapper {
+  border-radius: var(--default-border-radius);
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0.8;
+  padding: 1rem;
+}
+
 .box-link:hover:enabled {
   color: blue;
+}
+
+.text-button {
+  padding: var(--button-link-padding);
+  border-radius: var(--default-border-radius);
+  cursor: pointer;
+}
+
+.text-button:hover {
+  color: black;
+  background-color: white;
 }
 
 .show-el {
@@ -45,4 +74,9 @@ a:hover:enabled {
 
 .hide-el {
   visibility: hidden;
+}
+
+.common-header {
+  color: white;
+  text-align: center;
 }

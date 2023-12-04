@@ -31,6 +31,7 @@
       啟用快登
     </a>
     <a
+      class="nav-item"
       *ngIf="this.localStorageService.getData('token')"
       (click)="submitLogout()"
     >

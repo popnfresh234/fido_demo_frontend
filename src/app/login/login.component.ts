@@ -31,11 +31,13 @@ export class LoginComponent {
     password: new FormControl('', formValidators.passwordValidators),
   });
 
-  quickLogin = new FormGroup({
+  quickLogin = false;
+  quickLoginForm = new FormGroup({
     quick_username: new FormControl('', formValidators.accountValidators),
   });
 
   error: String = '';
+  loginType = 'normal';
 
   constructor() {}
 
@@ -59,7 +61,7 @@ export class LoginComponent {
 
   submitQuickLogin() {
     this.webAuthService
-      .requestAuth(this.quickLogin.value.quick_username ?? '')
+      .requestAuth(this.quickLoginForm.value.quick_username ?? '')
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
           console.log(errorResponse);
@@ -100,7 +102,7 @@ export class LoginComponent {
           header: fido.getFidoHeader(),
           body: {
             publicKeyCredential: publicKeyCredential,
-            username: this.quickLogin.value.quick_username,
+            username: this.quickLoginForm.value.quick_username,
           },
         };
 
@@ -141,5 +143,9 @@ export class LoginComponent {
 
   submitLogout() {
     this.authService.submitLogout();
+  }
+
+  setLoginType(type: string) {
+    this.loginType = type;
   }
 }
