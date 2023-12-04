@@ -32,8 +32,10 @@
         (submit)="submitLogin()"
       >
         <div class="form-item">
-          <label for="account">帳號</label>
-          <input id="account" type="text" formControlName="account" />
+          <div class="form-input-group">
+            <label for="account">帳號</label>
+            <input id="account" type="text" formControlName="account" />
+          </div>
           <small
             class="danger-text"
             [ngClass]="applyForm.controls.account.valid ? 'hide-el' : 'show-el'"
@@ -41,13 +43,15 @@
           >
         </div>
         <div class="form-item">
-          <label for="password">密碼</label>
-          <input
-            id="password"
-            type="password"
-            formControlName="password"
-            autocomplete="on"
-          />
+          <div class="form-input-group">
+            <label for="password">密碼</label>
+            <input
+              id="password"
+              type="password"
+              formControlName="password"
+              autocomplete="on"
+            />
+          </div>
           <small
             class="danger-text"
             [ngClass]="
@@ -76,12 +80,14 @@
         (submit)="submitQuickLogin()"
       >
         <div class="form-item">
-          <label for="quick_username">帳號</label>
-          <input
-            id="quick_username"
-            formControlName="quick_username"
-            autocomplete="on"
-          />
+          <div class="form-input-group">
+            <label for="quick_username">帳號</label>
+            <input
+              id="quick_username"
+              formControlName="quick_username"
+              autocomplete="on"
+            />
+          </div>
           <small
             class="danger-text"
             [ngClass]="

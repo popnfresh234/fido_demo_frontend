@@ -1,6 +1,7 @@
 <!--  -->
 <div class="toolbar" role="banner">
   <section class="navigation">
+    <div class="nav-spacer"></div>
     <a
       class="nav-item"
       [routerLink]="['/user']"
@@ -23,6 +24,11 @@
     >
       登入
     </a>
+
+    <div
+      *ngIf="this.localStorageService.getData('token')"
+      class="divider"
+    ></div>
     <a
       class="nav-item"
       *ngIf="this.localStorageService.getData('token')"
@@ -37,6 +43,7 @@
     >
       登出
     </a>
+    <div class="nav-spacer"></div>
   </section>
 </div>
 

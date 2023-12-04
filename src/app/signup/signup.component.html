@@ -4,8 +4,10 @@
       <h1 class="form-header">會員註冊</h1>
       <form [formGroup]="applyForm" (submit)="submitSignup($event)">
         <div class="form-item">
-          <label for="name">帳號</label>
-          <input id="account" type="text" formControlName="account" />
+          <div class="form-input-group">
+            <label for="name">帳號</label>
+            <input id="account" type="text" formControlName="account" />
+          </div>
           <small
             class="danger-text"
             [ngClass]="applyForm.controls.account.valid ? 'hide-el' : 'show-el'"
@@ -13,8 +15,10 @@
           >
         </div>
         <div class="form-item">
-          <label for="name">名字</label>
-          <input id="name" type="text" formControlName="name" />
+          <div class="form-input-group">
+            <label for="name">名字</label>
+            <input id="name" type="text" formControlName="name" />
+          </div>
           <small
             class="danger-text"
             [ngClass]="applyForm.controls.name.valid ? 'hide-el' : 'show-el'"
@@ -22,8 +26,10 @@
           >
         </div>
         <div class="form-item">
-          <label for="email">Email</label>
-          <input id="email" type="email" formControlName="email" />
+          <div class="form-input-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" formControlName="email" />
+          </div>
           <small
             class="danger-text"
             [ngClass]="applyForm.controls.email.valid ? 'hide-el' : 'show-el'"
@@ -31,13 +37,15 @@
           >
         </div>
         <div class="form-item">
-          <label for="password">密碼</label>
-          <input
-            id="password"
-            type="password"
-            formControlName="password"
-            autocomplete="on"
-          />
+          <div class="form-input-group">
+            <label for="password">密碼</label>
+            <input
+              id="password"
+              type="password"
+              formControlName="password"
+              autocomplete="on"
+            />
+          </div>
           <small
             class="danger-text"
             [ngClass]="
@@ -47,13 +55,15 @@
           >
         </div>
         <div class="form-item">
-          <label for="birthdate">生日</label>
-          <input
-            id="birthdate"
-            type="text"
-            placeholder="yyyy/mm/dd"
-            formControlName="birthdate"
-          />
+          <div class="form-input-group">
+            <label for="birthdate">生日</label>
+            <input
+              id="birthdate"
+              type="text"
+              placeholder="yyyy/mm/dd"
+              formControlName="birthdate"
+            />
+          </div>
           <small
             class="danger-text"
             [ngClass]="
@@ -68,13 +78,15 @@
           <div role="tw-city-selector"></div>
         </div>
         <div class="form-item address">
-          <label for="street">路</label>
-          <input
-            id="street"
-            type="text"
-            placeholder="路"
-            formControlName="street"
-          />
+          <div class="form-input-group">
+            <label for="street">路</label>
+            <input
+              id="street"
+              type="text"
+              placeholder="路"
+              formControlName="street"
+            />
+          </div>
           <small
             class="danger-text"
             [ngClass]="applyForm.controls.street.valid ? 'hide-el' : 'show-el'"
@@ -82,13 +94,15 @@
           >
         </div>
         <div class="form-item address">
-          <label for="alley">巷</label>
-          <input
-            id="alley"
-            type="text"
-            placeholder="巷"
-            formControlName="alley"
-          />
+          <div class="form-input-group">
+            <label for="alley">巷</label>
+            <input
+              id="alley"
+              type="text"
+              placeholder="巷"
+              formControlName="alley"
+            />
+          </div>
           <small
             class="danger-text"
             [ngClass]="applyForm.controls.alley.valid ? 'hide-el' : 'show-el'"
@@ -96,13 +110,15 @@
           >
         </div>
         <div class="form-item address">
-          <label for="lane">弄</label>
-          <input
-            id="lane"
-            type="text"
-            placeholder="弄"
-            formControlName="lane"
-          />
+          <div class="form-input-group">
+            <label for="lane">弄</label>
+            <input
+              id="lane"
+              type="text"
+              placeholder="弄"
+              formControlName="lane"
+            />
+          </div>
           <small
             class="danger-text"
             [ngClass]="applyForm.controls.lane.valid ? 'hide-el' : 'show-el'"
@@ -110,13 +126,15 @@
           >
         </div>
         <div class="form-item address">
-          <label for="floor">樓</label>
-          <input
-            id="floor"
-            type="text"
-            placeholder="樓"
-            formControlName="floor"
-          />
+          <div class="form-input-group">
+            <label for="floor">樓</label>
+            <input
+              id="floor"
+              type="text"
+              placeholder="樓"
+              formControlName="floor"
+            />
+          </div>
           <small
             class="danger-text"
             [ngClass]="applyForm.controls.floor.valid ? 'hide-el' : 'show-el'"
@@ -125,11 +143,13 @@
         </div>
 
         <!-- File Upload -->
-        <app-image-upload (newFileEvent)="onFileSelected($event)" />
+        <div class="form-input-group">
+          <app-image-upload (newFileEvent)="onFileSelected($event)" />
+        </div>
         <!-- End File Upload -->
 
         <div class="controls">
-          <div class="form-item submit-button">
+          <div class="submit-button">
             <button
               type="submit"
               [disabled]="!applyForm.valid"

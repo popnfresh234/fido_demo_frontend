@@ -19,7 +19,7 @@ declare function publicKeyCredentialToJSON(credential: any): any;
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css', '../common-styles/forms.css'],
 })
 export class LoginComponent {
   router = inject(Router);

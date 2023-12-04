@@ -37,6 +37,14 @@ button {
   padding: 1rem;
 }
 
+.nav-spacer {
+  flex: 1;
+}
+
+.divider {
+  margin: 0 4rem 0 4rem;
+}
+
 button.primary {
   margin: 0 0.5rem 0 0.5rem;
 }

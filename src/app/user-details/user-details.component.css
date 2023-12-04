@@ -19,6 +19,22 @@
   padding: 1rem 5rem 1rem 5rem;
 }
 
+.user-details-text {
+  color: white;
+  padding: 0.25rem 0 0.25rem;
+}
+
+.user-edit-form {
+  flex-direction: row;
+}
+
+.horizontal-divider {
+  width: 100%;
+  height: 0.25px;
+  background-color: white;
+  margin: 1rem 0 1rem 0;
+}
+
 .controls {
   padding-top: 1rem;
   display: flex;
@@ -47,4 +63,9 @@
   padding: 0.25rem;
   border-radius: var(--default-border-radius);
   border: 1px solid white;
+}
+
+/* General wrapper width override */
+.general-colored-wrapper {
+  min-width: 25vw;
 }

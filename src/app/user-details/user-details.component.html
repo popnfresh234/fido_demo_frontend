@@ -1,24 +1,27 @@
 <section class="user-content">
-  <div class="general-colored-wrapper">
-    <h1 class="common-header">會員資料</h1>
+  <h1 class="common-header">會員資料</h1>
 
-    <!-- User Details -->
-    <section class="user-container" [hidden]="edit">
+  <!-- User Details -->
+  <section class="user-container" [hidden]="edit">
+    <div class="general-colored-wrapper">
       <div class="user">
-        <span class="form-item">帳號: {{ user?.account }}</span>
-        <span class="form-item">Email: {{ user?.email }}</span>
-        <span class="form-item">名字: {{ user?.name }}</span>
-        <span class="form-item">生日: {{ getDate(user?.birthdate) }}</span>
-        <div class="form-item">
-          <span class="form-item">地址: </span>
-          <span class="form-item">{{ user?.city }}</span>
-          <span class="form-item">{{ user?.district }}</span>
-          <span class="form-item">{{ user?.street }}</span>
-          <span class="form-item">{{ user?.alley }}巷</span>
-          <span class="form-item">{{ user?.lane }}弄</span>
-          <span class="form-item">{{ user?.floor }}</span>
+        <span class="user-details-text">帳號: {{ user?.account }}</span>
+        <span class="user-details-text">Email: {{ user?.email }}</span>
+        <span class="user-details-text">名字: {{ user?.name }}</span>
+        <span class="user-details-text"
+          >生日: {{ getDate(user?.birthdate) }}</span
+        >
+        <div class="user-details-text">
+          <span class="user-details-text">地址: </span>
+          <span class="user-details-text">{{ user?.city }}</span>
+          <span class="user-details-text">{{ user?.district }}</span>
+          <span class="user-details-text">{{ user?.street }}</span>
+          <span class="user-details-text">{{ user?.alley }}巷</span>
+          <span class="user-details-text">{{ user?.lane }}弄</span>
+          <span class="user-details-text">{{ user?.floor }}</span>
         </div>
-        <div class="form-item file-upload">
+        <div class="user-details-text file-upload">
+          <label>照片</label>
           <img
             class="image-user"
             [src]="
@@ -37,44 +40,56 @@
       <div class="error-item">
         <h1>{{ error }}</h1>
       </div>
-    </section>
-    <!-- End user details -->
+    </div>
+  </section>
+  <!-- End user details -->
 
-    <!-- Edit user details -->
-    <section class="user-edit-container" [hidden]="!edit">
+  <!-- Edit user details -->
+  <section class="user-edit-container" [hidden]="!edit">
+    <div class="general-colored-wrapper">
       <div *ngIf="!error" class="user">
         <form [formGroup]="applyForm" (submit)="handleSave($event)">
           <div class="form-item">
-            <label>帳號: </label>
-            <span>{{ user?.account }}</span>
+            <div class="form-input-group">
+              <label>帳號: </label>
+              <span class="disabled-input">{{ user?.account }}</span>
+            </div>
           </div>
           <div class="form-item">
-            <label for="name">名字: </label>
-            <input
-              class="user-detail-text user-detail-input"
-              name="name"
-              id="name"
-              formControlName="name"
-            />
+            <div class="form-input-group">
+              <label>Email:</label>
+              <span class="disabled-input">{{ user?.email }}</span>
+            </div>
+          </div>
+          <div class="horizontal-divider"></div>
+          <div class="form-item">
+            <div class="form-input-group">
+              <label for="name">名字: </label>
+              <input
+                class="user-detail-text user-detail-input"
+                name="name"
+                id="name"
+                formControlName="name"
+              />
+            </div>
             <small
               class="danger-text"
               [ngClass]="applyForm.controls.name.valid ? 'hide-el' : 'show-el'"
               >Name does not meet requirements</small
             >
           </div>
+
           <div class="form-item">
-            <label>Email:</label>
-            <span>{{ user?.email }}</span>
-          </div>
-          <div class="form-item">
-            <label for="birthdate">生日: </label>
-            <input
-              class="user-detail-text"
-              name="birthdate"
-              id="birthdate"
-              user-detail-input
-              formControlName="birthdate"
-            />
+            <div class="form-input-group">
+              <label for="birthdate">生日: </label>
+              <input
+                class="user-detail-text"
+                name="birthdate"
+                id="birthdate"
+                user-detail-input
+                formControlName="birthdate"
+              />
+            </div>
             <small
               class="danger-text"
               [ngClass]="
@@ -90,13 +105,15 @@
           </div>
 
           <div class="form-item address">
-            <label for="street">路</label>
-            <input
-              id="street"
-              type="text"
-              placeholder="路"
-              formControlName="street"
-            />
+            <div class="form-input-group">
+              <label for="street">路</label>
+              <input
+                id="street"
+                type="text"
+                placeholder="路"
+                formControlName="street"
+              />
+            </div>
             <small
               class="danger-text"
               [ngClass]="
@@ -106,13 +123,15 @@
             >
           </div>
           <div class="form-item address">
-            <label for="alley">巷</label>
-            <input
-              id="alley"
-              type="text"
-              placeholder="巷"
-              formControlName="alley"
-            />
+            <div class="form-input-group">
+              <label for="alley">巷</label>
+              <input
+                id="alley"
+                type="text"
+                placeholder="巷"
+                formControlName="alley"
+              />
+            </div>
             <small
               class="danger-text"
               [ngClass]="applyForm.controls.alley.valid ? 'hide-el' : 'show-el'"
@@ -120,13 +139,15 @@
             >
           </div>
           <div class="form-item address">
-            <label for="lane">弄</label>
-            <input
-              id="lane"
-              type="text"
-              placeholder="弄"
-              formControlName="lane"
-            />
+            <div class="form-input-group">
+              <label for="lane">弄</label>
+              <input
+                id="lane"
+                type="text"
+                placeholder="弄"
+                formControlName="lane"
+              />
+            </div>
             <small
               class="danger-text"
               [ngClass]="applyForm.controls.lane.valid ? 'hide-el' : 'show-el'"
@@ -134,13 +155,15 @@
             >
           </div>
           <div class="form-item address">
-            <label for="floor">樓</label>
-            <input
-              id="floor"
-              type="text"
-              placeholder="樓"
-              formControlName="floor"
-            />
+            <div class="form-input-group">
+              <label for="floor">樓</label>
+              <input
+                id="floor"
+                type="text"
+                placeholder="樓"
+                formControlName="floor"
+              />
+            </div>
             <small
               class="danger-text"
               [ngClass]="applyForm.controls.floor.valid ? 'hide-el' : 'show-el'"
@@ -176,7 +199,7 @@
           </div>
         </form>
       </div>
-    </section>
-    <!-- End Edit user details -->
-  </div>
+    </div>
+  </section>
+  <!-- End Edit user details -->
 </section>
