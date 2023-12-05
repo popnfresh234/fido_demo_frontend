@@ -27,3 +27,32 @@
   padding: 0;
   background-color: white;
 }
+
+.news-items {
+  max-width: 80vw;
+  border: none;
+  border-radius: var(--default-border-radius);
+  overflow: hidden;
+}
+
+.news-source {
+  display: none;
+}
+
+.news-date {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  .news-items {
+    max-width: 100vw;
+  }
+
+  .news-source {
+    display: table-cell;
+  }
+
+  .news-date {
+    display: table-cell;
+  }
+}

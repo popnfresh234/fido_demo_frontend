@@ -3,7 +3,7 @@
 
   <!-- User Details -->
   <section class="user-container" [hidden]="edit">
-    <div class="general-colored-wrapper">
+    <div class="common-colored-wrapper">
       <div class="user">
         <span class="user-details-text">帳號: {{ user?.account }}</span>
         <span class="user-details-text">Email: {{ user?.email }}</span>
@@ -21,7 +21,6 @@
           <span class="user-details-text">{{ user?.floor }}</span>
         </div>
         <div class="user-details-text file-upload">
-          <label>照片</label>
           <img
             class="image-user"
             [src]="
@@ -46,7 +45,7 @@
 
   <!-- Edit user details -->
   <section class="user-edit-container" [hidden]="!edit">
-    <div class="general-colored-wrapper">
+    <div class="common-colored-wrapper">
       <div *ngIf="!error" class="user">
         <form [formGroup]="applyForm" (submit)="handleSave($event)">
           <div class="form-item">

@@ -6,14 +6,10 @@
 .news-item {
   display: flex;
   justify-content: center;
-  margin: 0 10vw 0 10vw;
-}
-
-.content {
-  max-width: 50vw;
 }
 
 .news-body {
+  color: white;
   margin: 1rem;
   line-height: 1.5;
 }
@@ -27,4 +23,19 @@
 .box-link {
   padding: 1rem;
   border: 1px solid black;
+}
+
+h4 {
+  margin-left: 1rem;
+  text-align: left;
+}
+
+@media (min-width: 1025px) {
+  .content {
+    max-width: 50vw;
+  }
+
+  .news-item {
+    margin: 0 10vw 0 10vw;
+  }
 }

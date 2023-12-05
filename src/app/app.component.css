@@ -1,7 +1,6 @@
 body {
   padding: 0;
   margin: 0;
-  background-image: url("../assets/images/bg.svg");
   height: 100%;
   width: 100%;
 }
@@ -31,20 +30,23 @@ button {
 
 .navigation {
   display: flex;
+  justify-content: center;
 }
 
 .nav-item {
   padding: 1rem;
 }
 
-.nav-spacer {
-  flex: 1;
-}
-
-.divider {
-  margin: 0 4rem 0 4rem;
-}
-
 button.primary {
   margin: 0 0.5rem 0 0.5rem;
+}
+
+@media (min-width: 1025px) {
+  .nav-spacer {
+    flex: 1;
+  }
+
+  .divider {
+    margin: 0 4rem 0 4rem;
+  }
 }

@@ -16,7 +16,6 @@
 .user {
   display: flex;
   flex-direction: column;
-  padding: 1rem 5rem 1rem 5rem;
 }
 
 .user-details-text {
@@ -56,6 +55,7 @@
 
 .file-upload {
   display: flex;
+  justify-content: center;
 }
 
 .image-user {
@@ -68,4 +68,10 @@
 /* General wrapper width override */
 .general-colored-wrapper {
   min-width: 25vw;
+}
+
+@media (min-width: 1025px) {
+  .user {
+    padding: 1rem;
+  }
 }

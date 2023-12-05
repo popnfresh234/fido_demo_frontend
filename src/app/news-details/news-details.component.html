@@ -1,17 +1,18 @@
-<section class="title-bar">
-  <h1>{{ news?.title }}</h1>
-</section>
-
-<section class="news-item">
-  <div>
+<div class="common-colored-wrapper">
+  <section class="title-bar">
+    <h1 class="common-header">{{ news?.title }}</h1>
+  </section>
+  <section class="news-item">
     <section class="content">
+      <h4 class="common-header">{{ news?.localDate }}</h4>
+      <h4 class="common-header">{{ news?.source }}</h4>
       <p class="news-body">{{ news?.content }}</p>
     </section>
+  </section>
+  <section class="controls">
+    <button class="box-link" [routerLink]="['/']">Back to News</button>
+  </section>
+  <div class="error-item">
+    <h1>{{ error }}</h1>
   </div>
-</section>
-<section class="controls">
-  <button class="box-link" [routerLink]="['/']">Back to News</button>
-</section>
-<div class="error-item">
-  <h1>{{ error }}</h1>
 </div>

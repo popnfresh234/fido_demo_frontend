@@ -67,10 +67,6 @@ export class UserDetailsComponent {
       )
       .subscribe((user) => {
         if (user.image) {
-          console.log('There is image');
-        }
-
-        if (user.image) {
           this.base64Image = 'data:image/jpeg;base64,' + user.image;
           this.fileName = user.imageName;
           const imageBlob = this.dataURItoBlob(user.image);

@@ -16,9 +16,3 @@
 .controls button {
   margin: 1rem;
 }
-
-/* Override container width */
-
-.general-colored-wrapper {
-  min-width: 25vw;
-}
