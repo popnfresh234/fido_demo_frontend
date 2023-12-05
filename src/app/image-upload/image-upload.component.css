@@ -5,9 +5,10 @@
 .file-upload {
   padding: var(--span-padding);
   display: flex;
+  justify-content: center;
 }
 
 .file-upload-input {
-  width: 12rem;
+  width: 8rem;
   margin-right: 1rem;
 }
