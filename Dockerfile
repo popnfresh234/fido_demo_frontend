@@ -31,7 +31,6 @@ RUN ls /etc/nginx/certs/
 # Exposing a port, here it means that inside the container 
 # the app will be using Port 80 while running
 EXPOSE 8443
-EXPOSE 8080
 #SSL Certificate
 
 # docker build -t demo_frontend -f ./Dockerfile .
