@@ -5,11 +5,17 @@ import { AuthService } from '../services/auth/auth.service';
 import { LocalStorageService } from '../services/local_storage/local-storage.service';
 import { catchError, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { ErrorResponse } from '../models/error-response';
+import { ErrorResponse } from '../models/responses/error-response';
 import { RouterModule } from '@angular/router';
 import formValidators from '../utilities/form-validators';
 import fido from '../utilities/fido';
 import { WebauthService } from '../services/webauth/webauth.service';
+import { UafService } from '../services/uaf/uaf.service';
+import { QrCodeModule } from 'ng-qrcode';
+import { QRCodeResponse } from '../models/responses/qrcode/qr-code-response';
+import { ValidateQRCodeReq } from '../models/requests/validate-qr-code/validate-qr-code-req';
+import { ValidateQRCodeRes } from '../models/responses/validate-qr-code/validate-qr-code-res';
+import { LoginResponse } from '../models/responses/login-response';
 
 declare function preformatGetAssertReq(getAssert: any): any;
 declare function publicKeyCredentialToJSON(credential: any): any;
@@ -17,7 +23,7 @@ declare function publicKeyCredentialToJSON(credential: any): any;
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, QrCodeModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css', '../common-styles/forms.css'],
 })
@@ -25,6 +31,7 @@ export class LoginComponent {
   router = inject(Router);
   authService = inject(AuthService);
   webAuthService = inject(WebauthService);
+  uafService = inject(UafService);
   localStorageService = inject(LocalStorageService);
   applyForm = new FormGroup({
     account: new FormControl('', formValidators.accountValidators),
@@ -37,9 +44,59 @@ export class LoginComponent {
   });
 
   error: String = '';
-  loginType = 'normal';
+  loginType = 'qrcode';
+  pairCode = '';
+  intervalId: any;
 
   constructor() {}
+
+  ngOnInit() {
+    this.requestQrCode();
+  }
+
+  testMethod() {
+    console.log('test');
+  }
+
+  requestQrCode() {
+    this.uafService
+      .requestQRCode()
+      .pipe(
+        catchError((errorResponse: ErrorResponse): Observable<any> => {
+          console.log(errorResponse);
+          this.error = errorResponse.error.message;
+          return of();
+        })
+      )
+      .subscribe((response: QRCodeResponse) => {
+        this.pairCode = response.body.pairCode;
+        this.intervalId = setInterval(() => {
+          console.log(this.pairCode);
+          this.validateQRCode({
+            body: { appId: '', paircode: this.pairCode },
+          });
+        }, 3000);
+      });
+  }
+
+  validateQRCode(req: ValidateQRCodeReq) {
+    this.uafService
+      .validateQRCode(req)
+      .pipe(
+        catchError((errorResponse: ErrorResponse): Observable<any> => {
+          console.log(errorResponse);
+          this.error = errorResponse.error.message;
+          return of();
+        })
+      )
+      .subscribe((response: ValidateQRCodeRes) => {
+        if (response.body.validate == true) {
+          this.submitQrCodeLogin(response.body.username);
+          clearInterval(this.intervalId);
+        }
+        console.log(response.body.validate);
+      });
+  }
 
   submitLogin() {
     this.authService
@@ -75,6 +132,28 @@ export class LoginComponent {
           this.doAuth(requestAuthResponse);
         } else {
           this.error = 'Webauthn 登入失敗';
+        }
+      });
+  }
+
+  submitQrCodeLogin(username: string) {
+    this.uafService
+      .qrCodeLogin({
+        account: username,
+        password: '',
+      })
+      .pipe(
+        catchError((errorResponse: ErrorResponse): Observable<any> => {
+          console.log(errorResponse);
+          this.error = errorResponse.error.message;
+          return of();
+        })
+      )
+      .subscribe((loginResponse: LoginResponse) => {
+        if (loginResponse) {
+          this.authService.handleLogin(loginResponse, this.error);
+        } else {
+          this.error = 'QR Code 登入失敗';
         }
       });
   }

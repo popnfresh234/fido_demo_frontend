@@ -9,7 +9,7 @@ import {
 import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { catchError, Observable, of } from 'rxjs';
-import { ErrorResponse } from '../models/error-response';
+import { ErrorResponse } from '../models/responses/error-response';
 @Component({
   selector: 'app-recovery',
   standalone: true,

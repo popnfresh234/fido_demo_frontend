@@ -6,7 +6,7 @@ import { AuthService } from './services/auth/auth.service';
 import { LocalStorageService } from './services/local_storage/local-storage.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { catchError, Observable, of } from 'rxjs';
-import { ErrorResponse } from './models/error-response';
+import { ErrorResponse } from './models/responses/error-response';
 import { WebauthService } from './services/webauth/webauth.service';
 import { Router } from '@angular/router';
 

@@ -4,8 +4,7 @@ import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/user';
 import { HttpClient } from '@angular/common/http';
 import fido from 'src/app/utilities/fido';
-import { LoginResponse } from 'src/app/models/login-response';
-
+import { LoginResponse } from 'src/app/models/responses/login-response';
 @Injectable({
   providedIn: 'root',
 })

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { News } from '../models/news';
 import { NewsService } from '../services/news/news.service';
 import { catchError, Observable, of } from 'rxjs';
-import { ErrorResponse } from '../models/error-response';
+import { ErrorResponse } from '../models/responses/error-response';
 import { RouterModule } from '@angular/router';
 
 @Component({

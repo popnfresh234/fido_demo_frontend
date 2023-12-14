@@ -5,7 +5,7 @@ import { User } from '../models/user';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
-import { ErrorResponse } from '../models/error-response';
+import { ErrorResponse } from '../models/responses/error-response';
 import { LocalStorageService } from '../services/local_storage/local-storage.service';
 import { AuthService } from '../services/auth/auth.service';
 import { UserService } from '../services/user/user.service';

@@ -55,3 +55,11 @@ label {
 .general-colored-wrapper {
   min-width: 25vw;
 }
+
+.qr-code-container {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

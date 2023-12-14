@@ -21,6 +21,15 @@
             快速登入
           </h1>
         </div>
+        <div class="header-wrapper">
+          <h1
+            [ngClass]="loginType === 'qrcode' ? 'form-header-active' : ''"
+            class="form-header text-button"
+            (click)="setLoginType('qrcode')"
+          >
+            QR Code 登入
+          </h1>
+        </div>
       </header>
 
       <!-- End Login Header -->
@@ -105,6 +114,19 @@
         </div>
       </form>
       <!-- End Quick Login -->
+
+      <!-- QR Code Login -->
+      <div class="qr-code-container" *ngIf="loginType == 'qrcode'">
+        <h1 class="common-header">QR Code 登入</h1>
+
+        <qr-code
+          [value]="pairCode"
+          size="300"
+          errorCorrectionLevel="M"
+        ></qr-code>
+        <h1 class="common-header">使用 APP 掃描進行登入</h1>
+      </div>
+      <!-- End QR Code Login -->
 
       <div class="error-item">
         <h1>{{ error }}</h1>

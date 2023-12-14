@@ -5,9 +5,9 @@ import { News } from '../models/news';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { catchError, Observable, of } from 'rxjs';
-import { ErrorResponse } from '../models/error-response';
+import { ErrorResponse } from '../models/responses/error-response';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { NewsResponse } from '../models/news-response';
+import { NewsResponse } from '../models/responses/news-response';
 
 //TODO Delete Items
 
