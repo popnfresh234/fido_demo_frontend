@@ -84,7 +84,6 @@ export class LoginComponent {
       .validateQRCode(req)
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
-          console.log(errorResponse);
           this.error = errorResponse.error.message;
           return of();
         })
