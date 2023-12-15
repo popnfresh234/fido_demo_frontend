@@ -1,0 +1,9 @@
+.control-links {
+  display: flex;
+  flex-direction: row;
+}
+
+.control-links a {
+  color: white;
+  padding: 1rem;
+}

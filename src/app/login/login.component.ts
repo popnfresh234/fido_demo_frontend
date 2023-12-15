@@ -25,7 +25,11 @@ declare function publicKeyCredentialToJSON(credential: any): any;
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule, QrCodeModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css', '../common-styles/forms.css'],
+  styleUrls: [
+    './login.component.css',
+    '../common-styles/forms.css',
+    '../common-styles/controls.css',
+  ],
 })
 export class LoginComponent {
   router = inject(Router);
@@ -70,12 +74,12 @@ export class LoginComponent {
       )
       .subscribe((response: QRCodeResponse) => {
         this.pairCode = response.body.pairCode;
-        this.intervalId = setInterval(() => {
-          console.log(this.pairCode);
-          this.validateQRCode({
-            body: { appId: '', paircode: this.pairCode },
-          });
-        }, 3000);
+        // this.intervalId = setInterval(() => {
+        //   console.log(this.pairCode);
+        //   this.validateQRCode({
+        //     body: { appId: '', paircode: this.pairCode },
+        //   });
+        // }, 3000);
       });
   }
 

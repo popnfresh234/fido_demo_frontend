@@ -63,8 +63,16 @@ td:first-child {
   margin-right: 0.5rem;
 }
 
+.news-source {
+  display: none;
+}
+
 @media (min-width: 1250px) {
   .delete-dialog-show {
     width: 30vw;
+  }
+
+  .news-source {
+    display: table-cell;
   }
 }

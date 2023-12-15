@@ -7,6 +7,7 @@ import { User } from 'src/app/models/user';
 import { TokenModel } from 'src/app/models/token_model';
 import jwtDecode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
+import { RecoveryRequest } from 'src/app/models/requests/recovery-request';
 @Injectable({
   providedIn: 'root',
 })
@@ -81,11 +82,8 @@ export class AuthService {
     return jwt.account;
   }
 
-  submitRecovery(account: string) {
-    return this.http.post<Response>(
-      this.base_url + `/recovery?account=${account}`,
-      {}
-    );
+  submitRecovery(req: RecoveryRequest) {
+    return this.http.post<Response>(this.base_url + `/recovery`, req);
   }
 
   submitRecoveryCode(code: string, account: string) {

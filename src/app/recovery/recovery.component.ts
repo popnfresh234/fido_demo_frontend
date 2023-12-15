@@ -19,6 +19,7 @@ import { ErrorResponse } from '../models/responses/error-response';
     './recovery.component.css',
     '../common-styles/recovery.css',
     '../common-styles/forms.css',
+    '../common-styles/controls.css',
   ],
 })
 export class RecoveryComponent {
@@ -39,7 +40,7 @@ export class RecoveryComponent {
 
   submitRecovery() {
     this.authService
-      .submitRecovery(this.applyForm.value.account ?? '')
+      .submitRecovery({ account: this.applyForm.value.account ?? '' })
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
           console.log(errorResponse);

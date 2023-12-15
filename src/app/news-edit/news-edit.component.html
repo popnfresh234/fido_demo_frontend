@@ -16,7 +16,7 @@
           </div>
         </td>
         <td>標題</td>
-        <td>媒體</td>
+        <td class="news-source">媒體</td>
       </tr>
       <tr
         *ngFor="
@@ -47,12 +47,12 @@
             </div>
           </a>
         </td>
-        <td>{{ news.source }}</td>
+        <td class="news-source">{{ news.source }}</td>
       </tr>
       <tr *ngFor="let i of emptyEls">
         <td></td>
         <td></td>
-        <td></td>
+        <td class="news-source"></td>
       </tr>
     </table>
     <div class="controls">

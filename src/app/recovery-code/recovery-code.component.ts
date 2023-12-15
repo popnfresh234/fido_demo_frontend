@@ -21,6 +21,7 @@ import { AuthService } from '../services/auth/auth.service';
     './recovery-code.component.css',
     '../common-styles/recovery.css',
     '../common-styles/forms.css',
+    '../common-styles/controls.css',
   ],
 })
 export class RecoveryCodeComponent {

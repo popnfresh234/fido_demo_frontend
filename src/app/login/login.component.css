@@ -13,6 +13,7 @@
 .header-wrapper {
   display: flex;
   margin: 0 1rem 0 1rem;
+  font-size: 0.6rem;
 }
 
 .submit-button {
@@ -36,16 +37,6 @@ label {
   align-items: center;
 }
 
-.control-links {
-  display: flex;
-  flex-direction: row;
-}
-
-.control-links a {
-  color: white;
-  padding: 1rem;
-}
-
 .filler {
   flex: 1;
 }
@@ -57,9 +48,14 @@ label {
 }
 
 .qr-code-container {
-  margin: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@media (min-width: 1025px) {
+  .header-wrapper {
+    font-size: larger;
+  }
 }
