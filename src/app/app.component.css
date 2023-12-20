@@ -37,6 +37,11 @@ button.primary {
   width: 15rem;
 }
 
+.logo-link-mobile {
+  width: 100%;
+  text-align: center;
+}
+
 .logo-link:hover {
   background-color: transparent;
 }
