@@ -25,6 +25,7 @@ body {
 }
 
 .error-item {
+  text-align: center;
   color: var(--danger-text-color);
 }
 

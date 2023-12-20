@@ -46,7 +46,7 @@ const routeConfig: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    title: 'Login',
+    title: 'FIDO UAF Demo App',
   },
   {
     path: 'recovery',
