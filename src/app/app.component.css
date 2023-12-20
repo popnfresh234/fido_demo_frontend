@@ -30,7 +30,8 @@ button {
 
 .navigation {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav-item {
@@ -41,12 +42,13 @@ button.primary {
   margin: 0 0.5rem 0 0.5rem;
 }
 
-@media (min-width: 1025px) {
-  .nav-spacer {
-    flex: 1;
-  }
+.logo {
+  height: 2rem;
+}
 
-  .divider {
-    margin: 0 4rem 0 4rem;
-  }
+.logo-link:hover {
+  background-color: transparent;
+}
+
+@media (min-width: 1025px) {
 }
