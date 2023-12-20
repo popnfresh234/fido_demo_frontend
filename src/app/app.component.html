@@ -1,9 +1,15 @@
 <!--  -->
 <div class="toolbar" role="banner">
-  <section class="navigation">
+  <a class="nav-drawer-control" (click)="handleNavDrawer()"
+    ><img class="nav-drawer-icon" src="../assets/images/short-logo.png"
+  /></a>
+  <section class="navigation" [ngClass]="isOpen ? 'slide-right' : ''">
     <div class="nav-spacer"></div>
     <a class="logo-link" [routerLink]="['/']"
       ><img class="logo" src="../assets//images/short-logo.png"
+    /></a>
+    <a class="logo-link-mobile" (click)="handleNavDrawer()"
+      ><img class="logo-mobile" src="../assets//images/demo-logo.png"
     /></a>
     <a
       class="nav-item"

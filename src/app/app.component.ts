@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NavigationStart, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth/auth.service';
 import { LocalStorageService } from './services/local_storage/local-storage.service';
@@ -32,6 +32,7 @@ export class AppComponent {
   router = inject(Router);
   title = 'frontend';
   account = '';
+  isOpen = false;
 
   constructor() {
     try {
@@ -44,6 +45,18 @@ export class AppComponent {
       this.localStorageService.clearData();
       this.router.navigateByUrl('/login');
     }
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        if (this.isOpen) {
+          this.isOpen = !this.isOpen;
+        }
+      }
+    });
+  }
+
+  handleNavDrawer() {
+    this.isOpen = !this.isOpen;
+    console.log(this.isOpen);
   }
 
   submitLogout() {
