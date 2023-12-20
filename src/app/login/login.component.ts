@@ -48,19 +48,13 @@ export class LoginComponent {
   });
 
   error: String = '';
-  loginType = 'qrcode';
+  loginType = 'normal';
   pairCode = '';
   intervalId: any;
 
   constructor() {}
 
-  ngOnInit() {
-    this.requestQrCode();
-  }
-
-  testMethod() {
-    console.log('test');
-  }
+  ngOnInit() {}
 
   requestQrCode() {
     this.uafService
@@ -68,7 +62,7 @@ export class LoginComponent {
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
           console.log(errorResponse);
-          this.error = errorResponse.error.message;
+          this.error = 'Something went wrong fetching the QR Code!';
           return of();
         })
       )
@@ -94,7 +88,7 @@ export class LoginComponent {
       .validateQRCode(req)
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
-          this.error = errorResponse.error.message;
+          this.error = 'Something went wrong validationg the QR Code!';
           return of();
         })
       )
@@ -116,7 +110,7 @@ export class LoginComponent {
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
           console.log(errorResponse);
-          this.error = errorResponse.error.message;
+          this.error = 'Something went wrong logging in!';
           return of();
         })
       )
@@ -131,7 +125,7 @@ export class LoginComponent {
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
           console.log(errorResponse);
-          this.error = errorResponse.error.message;
+          this.error = 'Something went wrong with Quick Login!';
           return of();
         })
       )
@@ -154,7 +148,7 @@ export class LoginComponent {
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
           console.log(errorResponse);
-          this.error = errorResponse.error.message;
+          this.error = 'Something went wrong logging in!';
           return of();
         })
       )
@@ -202,7 +196,7 @@ export class LoginComponent {
           .pipe(
             catchError((errorResponse: ErrorResponse): Observable<any> => {
               console.log(errorResponse);
-              this.error = errorResponse.error.message;
+              this.error = 'Something went wrong signing in!';
               return of();
             })
           )
@@ -234,6 +228,10 @@ export class LoginComponent {
   }
 
   setLoginType(type: string) {
+    this.error = '';
+    if (type === 'qrcode') {
+      this.requestQrCode();
+    }
     this.loginType = type;
   }
 }

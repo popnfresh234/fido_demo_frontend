@@ -50,7 +50,7 @@ export class HomeComponent {
     this.getPaginatedNews();
   }
 
-  getAllNewss() {
+  getAllNews() {
     this.newsService
       .getAllNews()
       .pipe(

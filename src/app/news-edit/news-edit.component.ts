@@ -67,7 +67,7 @@ export class NewsEditComponent {
       .pipe(
         catchError((errorResponse: ErrorResponse): Observable<any> => {
           console.log(errorResponse);
-          this.error = errorResponse.error.message;
+          this.error = 'Something went wrong fetching the news!';
           return of();
         })
       )

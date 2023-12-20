@@ -7,13 +7,18 @@
 
 .login-types-header {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
 .header-wrapper {
   display: flex;
+  flex: 1;
+  justify-content: center;
   margin: 0 1rem 0 1rem;
-  font-size: 0.6rem;
+}
+
+.header-wrapper h1 {
+  margin: 0;
 }
 
 .submit-button {
@@ -54,8 +59,21 @@ label {
   align-items: center;
 }
 
+.form-header {
+  width: 100%;
+}
+
 @media (min-width: 1025px) {
+  .login-types-header {
+    flex-direction: row;
+    justify-content: center;
+  }
+
   .header-wrapper {
-    font-size: larger;
+    flex: none;
+  }
+
+  .header-wrapper h1 {
+    margin: 1rem 0 1rem 0;
   }
 }
