@@ -4,7 +4,7 @@ form {
 
 .form-header {
   text-align: center;
-  color: white;
+  color: var(--light-text-color);
 }
 
 .form-header:hover {
@@ -12,16 +12,16 @@ form {
 }
 
 .form-header-active {
-  color: white;
+  color: var(--light-text-color);
   background-color: var(--secondary-color);
 }
 
 .form-header-active:hover {
-  color: white;
+  color: var(--light-text-color);
 }
 
 .form-item {
-  color: white;
+  color: var(--light-text-color);
   display: flex;
   flex-direction: column;
   justify-content: center;

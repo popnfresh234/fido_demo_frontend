@@ -74,14 +74,20 @@ export class LoginComponent {
       )
       .subscribe((response: QRCodeResponse) => {
         this.pairCode = response.body.pairCode;
-        // this.intervalId = setInterval(() => {
-        //   console.log(this.pairCode);
-        //   this.validateQRCode({
-        //     body: { appId: '', paircode: this.pairCode },
-        //   });
-        // }, 3000);
+        this.intervalId = setInterval(() => {
+          console.log(this.pairCode);
+          this.validateQRCode({
+            body: { appId: '', paircode: this.pairCode },
+          });
+        }, 3000);
       });
   }
+
+  // For testing only
+
+  // manualQRCodeValidation() {
+  //   this.validateQRCode({ body: { appId: '', paircode: this.pairCode } });
+  // }
 
   validateQRCode(req: ValidateQRCodeReq) {
     this.uafService

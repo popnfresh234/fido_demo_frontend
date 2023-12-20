@@ -4,6 +4,6 @@
 }
 
 .control-links a {
-  color: white;
+  color: var(--light-text-color);
   padding: 1rem;
 }

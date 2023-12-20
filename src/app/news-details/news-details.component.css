@@ -9,7 +9,7 @@
 }
 
 .news-body {
-  color: white;
+  color: var(--light-text-color);
   margin: 1rem;
   line-height: 1.5;
 }

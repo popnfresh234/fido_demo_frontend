@@ -4,7 +4,9 @@
   --default-border-radius: 0.5rem;
   --button-link-padding: 0.5rem;
   --secondary-color: royalblue;
+  --light-text-color: #fdf6e3;
   --secondary-color-hover: #3f5188;
+  --danger-text-color: #dc322f;
 }
 
 html {
@@ -19,13 +21,13 @@ body {
 }
 
 .error-item {
-  color: red;
+  color: var(--danger-text-color);
 }
 
 .danger-text {
   margin-top: 0.5rem;
   text-align: center;
-  color: red;
+  color: var(--danger-text-color);
 }
 
 a {
@@ -41,7 +43,7 @@ a:hover:enabled {
 .box-link {
   width: 6rem;
   border-radius: var(--default-border-radius);
-  background-color: white;
+  background-color: var(--light-text-color);
   padding: 0.5rem;
   border: 1px solid black;
   cursor: pointer;
@@ -59,7 +61,7 @@ a:hover:enabled {
 
 .text-button:hover {
   color: black;
-  background-color: white;
+  background-color: var(--light-text-color);
 }
 
 .show-el {
@@ -71,7 +73,7 @@ a:hover:enabled {
 }
 
 .common-header {
-  color: white;
+  color: var(--light-text-color);
   text-align: center;
 }
 
