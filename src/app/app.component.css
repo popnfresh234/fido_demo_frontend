@@ -9,8 +9,14 @@ button {
   display: block;
 }
 
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .content {
-  height: 100%;
+  flex: 1;
   padding: 1rem;
 }
 

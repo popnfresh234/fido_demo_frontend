@@ -52,6 +52,8 @@ export class AppComponent {
         }
       }
     });
+
+    //Listen for clicks outside the nav drawer
   }
 
   handleNavDrawer() {
@@ -145,5 +147,11 @@ export class AppComponent {
         }
         return;
       });
+  }
+
+  listenForClose() {
+    if (this.isOpen) {
+      this.isOpen = !this.isOpen;
+    }
   }
 }
