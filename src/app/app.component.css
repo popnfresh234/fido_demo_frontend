@@ -133,6 +133,14 @@ a:hover {
   }
 
   .nav-item {
-    width: auto;
+    width: 5rem;
+  }
+
+  .nav-spacer {
+    flex: 1;
+  }
+
+  .nav-spacer-end {
+    margin-right: 2rem;
   }
 }
