@@ -1,0 +1,24 @@
+.img-button {
+  display: flex;
+  padding: var(--button-link-padding);
+  border-radius: var(--default-border-radius);
+  cursor: pointer;
+  margin: 0 0.5rem 0 0.5rem;
+}
+
+.img-button h1 {
+  margin: 0;
+}
+
+.img-button:hover {
+  color: var(--dark-text-color);
+  background-color: var(--light-text-color);
+}
+
+.img-button:hover div {
+  background-color: var(--dark-text-color);
+}
+
+.img-button:hover h1 {
+  color: var(--dark-text-color);
+}

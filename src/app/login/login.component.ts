@@ -16,6 +16,7 @@ import { QRCodeResponse } from '../models/responses/qrcode/qr-code-response';
 import { ValidateQRCodeReq } from '../models/requests/validate-qr-code/validate-qr-code-req';
 import { ValidateQRCodeRes } from '../models/responses/validate-qr-code/validate-qr-code-res';
 import { LoginResponse } from '../models/responses/login-response';
+import { ImageButtonComponent } from '../image-button/image-button.component';
 
 declare function preformatGetAssertReq(getAssert: any): any;
 declare function publicKeyCredentialToJSON(credential: any): any;
@@ -23,7 +24,13 @@ declare function publicKeyCredentialToJSON(credential: any): any;
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, QrCodeModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    QrCodeModule,
+    ImageButtonComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrls: [
     './login.component.css',

@@ -1,0 +1,21 @@
+.normal-login-icon {
+  margin-right: 0.25rem;
+  background-color: var(--light-text-color);
+  mask: url("../../assets/images/login_normal.svg") no-repeat center;
+}
+
+.quick-login-icon {
+  margin-right: 0.25rem;
+  background-color: var(--light-text-color);
+  mask: url("../../assets/images/login_quick.svg") no-repeat center;
+}
+
+.qr-login-icon {
+  margin-right: 0.25rem;
+  background-color: var(--light-text-color);
+  mask: url("../../assets/images/login_qr.svg") no-repeat center;
+}
+
+.img-button-icon img {
+  opacity: 0;
+}

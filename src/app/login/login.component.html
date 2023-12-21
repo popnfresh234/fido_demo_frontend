@@ -1,37 +1,71 @@
 <article>
   <section class="login" *ngIf="localStorageService.getData('auth') !== 'true'">
+    <div class="login-subheader">
+      <!-- Login Header -->
+      <header class="login-types-header-mobile">
+        <!-- Normal Login -->
+        <app-image-button
+          (setLoginTypeEvent)="setLoginType($event)"
+          type="normal"
+          [loginType]="loginType"
+          imgPath="../../assets/images/login_normal.svg"
+          iconStyle="normal-login-icon"
+        />
+
+        <!-- Quick Login -->
+
+        <app-image-button
+          (setLoginTypeEvent)="setLoginType($event)"
+          type="quick"
+          [loginType]="loginType"
+          imgPath="../../assets/images/login_quick.svg"
+          iconStyle="quick-login-icon"
+        />
+        <!-- QR Code Login -->
+
+        <app-image-button
+          (setLoginTypeEvent)="setLoginType($event)"
+          type="qrcode"
+          [loginType]="loginType"
+          imgPath="../../assets/images/login_qr.svg"
+          iconStyle="qr-login-icon"
+        />
+      </header>
+    </div>
     <div class="common-colored-wrapper">
       <!-- Login Header -->
       <header class="login-types-header">
-        <div class="header-wrapper">
-          <h1
-            [ngClass]="loginType === 'normal' ? 'form-header-active' : ''"
-            class="form-header text-button"
-            (click)="setLoginType('normal')"
-          >
-            會員登入
-          </h1>
-        </div>
-        <div class="header-wrapper">
-          <h1
-            [ngClass]="loginType === 'quick' ? 'form-header-active' : ''"
-            class="form-header text-button"
-            (click)="setLoginType('quick')"
-          >
-            快速登入
-          </h1>
-        </div>
-        <div class="header-wrapper">
-          <h1
-            [ngClass]="loginType === 'qrcode' ? 'form-header-active' : ''"
-            class="form-header text-button"
-            (click)="setLoginType('qrcode')"
-          >
-            QR Code 登入
-          </h1>
-        </div>
-      </header>
+        <!-- Normal Login -->
+        <app-image-button
+          (setLoginTypeEvent)="setLoginType($event)"
+          text="會員登入"
+          type="normal"
+          [loginType]="loginType"
+          imgPath="../../assets/images/login_normal.svg"
+          iconStyle="normal-login-icon"
+        />
 
+        <!-- Quick Login -->
+
+        <app-image-button
+          (setLoginTypeEvent)="setLoginType($event)"
+          text="快速登入"
+          type="quick"
+          [loginType]="loginType"
+          imgPath="../../assets/images/login_quick.svg"
+          iconStyle="quick-login-icon"
+        />
+        <!-- QR Code Login -->
+
+        <app-image-button
+          (setLoginTypeEvent)="setLoginType($event)"
+          text="QR登入"
+          type="qrcode"
+          [loginType]="loginType"
+          imgPath="../../assets/images/login_qr.svg"
+          iconStyle="qr-login-icon"
+        />
+      </header>
       <!-- End Login Header -->
 
       <!-- Normal Login Form -->

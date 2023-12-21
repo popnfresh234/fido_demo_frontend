@@ -1,0 +1,10 @@
+<div
+  class="img-button"
+  (click)="setLoginType(type)"
+  [ngClass]="loginType === type ? 'form-header-active' : ''"
+>
+  <div class="img-button-icon" [ngClass]="iconStyle">
+    <img class="sizing-icon" [src]="imgPath" />
+  </div>
+  <h1 class="common-header">{{ text }}</h1>
+</div>
