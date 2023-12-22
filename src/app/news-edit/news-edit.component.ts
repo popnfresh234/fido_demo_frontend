@@ -8,6 +8,7 @@ import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/responses/error-response';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NewsResponse } from '../models/responses/news-response';
+import { NewsTableComponent } from '../news-table/news-table.component';
 
 //TODO Delete Items
 
@@ -19,6 +20,7 @@ import { NewsResponse } from '../models/responses/news-response';
     RouterModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    NewsTableComponent,
   ],
   templateUrl: './news-edit.component.html',
   styleUrls: ['../common-styles/table.css', './news-edit.component.css'],
@@ -34,7 +36,7 @@ export class NewsEditComponent {
   page = 1;
   pageSize = 5;
   emptyEls: number[] = [];
-
+  edit = true;
   newsForm = new FormGroup({});
 
   ngOnInit() {
@@ -84,12 +86,12 @@ export class NewsEditComponent {
     });
   }
 
-  showDelete() {
-    this.delete = !this.delete;
+  showDelete(event: boolean) {
+    this.delete = !event;
   }
 
-  cancel() {
-    this.delete = !this.delete;
+  cancel(cancelEvent: boolean) {
+    this.delete = !cancelEvent;
   }
 
   submitDelete() {
@@ -127,6 +129,11 @@ export class NewsEditComponent {
 
     // Create form controls
     this.newsArray.forEach((news) => {
+      this.newsForm.addControl(
+        news.id.toString() + 'funk',
+        new FormControl(false)
+      );
+
       this.newsForm.addControl(news.id.toString(), new FormControl(false));
     });
   }

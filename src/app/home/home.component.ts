@@ -1,32 +1,38 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { News } from '../models/news';
-import { UserService as UserService } from '../services/user/user.service';
-import { NewsService } from '../services/news/news.service';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NewsTableComponent } from '../news-table/news-table.component';
+import { UserService } from '../services/user/user.service';
+import { NewsService } from '../services/news/news.service';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorResponse } from '../models/responses/error-response';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { News } from '../models/news';
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgxPaginationModule, CommonModule, RouterModule],
+  imports: [
+    NgxPaginationModule,
+    CommonModule,
+    RouterModule,
+    NewsTableComponent,
+  ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css', '../common-styles/table.css'],
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  newsArray: News[] = [];
+  constructor() {}
+
   httpSerivce: UserService = inject(UserService);
   newsService: NewsService = inject(NewsService);
+  newsArray: News[] = [];
   error: String = '';
-
   currentIdx = 0;
   count = 0;
   page = 1;
   pageSize = 5;
   emptyEls: number[] = [];
-
-  constructor() {}
 
   ngOnInit() {
     this.getPaginatedNews();
@@ -43,27 +49,6 @@ export class HomeComponent {
     }
 
     return params;
-  }
-
-  handlePageChange(event: number) {
-    this.page = event;
-    this.getPaginatedNews();
-  }
-
-  getAllNews() {
-    this.newsService
-      .getAllNews()
-      .pipe(
-        catchError((errorResponse: ErrorResponse): Observable<any> => {
-          console.log(errorResponse);
-          this.error = errorResponse.error.message;
-          return of();
-        })
-      )
-      .subscribe((newsArray) => {
-        this.error = '';
-        this.newsArray = newsArray;
-      });
   }
 
   getPaginatedNews() {
@@ -83,5 +68,10 @@ export class HomeComponent {
         let missingEls = this.pageSize - response.newsItems.length;
         this.emptyEls = Array(missingEls).fill(1);
       });
+  }
+
+  handlePageChange(event: number) {
+    this.page = event;
+    this.getPaginatedNews();
   }
 }

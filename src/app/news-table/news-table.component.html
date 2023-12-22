@@ -1,0 +1,103 @@
+<section class="table-container">
+  <div class="common-colored-wrapper">
+    <h1 class="common-header">新聞列表</h1>
+    <div class="table-header"></div>
+    <!-- Form is for editing -->
+    <form [formGroup]="newsForm" (submit)="submitDelete()">
+      <table class="news-items">
+        <tr>
+          <!-- Delete all Checkbox for editing -->
+          <td *ngIf="edit" id="edit-td">
+            <div class="check-all">
+              <label for="deleteAll">全選</label>
+              <input
+                type="checkbox"
+                id="deleteAll"
+                name="deleteAll"
+                formControlName="deleteAll"
+                (change)="setAll($event)"
+              />
+            </div>
+          </td>
+          <td>標題</td>
+          <td class="news-source">媒體</td>
+          <!-- Hide date if editing -->
+          <td *ngIf="!edit" class="news-date">日期</td>
+        </tr>
+
+        <tr
+          *ngFor="
+            let news of newsArray
+              | paginate
+                : {
+                    itemsPerPage: pageSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index
+          "
+        >
+          <!-- Checkboxes for Editing -->
+          <td *ngIf="edit">
+            <div class="checkbox">
+              <input
+                [id]="news.id"
+                [name]="news.id"
+                type="checkbox"
+                [formControlName]="news.id"
+              />
+            </div>
+          </td>
+          <!-- End Checkboxes -->
+          <td>
+            <a [routerLink]="['/news', news.id]">
+              <div class="td-text">
+                {{ news.title }}
+              </div>
+            </a>
+          </td>
+          <td class="news-source">{{ news.source }}</td>
+          <!-- Hide date if editing -->
+          <td *ngIf="!edit" class="news-date">{{ news.localDate }}</td>
+        </tr>
+        <tr *ngFor="let i of emptyEls">
+          <td></td>
+          <td class="news-source"></td>
+          <td class="news-date"></td>
+        </tr>
+      </table>
+
+      <div class="controls">
+        <pagination-controls
+          class="control-override"
+          previousLabel="Prev"
+          nextLabel="Next"
+          [responsive]="true"
+          (pageChange)="handlePageChange($event)"
+        ></pagination-controls>
+      </div>
+
+      <!-- Delete Button for Editing -->
+      <ng-content select="[deleteButton]"></ng-content>
+
+      <!-- Delete Dialog Needs to be here because of the form-->
+      <div
+        *ngIf="edit"
+        deleteDialog
+        [ngClass]="delete ? 'delete-dialog-show' : 'hidden-el'"
+      >
+        <h3>刪除訊息</h3>
+        <span>是否刪除訊息</span>
+        <div class="controls">
+          <button type="button" class="box-link cancel" (click)="cancel()">
+            取消
+          </button>
+          <button type="submit" class="box-link confirm">刪除</button>
+        </div>
+      </div>
+    </form>
+    <div class="error-item">
+      <h1>{{ error }}</h1>
+    </div>
+  </div>
+</section>

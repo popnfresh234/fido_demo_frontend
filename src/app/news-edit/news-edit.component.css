@@ -1,78 +1,13 @@
-td:first-child {
-  width: 5rem;
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
-}
-
-.check-all {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-}
-
-.checkbox {
-  display: flex;
-  justify-content: center;
-}
-
-.delete-dialog-show {
-  display: flex;
-  width: 60vw;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 1px solid black;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 1rem;
-  background-color: white;
-}
-
-.delete-dialog span {
-  text-align: center;
-}
-
-.delete-dialog .controls {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .cover-div-show {
   position: absolute;
+  top: 0;
   display: block;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.58);
 }
 
-.hidden-el {
-  display: none;
-}
-
-.confirm {
-  color: white;
-  background-color: royalblue;
-  margin-left: 0.5rem;
-}
-
-.cancel {
-  margin-right: 0.5rem;
-}
-
-.news-source {
-  display: none;
-}
-
-@media (min-width: 1250px) {
-  .delete-dialog-show {
-    width: 30vw;
-  }
-
-  .news-source {
-    display: table-cell;
-  }
+.button-container {
+  display: flex;
+  justify-content: center;
 }

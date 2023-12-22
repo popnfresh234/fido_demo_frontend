@@ -7,8 +7,12 @@
 table {
   border-spacing: 0;
   width: 90vw;
+  max-width: 80vw;
   height: 50vh;
   table-layout: fixed;
+  border: none;
+  border-radius: var(--default-border-radius);
+  overflow: hidden;
 }
 
 .table-header {
@@ -52,12 +56,15 @@ tr:first-child {
 
 .control-override ::ng-deep li {
   margin: 0;
-  border: 1px solid lightgray;
   color: royalblue;
 }
 
 .control-override ::ng-deep .ngx-pagination a {
   color: royalblue;
+}
+
+.control-override ::ng-deep .ngx-pagination {
+  padding: 0;
 }
 
 @media (min-width: 1250px) {
