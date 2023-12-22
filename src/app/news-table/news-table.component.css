@@ -36,13 +36,13 @@
   background-color: white;
 }
 
-.delete-dialog span {
+.delete-dialog-show span,
+h3 {
   text-align: center;
 }
 
-.delete-dialog .controls {
-  display: flex;
-  justify-content: flex-end;
+.delete-dialog-show .controls {
+  margin-top: 2rem;
 }
 
 .cover-div-show {
