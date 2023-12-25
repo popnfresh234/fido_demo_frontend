@@ -7,6 +7,10 @@
   background-color: rgba(0, 0, 0, 0.58);
 }
 
+#edit-td {
+  width: 5rem;
+}
+
 .button-container {
   display: flex;
   justify-content: center;

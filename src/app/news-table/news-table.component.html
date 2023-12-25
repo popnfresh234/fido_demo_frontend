@@ -6,19 +6,8 @@
     <form [formGroup]="newsForm" (submit)="submitDelete()">
       <table class="news-items">
         <tr>
-          <!-- Delete all Checkbox for editing -->
-          <td *ngIf="edit" id="edit-td">
-            <div class="check-all">
-              <label for="deleteAll">全選</label>
-              <input
-                type="checkbox"
-                id="deleteAll"
-                name="deleteAll"
-                formControlName="deleteAll"
-                (change)="setAll($event)"
-              />
-            </div>
-          </td>
+          <!-- Checkobox for deleting all items if editing -->
+          <ng-content select="[deleteAll]"></ng-content>
           <td>標題</td>
           <td class="news-source">媒體</td>
           <!-- Hide date if editing -->

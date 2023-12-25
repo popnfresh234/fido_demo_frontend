@@ -7,10 +7,6 @@
 }
 /* Edit News Styles */
 
-#edit-td {
-  width: 5rem !important;
-}
-
 .check-all {
   display: flex;
   flex-direction: row-reverse;

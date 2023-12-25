@@ -42,14 +42,6 @@ export class NewsTableComponent {
     this.pageChangeEvent.emit(event);
   }
 
-  setAll(event: Event) {
-    this.newsArray.forEach((news) => {
-      this.newsForm
-        .get(news.id.toString())
-        ?.setValue((event.target as HTMLInputElement).checked);
-    });
-  }
-
   showDelete() {
     this.showDeleteEvent.emit(this.delete);
   }

@@ -15,6 +15,21 @@
     [newsForm]="newsForm"
     [delete]="delete"
   >
+    <!-- Delete all Checkbox for editing -->
+    <td deleteAll *ngIf="edit" id="edit-td">
+      <div class="check-all">
+        <label for="deleteAll">全選</label>
+        <input
+          type="checkbox"
+          id="deleteAll"
+          name="deleteAll"
+          formControlName="deleteAll"
+          (change)="setAll($event)"
+        />
+      </div>
+    </td>
+
+    <!-- Button for opening delete dialog -->
     <div deleteButton *ngIf="edit" deleteButton class="button-container">
       <button
         type="button"
