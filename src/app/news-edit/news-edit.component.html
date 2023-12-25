@@ -14,7 +14,7 @@
     [newsForm]="newsForm"
     [delete]="delete"
   >
-    <!-- Delete all Checkbox for editing -->
+    <!-- Delete all Checkbox for header row -->
     <td deleteAll id="edit-td">
       <div class="check-all">
         <label for="deleteAll">全選</label>
@@ -39,7 +39,7 @@
       </button>
     </div>
 
-    <!-- Delete Dialog Needs to be here because of the form-->
+    <!-- Delete Dialog -->
     <div deleteDialog [ngClass]="delete ? 'delete-dialog-show' : 'hidden-el'">
       <h3>刪除訊息</h3>
       <span>是否刪除訊息</span>
