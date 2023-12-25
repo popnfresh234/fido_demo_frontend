@@ -90,8 +90,8 @@ export class NewsEditComponent {
     this.delete = !event;
   }
 
-  cancel(cancelEvent: boolean) {
-    this.delete = !cancelEvent;
+  cancel() {
+    this.delete = !this.delete;
   }
 
   submitDelete() {

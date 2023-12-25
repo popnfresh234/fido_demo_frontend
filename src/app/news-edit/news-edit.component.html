@@ -9,7 +9,6 @@
     [emptyEls]="emptyEls"
     [error]="error"
     (pageChangeEvent)="handlePageChange($event)"
-    (cancelEvent)="cancel($event)"
     (showDeleteEvent)="showDelete($event)"
     (deleteEvent)="submitDelete()"
     [newsForm]="newsForm"
@@ -38,6 +37,22 @@
       >
         刪除訊息
       </button>
+    </div>
+
+    <!-- Delete Dialog Needs to be here because of the form-->
+    <div
+      *ngIf="edit"
+      deleteDialog
+      [ngClass]="delete ? 'delete-dialog-show' : 'hidden-el'"
+    >
+      <h3>刪除訊息</h3>
+      <span>是否刪除訊息</span>
+      <div class="controls">
+        <button type="button" class="box-link cancel" (click)="cancel()">
+          取消
+        </button>
+        <button class="box-link confirm" (click)="submitDelete()">刪除</button>
+      </div>
     </div>
   </app-news-table>
 
