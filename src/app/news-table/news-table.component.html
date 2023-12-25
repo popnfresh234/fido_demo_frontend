@@ -5,6 +5,7 @@
     <!-- Form is for editing -->
     <form [formGroup]="newsForm">
       <table class="news-items">
+        <!-- Header row -->
         <tr>
           <!-- Checkobox for deleting all items if editing -->
           <ng-content select="[deleteAll]"></ng-content>
@@ -13,7 +14,7 @@
           <!-- Hide date if editing -->
           <td *ngIf="!edit" class="news-date">日期</td>
         </tr>
-
+        <!-- Single row of news item -->
         <tr
           *ngFor="
             let news of newsArray
@@ -49,13 +50,18 @@
           <!-- Hide date if editing -->
           <td *ngIf="!edit" class="news-date">{{ news.localDate }}</td>
         </tr>
+        <!-- End news item -->
+
+        <!-- Filler empty rows -->
         <tr *ngFor="let i of emptyEls">
           <td></td>
           <td class="news-source"></td>
           <td class="news-date"></td>
         </tr>
+        <!-- End filler rows -->
       </table>
 
+      <!-- Pagination Controls -->
       <div class="controls">
         <pagination-controls
           class="control-override"
@@ -65,6 +71,7 @@
           (pageChange)="handlePageChange($event)"
         ></pagination-controls>
       </div>
+      <!-- End pagination -->
 
       <!-- Delete Button for Editing -->
       <ng-content select="[deleteButton]"></ng-content>
