@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewsService } from '../services/news/news.service';
 import { News } from '../models/news';
@@ -41,7 +41,6 @@ export class NewsEditComponent {
 
   ngOnInit() {
     this.getPaginatedNews();
-    this.newsForm.addControl('deleteAll', new FormControl(false));
   }
 
   handlePageChange(event: number) {
@@ -116,7 +115,10 @@ export class NewsEditComponent {
         )
         .subscribe((response: NewsResponse) => {
           this.handleNewsResponse(response);
-          this.newsForm.get(this.deleteAll)?.setValue(false);
+          let deleteAll = <HTMLInputElement>(
+            document.getElementById('deleteAll')
+          );
+          deleteAll.checked = false;
         });
     }
   }
@@ -129,11 +131,6 @@ export class NewsEditComponent {
 
     // Create form controls
     this.newsArray.forEach((news) => {
-      this.newsForm.addControl(
-        news.id.toString() + 'funk',
-        new FormControl(false)
-      );
-
       this.newsForm.addControl(news.id.toString(), new FormControl(false));
     });
   }

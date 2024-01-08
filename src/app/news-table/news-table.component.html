@@ -54,6 +54,9 @@
 
         <!-- Filler empty rows -->
         <tr *ngFor="let i of emptyEls">
+          <!-- Extra empty TD for checkbox in editing mode -->
+          <td *ngIf="edit"></td>
+          <!-- End extra TD -->
           <td></td>
           <td class="news-source"></td>
           <td class="news-date"></td>
